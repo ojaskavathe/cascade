@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0vrcis6rns5i"]
+
+[ext_resource type="Script" path="res://entity/player/player.gd" id="1_dtk45"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b100w"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_dtk45")
+JUMP_VELOCITY = -1500.0
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(32, 32)
+polygon = PackedVector2Array(-1, 1, -1, -1, 1, -1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_b100w")
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(0, -32)
+polygon = PackedVector2Array(0, -140, -15, -100, 15, -100)

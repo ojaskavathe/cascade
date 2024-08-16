@@ -1,0 +1,31 @@
+extends CharacterBody2D
+
+
+@export var SPEED = 300.0
+@export var JUMP_VELOCITY = -800.0
+@export var GRAVITY = -1000.0
+
+var bash_state = false
+var in_jump_point = false
+
+var move_direction = Vector2.UP
+
+func _physics_process(delta):
+	var direction = get_global_transform().origin - get_global_mouse_position()
+	var angle = direction.angle() - deg_to_rad(90)
+	$Polygon2D2.set_rotation(angle)
+	move_direction = direction.normalized()
+	
+	if bash_state:
+		if Input.is_action_just_released("jump"):
+			velocity = move_direction * JUMP_VELOCITY
+			bash_state = false
+	else:
+		if not is_on_floor():
+			velocity += GRAVITY * Vector2.UP * delta
+		
+		if in_jump_point and Input.is_action_pressed("jump"):
+			bash_state = true
+			velocity = Vector2.ZERO
+			
+		move_and_slide()

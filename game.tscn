@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://beenaw7n1s61s"]
+
+[ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_xm3l1"]
+[ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_gli7r"]
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="3_cx1ux"]
+[ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="3_twf4a"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iw3p7"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_xm3l1")]
+position = Vector2(610, 334)
+GRAVITY = -2400.0
+
+[node name="Camera" parent="Player" instance=ExtResource("2_gli7r")]
+position_smoothing_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 648)
+shape = SubResource("WorldBoundaryShape2D_iw3p7")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(95, 712)
+texture = ExtResource("3_twf4a")
+
+[node name="JumpPoint" parent="." instance=ExtResource("3_cx1ux")]
+position = Vector2(602, 620)
+
+[node name="JumpPoint2" parent="." instance=ExtResource("3_cx1ux")]
+position = Vector2(407, 356)
+
+[node name="JumpPoint3" parent="." instance=ExtResource("3_cx1ux")]
+position = Vector2(629, 83)
+
+[node name="JumpPoint4" parent="." instance=ExtResource("3_cx1ux")]
+position = Vector2(398, -192)
+
+[node name="JumpPoint" parent="JumpPoint4" instance=ExtResource("3_cx1ux")]
+position = Vector2(668, 756)
+
+[node name="JumpPoint2" parent="JumpPoint4" instance=ExtResource("3_cx1ux")]
+position = Vector2(473, 492)
+
+[node name="JumpPoint3" parent="JumpPoint4" instance=ExtResource("3_cx1ux")]
+position = Vector2(695, 219)
+
+[node name="JumpPoint4" parent="JumpPoint4" instance=ExtResource("3_cx1ux")]
+position = Vector2(464, -56)
+
+[node name="JumpPoint" parent="JumpPoint4/JumpPoint4" instance=ExtResource("3_cx1ux")]
+position = Vector2(-668, 877)
+
+[node name="JumpPoint2" parent="JumpPoint4/JumpPoint4" instance=ExtResource("3_cx1ux")]
+position = Vector2(-863, 613)
+
+[node name="JumpPoint3" parent="JumpPoint4/JumpPoint4" instance=ExtResource("3_cx1ux")]
+position = Vector2(-641, 340)
+
+[node name="JumpPoint4" parent="JumpPoint4/JumpPoint4" instance=ExtResource("3_cx1ux")]
+position = Vector2(-872, 65)

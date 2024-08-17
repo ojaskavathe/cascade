@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://beenaw7n1s61s"]
+[gd_scene load_steps=6 format=3 uid="uid://beenaw7n1s61s"]
 
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_xm3l1"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_gli7r"]
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="3_cx1ux"]
+[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_hjlmj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iw3p7"]
 
@@ -29,4 +30,9 @@ position = Vector2(748, 159)
 position = Vector2(401, -19)
 
 [node name="Player" parent="." instance=ExtResource("1_xm3l1")]
+z_index = 5
 position = Vector2(626, 387)
+
+[node name="waterfall" parent="." instance=ExtResource("4_hjlmj")]
+position = Vector2(648, 259)
+scale = Vector2(8.46094, 8.96094)

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_dtk45"]
 [ext_resource type="PackedScene" uid="uid://dqe3i08elxdql" path="res://entity/player/player_model.tscn" id="2_qx60d"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b100w"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_5r44n"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pluf"]
 radius = 64.0
@@ -28,7 +28,7 @@ GRAVITY = -1200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_b100w")
+shape = SubResource("CircleShape2D_5r44n")
 
 [node name="JumpPointDetect" type="Area2D" parent="."]
 position = Vector2(0, -32)

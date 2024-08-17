@@ -20,13 +20,14 @@ var move_direction = Vector2.UP
 var arrow_preload: PackedScene = preload("res://entity/player/arrow.tscn")
 var arrow
 
+enum ParticleBehavior {SWIM = 0, DASH = 1}
 
 func _ready():
 	arrow = arrow_preload.instantiate()
 	get_parent().add_child.call_deferred(arrow)
 	arrow.set_visible(false)
 	$PlayerModel/AnimationPlayer.play("swim")
-	swim_particles.set_emitting(true)
+	set_particle_behavior(ParticleBehavior.SWIM)
 
 func _physics_process(delta):
 	if velocity.is_zero_approx():
@@ -41,8 +42,7 @@ func _physics_process(delta):
 		arrow.set_rotation(angle)
 		
 		if Input.is_action_just_released("jump"):
-			swim_particles.set_emitting(false)
-			dash_particles.set_emitting(true)
+			set_particle_behavior(ParticleBehavior.DASH)
 			$DashParticleTimer.start()
 			position = jump_point_position
 			move_direction = direction.normalized()
@@ -65,6 +65,8 @@ func _physics_process(delta):
 			bash_state = true
 			arrow.set_position(jump_point_position)
 			arrow.set_visible(true)
+			set_particle_behavior(ParticleBehavior.SWIM)
+			$DashParticleTimer.stop()
 			Signals.player_entered_bash_state.emit()
 			velocity = Vector2.ZERO
 			
@@ -84,5 +86,9 @@ func _on_jump_point_detect_area_exited(area):
 
 
 func _on_dash_particle_timer_timeout():
-	swim_particles.set_emitting(true)
-	dash_particles.set_emitting(false)
+	set_particle_behavior(ParticleBehavior.SWIM)
+
+
+func set_particle_behavior(particle_behavior: ParticleBehavior):
+	swim_particles.set_emitting(not particle_behavior)
+	dash_particles.set_emitting(particle_behavior)

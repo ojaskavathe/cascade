@@ -7,7 +7,7 @@
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pluf"]
-radius = 64.0
+radius = 36.0
 
 [sub_resource type="Gradient" id="Gradient_wsqn7"]
 offsets = PackedFloat32Array(0)
@@ -34,6 +34,7 @@ shape = SubResource("CircleShape2D_5r44n")
 position = Vector2(0, -32)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="JumpPointDetect"]
+scale = Vector2(1, 1.00635)
 shape = SubResource("CircleShape2D_4pluf")
 
 [node name="PlayerModel" parent="." instance=ExtResource("2_qx60d")]

@@ -10,11 +10,11 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oy5lq"]
 normal = Vector2(1, 0)
-distance = -320.0
+distance = -480.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iw3p7"]
 normal = Vector2(-1, 0)
-distance = -320.0
+distance = -480.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0v5xe"]
 shader = ExtResource("5_pfusk")
@@ -80,6 +80,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -5

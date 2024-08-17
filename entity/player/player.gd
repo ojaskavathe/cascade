@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -800.0
 @export var GRAVITY = -1000.0
+@export var DAMPENING = 2.0
 
 var bash_state = false
 var in_jump_point = false
@@ -51,6 +52,8 @@ func _physics_process(delta):
 			Signals.player_exited_bash_state.emit()
 	else:
 		if not is_on_floor():
+			if velocity.y < 0:
+				velocity = velocity.lerp(Vector2.ZERO, DAMPENING * delta)
 			velocity += GRAVITY * Vector2.UP * delta
 			
 		if Input.is_action_pressed("left"):

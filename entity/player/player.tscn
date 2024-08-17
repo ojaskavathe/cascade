@@ -23,7 +23,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_dtk45")
-JUMP_VELOCITY = -1500.0
+JUMP_VELOCITY = -2000.0
+GRAVITY = -1200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)

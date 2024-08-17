@@ -23,7 +23,7 @@ shader_parameter/y = 180
 
 [sub_resource type="Gradient" id="Gradient_3l1mo"]
 offsets = PackedFloat32Array(0, 0.993506)
-colors = PackedColorArray(0.0156863, 0.670588, 0.670588, 1, 0, 0.337255, 0.415686, 1)
+colors = PackedColorArray(0.0122, 0.61, 0.560183, 1, 0, 0.246667, 0.37, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_y2fm4"]
 gradient = SubResource("Gradient_3l1mo")

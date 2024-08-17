@@ -11,10 +11,10 @@
 
 [node name="Player" parent="." instance=ExtResource("1_xm3l1")]
 position = Vector2(610, 334)
+scale = Vector2(0.4, 0.4)
 GRAVITY = -2400.0
 
-[node name="Camera" parent="Player" instance=ExtResource("2_gli7r")]
-position_smoothing_enabled = true
+[node name="Camera" parent="." instance=ExtResource("2_gli7r")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

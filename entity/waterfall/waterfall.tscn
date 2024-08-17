@@ -17,10 +17,10 @@ noise = SubResource("FastNoiseLite_v8kov")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jwthj"]
 shader = ExtResource("1_5ls27")
 shader_parameter/scale = Vector2(5, 5)
-shader_parameter/zoom = 0.749154
+shader_parameter/zoom = 0.374577
 shader_parameter/gap_stretch = Vector2(0.8, 0.05)
 shader_parameter/refraction_stretch = Vector2(2, 0.8)
-shader_parameter/refraction_strength = 0.015
+shader_parameter/refraction_strength = 0.008
 shader_parameter/water_tint = Color(0.2, 1, 0.973333, 0.0313726)
 shader_parameter/water_highlight = Color(1, 1, 1, 0.3)
 shader_parameter/speed = 1.1

@@ -5,8 +5,8 @@ var camera_tween_end
 
 var x_min = 640
 var x_max = 640
-var y_max = 400
-var y_min = -10000
+var y_max = 100000
+var y_min = -100000
 
 @export var randomStrength: float = 24.0
 @export var shakeFade: float = 20.0

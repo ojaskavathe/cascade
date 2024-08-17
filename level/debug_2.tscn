@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm5r011rhpof8"]
+
+[ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="1_vc05h"]
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="2_3x7hs"]
+
+[node name="Debug2" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(321, 415)
+texture = ExtResource("1_vc05h")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(548, 187)
+texture = ExtResource("1_vc05h")
+
+[node name="JumpPoint" parent="." instance=ExtResource("2_3x7hs")]
+position = Vector2(328, 587)
+
+[node name="JumpPoint2" parent="." instance=ExtResource("2_3x7hs")]
+position = Vector2(681, 612)

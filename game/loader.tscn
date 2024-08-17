@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp2gyveookw1x"]
+
+[ext_resource type="Script" path="res://game/loader.gd" id="1_fyk2u"]
+
+[node name="Loader" type="Node2D"]
+script = ExtResource("1_fyk2u")
+
+[node name="Permanent" type="Node2D" parent="."]
+
+[node name="Ephemeral" type="Node2D" parent="."]

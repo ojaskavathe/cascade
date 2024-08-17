@@ -22,7 +22,6 @@ shader_parameter/x = 320
 shader_parameter/y = 180
 
 [sub_resource type="Gradient" id="Gradient_3l1mo"]
-offsets = PackedFloat32Array(0, 0.993506)
 colors = PackedColorArray(0.0122, 0.61, 0.560183, 1, 0, 0.246667, 0.37, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_y2fm4"]
@@ -30,6 +29,7 @@ gradient = SubResource("Gradient_3l1mo")
 width = 1280
 height = 720
 fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moxia"]
 size = Vector2(1280, 313.5)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvpaves2topa6"]
+
+[ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="1_iojvg"]
+
+[node name="Filler" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(212, 143)
+texture = ExtResource("1_iojvg")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(285, 224)
+texture = ExtResource("1_iojvg")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(204, 297)
+texture = ExtResource("1_iojvg")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(132, 220)
+texture = ExtResource("1_iojvg")

@@ -79,6 +79,11 @@ color_ramp = SubResource("Gradient_uhxg8")
 wait_time = 0.4
 one_shot = true
 
+[node name="BashCooldownTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="area_entered" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_entered"]
 [connection signal="area_exited" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_exited"]
 [connection signal="timeout" from="DashParticleTimer" to="." method="_on_dash_particle_timer_timeout"]
+[connection signal="timeout" from="BashCooldownTimer" to="." method="_on_bash_cooldown_timer_timeout"]

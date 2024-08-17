@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0vrcis6rns5i"]
+[gd_scene load_steps=8 format=3 uid="uid://d0vrcis6rns5i"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_dtk45"]
 [ext_resource type="PackedScene" uid="uid://dqe3i08elxdql" path="res://entity/player/player_model.tscn" id="2_qx60d"]
@@ -8,6 +8,18 @@ size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pluf"]
 radius = 64.0
+
+[sub_resource type="Gradient" id="Gradient_wsqn7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.83, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_37fvg"]
+gradient = SubResource("Gradient_wsqn7")
+width = 4
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_uhxg8"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_dtk45")
@@ -28,8 +40,47 @@ position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_4pluf")
 
 [node name="PlayerModel" parent="." instance=ExtResource("2_qx60d")]
-position = Vector2(0, -32)
-scale = Vector2(2, 2)
+position = Vector2(0, -40)
+
+[node name="DashParticles" type="CPUParticles2D" parent="PlayerModel"]
+z_index = -1
+position = Vector2(0, 40)
+emitting = false
+amount = 64
+preprocess = 1.0
+speed_scale = 2.0
+texture = SubResource("GradientTexture2D_37fvg")
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(0, 1)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 160.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_uhxg8")
+
+[node name="SwimParticles" type="CPUParticles2D" parent="PlayerModel"]
+z_index = -1
+position = Vector2(0, 40)
+emitting = false
+amount = 16
+preprocess = 1.0
+texture = SubResource("GradientTexture2D_37fvg")
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(0, 1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 80.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_uhxg8")
+
+[node name="DashParticleTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [connection signal="area_entered" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_entered"]
 [connection signal="area_exited" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_exited"]
+[connection signal="timeout" from="DashParticleTimer" to="." method="_on_dash_particle_timer_timeout"]

@@ -3,6 +3,11 @@ extends Camera2D
 var camera_tween_start
 var camera_tween_end
 
+var x_min = 640
+var x_max = 640
+var y_max = 400
+var y_min = -10000
+
 @export var randomStrength: float = 24.0
 @export var shakeFade: float = 20.0
 
@@ -20,7 +25,8 @@ func _ready():
 
 func _process(delta):
 	if tracking_flag:
-		var transform_clamped = Transform2D(0, tracking)
+		var origin_clamped = get_adjusted_tracking_pos()
+		var transform_clamped = Transform2D(0, origin_clamped)
 		set_global_transform(transform_clamped)
 		tracking_flag = false
 	
@@ -39,7 +45,7 @@ func _on_player_entered_bash_state():
 		camera_tween_end.kill()
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "zoom", Vector2(1.25, 1.25), 0.2).set_trans(Tween.TRANS_SINE)
 	camera_tween_start = tween
 	
 func _on_player_exited_bash_state():
@@ -47,12 +53,18 @@ func _on_player_exited_bash_state():
 		camera_tween_start.kill()
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "zoom", Vector2(0.75, 0.75), 0.2).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
 	camera_tween_end = tween
 	
 	position_smoothing_speed = 0
 	
 	apply_shake()
+
+func get_adjusted_tracking_pos():
+	var x_clamped = clamp(tracking.x, x_min, x_max)
+	var y_clamped = clamp(tracking.y, y_min, y_max)
+	var origin_clamped = Vector2(x_clamped, y_clamped)
+	return origin_clamped
 
 func apply_shake():
 	shake_strength = randomStrength

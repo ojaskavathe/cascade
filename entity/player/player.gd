@@ -12,10 +12,12 @@ var move_direction = Vector2.UP
 
 @onready var jump_point_detect: Area2D = $JumpPointDetect
 
+@onready var dash_particles = $PlayerModel/DashParticles
+@onready var swim_particles = $PlayerModel/SwimParticles
 
 func _ready():
 	$PlayerModel/AnimationPlayer.play("swim")
-
+	swim_particles.set_emitting(true)
 
 func _physics_process(delta):
 	var direction = get_global_transform().origin - get_global_mouse_position()
@@ -26,6 +28,9 @@ func _physics_process(delta):
 	
 	if bash_state:
 		if Input.is_action_just_released("jump"):
+			swim_particles.set_emitting(false)
+			dash_particles.set_emitting(true)
+			$DashParticleTimer.start()
 			velocity = move_direction * JUMP_VELOCITY
 			bash_state = false
 			Signals.player_exited_bash_state.emit()
@@ -50,3 +55,8 @@ func _on_jump_point_detect_area_entered(area):
 func _on_jump_point_detect_area_exited(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = false
+
+
+func _on_dash_particle_timer_timeout():
+	swim_particles.set_emitting(true)
+	dash_particles.set_emitting(false)

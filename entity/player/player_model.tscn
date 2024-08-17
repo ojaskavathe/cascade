@@ -232,6 +232,7 @@ _data = {
 }
 
 [node name="PlayerModel" type="Node2D"]
+position = Vector2(0, -8)
 
 [node name="Head" type="Polygon2D" parent="."]
 position = Vector2(0, -2)

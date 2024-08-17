@@ -1,17 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://beenaw7n1s61s"]
+[gd_scene load_steps=10 format=3 uid="uid://beenaw7n1s61s"]
 
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_xm3l1"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_gli7r"]
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="3_cx1ux"]
-[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_hjlmj"]
+[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_itygh"]
+[ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="5_pfusk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iw3p7"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v5xe"]
+shader = ExtResource("5_pfusk")
+shader_parameter/x = 320
+shader_parameter/y = 180
+
+[sub_resource type="Gradient" id="Gradient_3l1mo"]
+offsets = PackedFloat32Array(0, 0.993506)
+colors = PackedColorArray(0.0156863, 0.670588, 0.670588, 1, 0, 0.337255, 0.415686, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2fm4"]
+gradient = SubResource("Gradient_3l1mo")
+width = 1280
+height = 720
+fill_to = Vector2(0, 1)
+
 [node name="Game" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource("1_xm3l1")]
+position = Vector2(640, 400)
+
 [node name="Camera" parent="." instance=ExtResource("2_gli7r")]
+position = Vector2(640, 400)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(640, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 648)
@@ -29,10 +50,22 @@ position = Vector2(748, 159)
 [node name="JumpPoint4" parent="." instance=ExtResource("3_cx1ux")]
 position = Vector2(401, -19)
 
-[node name="Player" parent="." instance=ExtResource("1_xm3l1")]
-z_index = 5
-position = Vector2(626, 387)
+[node name="waterfall" parent="." instance=ExtResource("4_itygh")]
+position = Vector2(690.25, 337)
+scale = Vector2(13.4492, 7.52344)
+metadata/_edit_lock_ = true
 
-[node name="waterfall" parent="." instance=ExtResource("4_hjlmj")]
-position = Vector2(648, 259)
-scale = Vector2(8.46094, 8.96094)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_0v5xe")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(640, 354)
+texture = SubResource("GradientTexture2D_y2fm4")

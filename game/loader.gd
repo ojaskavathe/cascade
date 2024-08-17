@@ -57,19 +57,22 @@ func init():
 		"res://level/debug_2.tscn"
 	])
 	
+	camera = camera_preload.instantiate()
+	camera.set_position(Vector2(640, -400))
+	permanent.add_child.call_deferred(camera)
+	
 	setup_player()
 
 func setup_player():
+	var spawn_pos = Vector2(640, -400)
 	player = player_preload.instantiate()
-	player.set_position(Vector2(640, -400))
+	player.set_position(spawn_pos)
 	ephemeral.add_child.call_deferred(player)
 	await player.ready
-	player.set_first_jump_in_level()
 	
-	camera = camera_preload.instantiate()
-	camera.set_position(Vector2(640, -400))
-	ephemeral.add_child.call_deferred(camera)
-	await camera.ready
+	player.set_first_jump_in_level()
+	camera.tracking = spawn_pos
+	camera.tracking_flag = true
 	camera._on_player_entered_bash_state()
 
 

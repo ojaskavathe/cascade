@@ -29,10 +29,6 @@ JUMP_VELOCITY = -1500.0
 position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_b100w")
 
-[node name="Polygon2D2" type="Polygon2D" parent="."]
-position = Vector2(0, -32)
-polygon = PackedVector2Array(0, -140, -15, -100, 15, -100)
-
 [node name="JumpPointDetect" type="Area2D" parent="."]
 position = Vector2(0, -32)
 

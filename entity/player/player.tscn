@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0vrcis6rns5i"]
+[gd_scene load_steps=5 format=3 uid="uid://d0vrcis6rns5i"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_dtk45"]
+[ext_resource type="PackedScene" uid="uid://dqe3i08elxdql" path="res://entity/player/player_model.tscn" id="2_qx60d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b100w"]
 size = Vector2(64, 64)
@@ -11,11 +12,6 @@ radius = 64.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_dtk45")
 JUMP_VELOCITY = -1500.0
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(0, -32)
-scale = Vector2(32, 32)
-polygon = PackedVector2Array(-1, 1, -1, -1, 1, -1, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
@@ -28,8 +24,12 @@ polygon = PackedVector2Array(0, -140, -15, -100, 15, -100)
 [node name="JumpPointDetect" type="Area2D" parent="."]
 position = Vector2(0, -32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpPointDetect"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="JumpPointDetect"]
 shape = SubResource("CircleShape2D_4pluf")
+
+[node name="PlayerModel" parent="." instance=ExtResource("2_qx60d")]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
 
 [connection signal="area_entered" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_entered"]
 [connection signal="area_exited" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_exited"]

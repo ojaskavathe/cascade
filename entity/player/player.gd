@@ -12,10 +12,16 @@ var move_direction = Vector2.UP
 
 @onready var jump_point_detect: Area2D = $JumpPointDetect
 
+
+func _ready():
+	$PlayerModel/AnimationPlayer.play("swim")
+
+
 func _physics_process(delta):
 	var direction = get_global_transform().origin - get_global_mouse_position()
 	var angle = direction.angle() - deg_to_rad(90)
 	$Polygon2D2.set_rotation(angle)
+	$PlayerModel.set_rotation(angle)
 	move_direction = direction.normalized()
 	
 	if bash_state:

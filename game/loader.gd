@@ -18,6 +18,7 @@ var filler = preload("res://level/filler.tscn")
 @onready var ephemeral := $Ephemeral
 
 var unpause_flag = false
+var delete_flag = false
 
 var current_level_group_index = 0
 
@@ -49,20 +50,29 @@ func _on_kill():
 	for level_group in level_groups_copy:
 		load_next_level_group(level_group)
 	
-	var levels_in_first_group = len(level_groups[current_level_group_index])
-	var i = 0
-	while i < levels_in_first_group:
-		loaded_levels[i].set_process_mode(ProcessMode.PROCESS_MODE_INHERIT)
-		i += 1
+	unpause_first_level_group()
 	
 	setup_player()
+
+# FIXED
+func unpause_first_level_group():
+	var levels_in_first_group = len(level_groups[current_level_group_index])
+	var offset = 0 if current_level_group_index == 0 else len(level_groups[0]) + 1
+	
+	var i = 0
+	while i < levels_in_first_group:
+		loaded_levels[offset + i].set_process_mode(ProcessMode.PROCESS_MODE_INHERIT)
+		i += 1
+	
 
 func _on_can_unlock_next():
 	unpause_flag = true
 
+# FIXED
 func _on_level_exit():
-	if unpause_flag and len(level_groups) > 1:
+	if unpause_flag and len(level_groups) > current_level_group_index + 1:
 		unpause_flag = false
+		delete_flag = true
 		var current_level_group = level_groups[current_level_group_index]
 		var next_level_group = level_groups[current_level_group_index + 1]
 		var unpause_start_index = len(current_level_group) + 1
@@ -75,15 +85,30 @@ func _on_level_exit():
 			i += 1
 
 func _on_level_enter():
-	var first_level_group = level_groups[0]
-	var levels_in_first_group = len(first_level_group)
-	
-	
-	
-	if current_level_group == 0:
-		current_level_group = 1
-	
-	level_groups.pop_front()
+	if delete_flag:
+		load_next_level_group([
+			"res://level/debug_3.tscn"
+		])
+		
+		delete_flag = false
+		
+		current += len(level_groups[current_level_group_index]) + 1
+		setup_entry_and_exit()
+		
+		if current_level_group_index == 1:
+			var first_level_group = level_groups[0]
+			var levels_in_first_group = len(first_level_group)
+			
+			var i = 0
+			while i < levels_in_first_group + 1:
+				var level_to_free = loaded_levels.pop_front()
+				if is_instance_valid(level_to_free):
+					level_to_free.queue_free()
+			
+			level_groups.pop_front()
+		
+		if current_level_group_index == 0:
+			current_level_group_index = 1
 
 func init():
 	var base = base_preload.instantiate()
@@ -102,11 +127,7 @@ func init():
 		"res://level/debug_1.tscn"
 	])
 	
-	var levels_in_first_group = len(level_groups[0])
-	var i = 0
-	while i < levels_in_first_group:
-		loaded_levels[i].set_process_mode(ProcessMode.PROCESS_MODE_INHERIT)
-		i += 1
+	unpause_first_level_group()
 	
 	load_next_level_group([
 		"res://level/debug_2.tscn"
@@ -120,6 +141,7 @@ func init():
 	
 	setup_player()
 
+# FIXED
 func setup_entry_and_exit():
 	var current_level_group = level_groups[current_level_group_index]
 	var current_level_height = current + len(current_level_group)
@@ -171,5 +193,3 @@ func load_next_level(loaded_level):
 	loaded_level_instance.set_process_mode(ProcessMode.PROCESS_MODE_DISABLED)
 	ephemeral.add_child(loaded_level_instance)
 	loaded_levels.append(loaded_level_instance)
-	
-	

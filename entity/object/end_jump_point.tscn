@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgreeqw7eggg2"]
+
+[ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="1_10en1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bi3ns"]
+radius = 36.0
+
+[node name="EndJumpPoint" type="Area2D" groups=["boost", "jump_point"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bi3ns")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_10en1")

@@ -32,8 +32,8 @@ position = Vector2(479, 338)
 [node name="JumpPoint3" parent="." instance=ExtResource("1_menrk")]
 position = Vector2(748, 159)
 
-[node name="JumpPoint4" parent="." instance=ExtResource("1_menrk")]
-position = Vector2(401, -19)
+[node name="End" parent="." groups=["end_point"] instance=ExtResource("1_menrk")]
+position = Vector2(607, -43)
 
 [node name="waterfall" parent="." instance=ExtResource("2_xpit8")]
 z_index = 2

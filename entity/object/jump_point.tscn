@@ -44,5 +44,5 @@ color_ramp = SubResource("Gradient_twv5t")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.75, 0.75)
 color = Color(1, 0.498039, 0, 1)
-energy = 0.8
+energy = 0.5
 texture = SubResource("GradientTexture2D_1786h")

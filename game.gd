@@ -59,8 +59,8 @@ func _on_new_lg_timeout() -> void:
 		var tween = get_tree().create_tween()
 		tween.set_parallel();
 		
-		tween.tween_property(next_lg, "scale", Vector2.ONE * 1, 1.3).set_trans(Tween.TRANS_SPRING)
+		tween.tween_property(next_lg, "scale", Vector2.ONE * 1, 1.3).set_trans(Tween.TRANS_CUBIC)
 		# tween.tween_property(next_lg, "position", Vector2(next_lg.position.x, next_lg.position.y+240), 1.3).set_trans(Tween.TRANS_SPRING)
-		tween.tween_property(water_plane, "scale", Vector2(1, 0), 1.3).set_trans(Tween.TRANS_SPRING)
+		tween.tween_property(water_plane, "scale", Vector2(1, 0.1), 1.3).set_trans(Tween.TRANS_CUBIC)
 		# tween.tween_property(left_rocks, "position", Vector2(0, left_rocks.position.y), 2).set_trans(Tween.TRANS_CUBIC)
 		# tween.tween_property(right_rocks, "position", Vector2(0, right_rocks.position.y), 2).set_trans(Tween.TRANS_CUBIC)

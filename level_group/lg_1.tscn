@@ -1,11 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcykdm8vsc242"]
+[gd_scene load_steps=12 format=3 uid="uid://dcykdm8vsc242"]
 
 [ext_resource type="PackedScene" uid="uid://clyk282cyamie" path="res://level/debug_0.tscn" id="1_3gg2f"]
 [ext_resource type="PackedScene" uid="uid://b1c5iccen6h2c" path="res://level/debug_1.tscn" id="2_4byue"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_mr0ug"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="5_e8jay"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_ua02a"]
+[ext_resource type="Shader" path="res://assets/shader/pan_hack.gdshader" id="7_w6ytt"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_f52tn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_np3e4"]
+shader = ExtResource("7_w6ytt")
+shader_parameter/speed = Vector2(0, -1)
+shader_parameter/anchor = -0.5
+shader_parameter/fov = 1.0
+
+[sub_resource type="Gradient" id="Gradient_n0qii"]
+offsets = PackedFloat32Array(0, 0.690141)
+colors = PackedColorArray(0.3818, 0.68807, 0.83, 1, 0.0185, 0.258692, 0.37, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3ym72"]
+noise_type = 2
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hbvog"]
+color_ramp = SubResource("Gradient_n0qii")
+noise = SubResource("FastNoiseLite_3ym72")
 
 [node name="LG_1" type="Node2D"]
 scale = Vector2(0.7, 0.7)
@@ -38,6 +57,7 @@ z_index = -2
 position = Vector2(-641, -2203)
 
 [node name="Foam" parent="." instance=ExtResource("6_ua02a")]
+z_index = 2
 position = Vector2(-1, -43)
 
 [node name="LeftRocks" type="Node2D" parent="."]
@@ -65,4 +85,6 @@ position = Vector2(1248, -764)
 
 [node name="waterPlane" type="Polygon2D" parent="."]
 modulate = Color(0.459196, 0.00190405, 0.706767, 1)
+material = SubResource("ShaderMaterial_np3e4")
+texture = SubResource("NoiseTexture2D_hbvog")
 polygon = PackedVector2Array(-450, 0, -720, 240, 720, 240, 450, 0)

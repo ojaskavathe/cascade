@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://imqjhir1uwuh"
-path="res://.godot/imported/tori.png-8c65e41b194d0b84e9cb0a59ce49e58d.ctex"
+uid="uid://c6eab1e5x7ksk"
+path="res://.godot/imported/tori_built.png-643e31a2dd5e79a4e5d44e295bf4caf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tori.png"
-dest_files=["res://.godot/imported/tori.png-8c65e41b194d0b84e9cb0a59ce49e58d.ctex"]
+source_file="res://assets/tori_built.png"
+dest_files=["res://.godot/imported/tori_built.png-643e31a2dd5e79a4e5d44e295bf4caf7.ctex"]
 
 [params]
 

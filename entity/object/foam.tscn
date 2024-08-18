@@ -4,7 +4,6 @@
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Foam" type="CPUParticles2D"]
-z_index = 10
 position = Vector2(640, 720)
 amount = 400
 emission_shape = 3

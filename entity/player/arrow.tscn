@@ -4,4 +4,5 @@
 z_index = 100
 
 [node name="Arrow" type="Polygon2D" parent="."]
+z_index = 100
 polygon = PackedVector2Array(0, -140, -15, -100, 0, -114, 15, -100)

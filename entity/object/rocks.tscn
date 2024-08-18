@@ -12,7 +12,6 @@ texture = ExtResource("1_wkciu")
 [node name="Rock" type="Sprite2D" parent="."]
 position = Vector2(85.3944, 84.2917)
 rotation = 0.223386
-scale = Vector2(1, 1)
 texture = ExtResource("1_wkciu")
 
 [node name="Rock3" type="Sprite2D" parent="."]
@@ -38,7 +37,6 @@ texture = ExtResource("1_wkciu")
 [node name="Rock5" type="Sprite2D" parent="."]
 position = Vector2(96, 375)
 rotation = 0.555821
-scale = Vector2(1, 1)
 texture = ExtResource("1_wkciu")
 
 [node name="Rock7" type="Sprite2D" parent="."]

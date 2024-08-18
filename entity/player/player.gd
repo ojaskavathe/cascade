@@ -22,6 +22,7 @@ var model_rotation = 0.0
 var arrow_preload: PackedScene = preload("res://entity/player/arrow.tscn")
 var arrow
 
+var controls_enabled = true
 var can_bash = true
 
 enum ParticleBehavior {SWIM = 0, DASH = 1}
@@ -58,6 +59,10 @@ func _physics_process(delta):
 			move_direction = direction.normalized()
 			if end_jump:
 				move_direction = Vector2.DOWN
+				controls_enabled = false
+				Signals.player_exited_lg.emit()
+			else:
+				controls_enabled = true
 			
 			velocity = move_direction * (END_VELOCITY if end_jump else JUMP_VELOCITY)
 			Signals.player_exited_bash_state.emit(end_jump)
@@ -74,10 +79,11 @@ func _physics_process(delta):
 				velocity = velocity.lerp(Vector2.ZERO, DAMPENING * delta)
 			velocity += GRAVITY * Vector2.UP * delta
 			
-		if Input.is_action_pressed("left"):
-			velocity += Vector2.LEFT * SPEED
-		if Input.is_action_pressed("right"):
-			velocity += Vector2.RIGHT * SPEED
+		if controls_enabled:
+			if Input.is_action_pressed("left"):
+				velocity += Vector2.LEFT * SPEED
+			if Input.is_action_pressed("right"):
+				velocity += Vector2.RIGHT * SPEED
 		
 		if can_bash and in_jump_point and Input.is_action_pressed("jump"):
 			bash_state = true
@@ -103,9 +109,7 @@ func _on_jump_point_detect_area_entered(area):
 func _on_jump_point_detect_area_exited(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = false
-		if (area.is_in_group("end_point")):
-			Signals.player_exited_lg.emit()
-			end_jump = false
+	end_jump = false
 
 
 func _on_dash_particle_timer_timeout():

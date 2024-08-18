@@ -51,5 +51,5 @@ func _new_lg():
 		
 		var tween = get_tree().create_tween()
 		tween.set_parallel();
-		tween.tween_property(left_rocks, "position", Vector2(0, left_rocks.position.y), 2.5)
-		tween.tween_property(right_rocks, "position", Vector2(0, right_rocks.position.y), 2.5)
+		tween.tween_property(left_rocks, "position", Vector2(0, left_rocks.position.y), 2).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(right_rocks, "position", Vector2(0, right_rocks.position.y), 2).set_trans(Tween.TRANS_CUBIC)

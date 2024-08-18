@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ek465fxqkhqe"]
+
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_mnwan"]
+[ext_resource type="Texture2D" uid="uid://835sbaf5l0di" path="res://assets/coin_base.png" id="2_ewk4s"]
+
+[node name="EndJumpPoint" type="Node2D"]
+
+[node name="BaseJumpPoint" parent="." groups=["end_point"] instance=ExtResource("1_mnwan")]
+
+[node name="CoinBase" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_ewk4s")

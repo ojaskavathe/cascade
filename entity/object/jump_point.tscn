@@ -1,15 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://v743cd1td7ir"]
+[gd_scene load_steps=3 format=3 uid="uid://cevwhf6jv1r06"]
 
-[ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="1_jbrf6"]
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_7a3kh"]
+[ext_resource type="Texture2D" uid="uid://835sbaf5l0di" path="res://assets/coin_base.png" id="2_u308s"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bi3ns"]
-radius = 36.0
+[node name="JumpPoint" type="Node2D"]
 
-[node name="JumpPoint" type="Area2D" groups=["jump_point"]]
+[node name="BaseJumpPoint" parent="." instance=ExtResource("1_7a3kh")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_bi3ns")
-
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_jbrf6")
+[node name="CoinBase" type="Sprite2D" parent="."]
+modulate = Color(0.79, 0.53799, 0.2686, 1)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_u308s")

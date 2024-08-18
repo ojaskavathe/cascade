@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 @export var SPEED = 10.0
-@export var JUMP_VELOCITY = -800.0
+@export var JUMP_VELOCITY = -2000.0
 @export var END_VELOCITY = -4500.0
-@export var GRAVITY = -1000.0
+@export var GRAVITY = -1200.0
 @export var DAMPENING = 2.0
 
 var bash_state = false
@@ -56,11 +56,13 @@ func _physics_process(delta):
 			position = jump_point_position
 			move_direction = direction.normalized()
 			velocity = move_direction * (END_VELOCITY if end_jump else JUMP_VELOCITY)
+			Signals.player_exited_bash_state.emit(end_jump)
+			
 			end_jump = false
 			bash_state = false
 			arrow.set_visible(false)
-			Signals.player_exited_bash_state.emit()
 			can_bash = false
+			
 			$BashCooldownTimer.start()
 	else:
 		if not is_on_floor():
@@ -98,6 +100,7 @@ func _on_jump_point_detect_area_exited(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = false
 		if (area.is_in_group("end_point")):
+			Signals.player_exited_lg.emit()
 			end_jump = false
 
 

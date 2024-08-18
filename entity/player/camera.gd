@@ -11,6 +11,7 @@ var y_min = -100000
 @export var randomStrength: float = 24.0
 @export var shakeFade: float = 20.0
 @export var dashSmoothingSpeed: float = 2.0
+@export var endDashSmoothingSpeed: float = 8.0
 @export var smoothingSpeed: float = 4.0
 @export var targetOffset: Vector2 = Vector2(0, 0)
 
@@ -51,15 +52,20 @@ func _on_player_entered_bash_state():
 	tween.tween_property(self, "zoom", Vector2(1.25, 1.25), 0.2).set_trans(Tween.TRANS_SINE)
 	camera_tween_start = tween
 	
-func _on_player_exited_bash_state():
+func _on_player_exited_bash_state(end):
 	if is_instance_valid(camera_tween_start):
 		camera_tween_start.kill()
 	
+	
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "zoom", Vector2(0.5, 0.5) if end else Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+	
+	if end:
+		tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 2).set_trans(Tween.TRANS_SINE)
+
 	camera_tween_end = tween
 	
-	position_smoothing_speed = dashSmoothingSpeed
+	position_smoothing_speed = endDashSmoothingSpeed if end else dashSmoothingSpeed
 	
 	apply_shake()
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmwpm7ap75scu"]
+[gd_scene load_steps=6 format=3 uid="uid://cmwpm7ap75scu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_oliij"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_2ojf5"]
 [ext_resource type="PackedScene" uid="uid://beenaw7n1s61s" path="res://level_group/lg_0.tscn" id="3_spgvv"]
+[ext_resource type="PackedScene" uid="uid://dcykdm8vsc242" path="res://level_group/lg_1.tscn" id="5_6myex"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_07ca5")
@@ -15,3 +16,6 @@ script = ExtResource("1_07ca5")
 [node name="LevelGroups" type="Node2D" parent="."]
 
 [node name="LG_0" parent="LevelGroups" instance=ExtResource("3_spgvv")]
+
+[node name="LG_1" parent="LevelGroups" instance=ExtResource("5_6myex")]
+position = Vector2(-146, -1768)

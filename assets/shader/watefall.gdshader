@@ -53,7 +53,6 @@ void fragment()
 		color.a = 0.0;
 	}
 
-
 	// Crate Edge Shape //
 
 	// Set the shape for the top and bottom edges. Use water_mask as shape but with other values to flatten it out horizontally.
@@ -61,7 +60,7 @@ void fragment()
 	water_edge -= 0.5;
 
 	// Use the same mask as for the gaps for left and right edge.
-	vec2 vertical_edge_mask = gap_mask - 0.5;
+	vec2 vertical_edge_mask = gap_mask - 0.8;
 
 	// Apply the new masks to the edges. This will make the wobble effect.
 	color.a = mix(0.0, color.a, step(UV.x + vertical_edge_mask.x * 0.2, 0.92)); // Right edge

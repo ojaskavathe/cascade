@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmwpm7ap75scu"]
+[gd_scene load_steps=11 format=3 uid="uid://cmwpm7ap75scu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_oliij"]
@@ -6,11 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://beenaw7n1s61s" path="res://level_group/lg_0.tscn" id="3_spgvv"]
 [ext_resource type="PackedScene" uid="uid://dcykdm8vsc242" path="res://level_group/lg_1.tscn" id="5_6myex"]
 [ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_nhf58"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_36upk"]
 shader = ExtResource("6_nhf58")
 shader_parameter/x = 320
 shader_parameter/y = 180
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0706v"]
+normal = Vector2(1, 0)
+distance = -480.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_emdu7"]
+normal = Vector2(-1, 0)
+distance = -480.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_07ca5")
@@ -23,12 +32,13 @@ targetOffset = Vector2(0, 200)
 [node name="LevelGroups" type="Node2D" parent="."]
 
 [node name="LG_1" parent="LevelGroups" instance=ExtResource("5_6myex")]
-position = Vector2(0, -2506)
+position = Vector2(629, -1952)
 
 [node name="LG_0" parent="LevelGroups" instance=ExtResource("3_spgvv")]
 
 [node name="PixelPostProcess" type="CanvasLayer" parent="."]
 layer = 100
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="PixelPostProcess"]
 material = SubResource("ShaderMaterial_36upk")
@@ -38,3 +48,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="KillZone" parent="." instance=ExtResource("7_51qdx")]
+position = Vector2(640, 0)
+
+[node name="Left" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape2D_0706v")
+
+[node name="Right" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape2D_emdu7")
+
+[node name="NewLG" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="NewLG" to="." method="_on_new_lg_timeout"]

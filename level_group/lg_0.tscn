@@ -1,19 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://beenaw7n1s61s"]
+[gd_scene load_steps=6 format=3 uid="uid://beenaw7n1s61s"]
 
 [ext_resource type="PackedScene" uid="uid://clyk282cyamie" path="res://level/debug_0.tscn" id="1_6niij"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_f443m"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="5_egt5m"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_0wh8e"]
-[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_7scns"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_hhwa6"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lphgc"]
-normal = Vector2(1, 0)
-distance = -480.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y6q1a"]
-normal = Vector2(-1, 0)
-distance = -480.0
 
 [node name="LG_0" type="Node2D"]
 
@@ -45,16 +36,6 @@ z_index = -2
 position = Vector2(-1, -1787)
 
 [node name="Foam" parent="." instance=ExtResource("6_0wh8e")]
-
-[node name="KillZone" parent="." instance=ExtResource("7_7scns")]
-
-[node name="Left" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(640, 648)
-shape = SubResource("WorldBoundaryShape2D_lphgc")
-
-[node name="Right" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(640, 648)
-shape = SubResource("WorldBoundaryShape2D_y6q1a")
 
 [node name="LeftRocks" type="Node2D" parent="."]
 position = Vector2(0, 385)

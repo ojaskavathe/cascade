@@ -1,24 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcykdm8vsc242"]
+[gd_scene load_steps=7 format=3 uid="uid://dcykdm8vsc242"]
 
 [ext_resource type="PackedScene" uid="uid://clyk282cyamie" path="res://level/debug_0.tscn" id="1_3gg2f"]
 [ext_resource type="PackedScene" uid="uid://b1c5iccen6h2c" path="res://level/debug_1.tscn" id="2_4byue"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_mr0ug"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="5_e8jay"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_ua02a"]
-[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_mekiy"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_f52tn"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lphgc"]
-normal = Vector2(1, 0)
-distance = -480.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y6q1a"]
-normal = Vector2(-1, 0)
-distance = -480.0
-
 [node name="LG_1" type="Node2D"]
+scale = Vector2(0.7, 0.7)
 
 [node name="levels" type="Node2D" parent="."]
+position = Vector2(-641, -763)
 
 [node name="Debug0" parent="levels" instance=ExtResource("1_3gg2f")]
 position = Vector2(-14, 11)
@@ -28,35 +21,27 @@ position = Vector2(-1, -1818)
 
 [node name="waterfall" parent="." instance=ExtResource("4_mr0ug")]
 z_index = 2
-position = Vector2(640, -300)
+position = Vector2(0, -1100)
 scale = Vector2(8, 18)
 metadata/_edit_lock_ = true
 
 [node name="WaterfallBackground" parent="." instance=ExtResource("5_e8jay")]
 z_index = -2
+position = Vector2(-641, -763)
 
 [node name="WaterfallBackground2" parent="." instance=ExtResource("5_e8jay")]
 z_index = -2
-position = Vector2(0, -720)
+position = Vector2(-641, -1483)
 
 [node name="WaterfallBackground3" parent="." instance=ExtResource("5_e8jay")]
 z_index = -2
-position = Vector2(0, -1440)
+position = Vector2(-641, -2203)
 
 [node name="Foam" parent="." instance=ExtResource("6_ua02a")]
-
-[node name="KillZone" parent="." instance=ExtResource("7_mekiy")]
-
-[node name="Left" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(640, 648)
-shape = SubResource("WorldBoundaryShape2D_lphgc")
-
-[node name="Right" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(640, 648)
-shape = SubResource("WorldBoundaryShape2D_y6q1a")
+position = Vector2(-1, -43)
 
 [node name="LeftRocks" type="Node2D" parent="."]
-position = Vector2(200, 0)
+position = Vector2(-615, -698)
 
 [node name="Rocks" parent="LeftRocks" instance=ExtResource("8_f52tn")]
 
@@ -67,7 +52,7 @@ position = Vector2(25, -1479)
 position = Vector2(11, -752)
 
 [node name="RightRocks" type="Node2D" parent="."]
-position = Vector2(-200, 0)
+position = Vector2(-615, -678)
 
 [node name="Rocks2" parent="RightRocks" instance=ExtResource("8_f52tn")]
 position = Vector2(1236, 12)
@@ -77,3 +62,7 @@ position = Vector2(1252, -1460)
 
 [node name="Rocks4" parent="RightRocks" instance=ExtResource("8_f52tn")]
 position = Vector2(1248, -764)
+
+[node name="waterPlane" type="Polygon2D" parent="."]
+modulate = Color(0.459196, 0.00190405, 0.706767, 1)
+polygon = PackedVector2Array(-450, 0, -720, 240, 720, 240, 450, 0)

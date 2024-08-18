@@ -1,17 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://beenaw7n1s61s"]
+[gd_scene load_steps=9 format=3 uid="uid://beenaw7n1s61s"]
 
 [ext_resource type="PackedScene" uid="uid://clyk282cyamie" path="res://level/debug_0.tscn" id="1_6niij"]
-[ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="3_j37r5"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_f443m"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="5_egt5m"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_0wh8e"]
-[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_7scns"]
+[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="7_7scns"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_hhwa6"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7draw"]
-shader = ExtResource("3_j37r5")
-shader_parameter/x = 320
-shader_parameter/y = 180
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lphgc"]
 normal = Vector2(1, 0)
@@ -27,18 +21,6 @@ distance = -480.0
 
 [node name="Debug0" parent="levels" instance=ExtResource("1_6niij")]
 position = Vector2(-14, 11)
-
-[node name="PixelPostProcess" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="ColorRect" type="ColorRect" parent="PixelPostProcess"]
-material = SubResource("ShaderMaterial_7draw")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="waterfall" parent="." instance=ExtResource("4_f443m")]
 z_index = 2

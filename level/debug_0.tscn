@@ -1,79 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://clyk282cyamie"]
+[gd_scene load_steps=5 format=3 uid="uid://clyk282cyamie"]
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="1_menrk"]
-[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="2_xpit8"]
-[ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="3_fia7y"]
-[ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="4_15rjf"]
-[ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="5_r1cte"]
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="6_ptu0k"]
-[ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="7_5scwj"]
-[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="8_oqoni"]
-[ext_resource type="PackedScene" uid="uid://b0dmhdbroeyr5" path="res://entity/object/enemy.tscn" id="9_pws10"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v5xe"]
-shader = ExtResource("3_fia7y")
-shader_parameter/x = 320
-shader_parameter/y = 180
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7dbm0"]
-normal = Vector2(1, 0)
-distance = -480.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5m7jm"]
-normal = Vector2(-1, 0)
-distance = -480.0
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="8_oqoni"]
+[ext_resource type="PackedScene" uid="uid://cfmeftaqkjqs" path="res://entity/object/enemy.tscn" id="9_pws10"]
 
 [node name="Debug0" type="Node2D"]
 
 [node name="Spawn" parent="." groups=["spawn_point"] instance=ExtResource("1_menrk")]
-position = Vector2(602, 620)
+position = Vector2(629, 361)
 
-[node name="JumpPoint3" parent="." instance=ExtResource("1_menrk")]
-position = Vector2(748, 159)
-
-[node name="waterfall" parent="." instance=ExtResource("2_xpit8")]
-z_index = 2
-position = Vector2(640, 360)
-scale = Vector2(8, 5.6)
-metadata/_edit_lock_ = true
-
-[node name="PixelPostProcess" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="ColorRect" type="ColorRect" parent="PixelPostProcess"]
-material = SubResource("ShaderMaterial_0v5xe")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="WaterfallBackground" parent="." instance=ExtResource("4_15rjf")]
-z_index = -2
-
-[node name="Foam" parent="." instance=ExtResource("5_r1cte")]
+[node name="End" parent="." groups=["end_point"] instance=ExtResource("1_menrk")]
+position = Vector2(775, -100)
 
 [node name="BottomKillzone" parent="." instance=ExtResource("6_ptu0k")]
 position = Vector2(0, 714)
 
-[node name="KillZone" parent="." instance=ExtResource("8_oqoni")]
-
-[node name="Left" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(640, 648)
-shape = SubResource("WorldBoundaryShape2D_7dbm0")
-
-[node name="Right" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(640, 648)
-shape = SubResource("WorldBoundaryShape2D_5m7jm")
-
-[node name="Rocks" parent="." instance=ExtResource("7_5scwj")]
-
-[node name="Rocks2" parent="." instance=ExtResource("7_5scwj")]
-position = Vector2(1236, 12)
-
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(100, -11)
+position = Vector2(127, -270)
 color = Color(0.72, 0.67716, 0.5688, 1)
 polygon = PackedVector2Array(556, 192, 488, 211, 431, 264, 591, 281, 661, 333, 804.933, 304.438, 770, 265, 668, 259)
 
@@ -89,4 +33,4 @@ position = Vector2(571, 236)
 polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
 
 [node name="Enemy" parent="." instance=ExtResource("9_pws10")]
-position = Vector2(369, 352)
+position = Vector2(396, 93)

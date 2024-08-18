@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://bohi4cl1p4ipa"]
+
+[ext_resource type="Shader" path="res://assets/shader/pan.gdshader" id="1_8apah"]
+[ext_resource type="Shader" path="res://assets/shader/pan_add.gdshader" id="1_ql1qe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37jl8"]
+shader = ExtResource("1_ql1qe")
+shader_parameter/speed = Vector2(0, -1)
+
+[sub_resource type="Gradient" id="Gradient_wxa4j"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i7q0s"]
+noise_type = 2
+frequency = 0.0072
+fractal_octaves = 8
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mvyda"]
+width = 1280
+height = 720
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_wxa4j")
+noise = SubResource("FastNoiseLite_i7q0s")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hswic"]
+shader = ExtResource("1_8apah")
+shader_parameter/speed = Vector2(0, -1)
+
+[sub_resource type="Gradient" id="Gradient_lbctu"]
+offsets = PackedFloat32Array(0, 0.149351, 0.616883)
+colors = PackedColorArray(1, 1, 1, 1, 0.3744, 0.90144, 0.96, 1, 0.38, 0.72832, 0.97423, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_owlv7"]
+noise_type = 2
+frequency = 0.0072
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gs2bb"]
+width = 1280
+height = 720
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_lbctu")
+noise = SubResource("FastNoiseLite_owlv7")
+
+[node name="WaterfallBackground" type="Node2D"]
+
+[node name="Overlay" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_37jl8")
+texture = SubResource("NoiseTexture2D_mvyda")
+centered = false
+
+[node name="Base" type="Sprite2D" parent="."]
+z_index = -100
+material = SubResource("ShaderMaterial_hswic")
+texture = SubResource("NoiseTexture2D_gs2bb")
+centered = false

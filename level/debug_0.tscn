@@ -1,13 +1,86 @@
-[gd_scene load_steps=20 format=3 uid="uid://ctjtcrv6lr21"]
+[gd_scene load_steps=16 format=3 uid="uid://ctjtcrv6lr21"]
 
-[ext_resource type="Shader" path="res://entity/waterfall/waterfall.gdshader" id="3_exhpt"]
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="4_acxa1"]
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="4_ohvmd"]
+[ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="4_vcpn8"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="5_fw8eb"]
-[ext_resource type="Shader" uid="uid://de6gsxh1jnp35" path="res://assets/shader/fallbackground.tres" id="5_ohq8a"]
-[ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="6_kuhdx"]
 [ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_w3gqr"]
 [ext_resource type="Texture2D" uid="uid://c6mxwkdp6ri3e" path="res://assets/rock.png" id="7_58dig"]
+
+[sub_resource type="Shader" id="Shader_tp7pu"]
+code = "shader_type canvas_item;
+
+uniform vec2 scale;
+uniform float zoom; // Used for sprite script. Don't edit this value in the inspector.
+
+uniform sampler2D refraction_map: repeat_enable;
+uniform sampler2D water_mask: repeat_enable;
+
+uniform vec2 gap_stretch = vec2(0.8, 0.05);
+uniform vec2 refraction_stretch = vec2(2.0, 0.8);
+uniform float refraction_strength : hint_range(0.0, 0.5) = 0.2;
+
+uniform vec4 water_tint: source_color = vec4(0.2, 0.6, 1.0, 0.1);
+uniform vec4 water_highlight: source_color = vec4(1.0, 1.0, 1.0, 0.3);
+uniform float speed = 0.5;
+uniform float flow_gaps : hint_range(0.0, 1.0) = 0.33;
+uniform float highlight_width : hint_range(0.0, 0.3) = 0.02;
+
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+
+void fragment()
+{
+	// Get the two noise textures and make them move on the y axis. The gaps move twice as fast as the refraction, but you can tweak this by changing (speed * 0.5)
+	vec2 refraction_offset = texture(refraction_map, vec2(UV.x, UV.y + -TIME * speed * 0.5) * scale * refraction_stretch).xy;
+	vec2 gap_mask = texture(water_mask, vec2(UV.x, UV.y + -TIME * speed) * scale * gap_stretch).xy;
+
+	// Set values between -0.5 and 0.5 (instead of 0 and 1). Otherwise the reflection will move whith increased refraction_strength
+	refraction_offset -= 0.5;
+
+	// Get the screen texture and distort it
+	vec4 refraction = texture(SCREEN_TEXTURE, SCREEN_UV - refraction_offset * refraction_strength * zoom);
+
+	// Create holes and apply colors and textures //
+	vec4 color = vec4(1.0);
+
+	// Define what values will be the water highlight color (the gap border)
+	float inner_edge = flow_gaps + highlight_width;
+
+	// See if the pixel is within the edges range and use the water colors alpha to blend between showing color or refraction texture.
+	if (gap_mask.x < inner_edge)
+	{
+		color.rgb = mix(refraction.rgb, water_highlight.rgb, water_highlight.a);
+	}
+	else
+	{
+		color.rgb = mix(refraction.rgb, water_tint.rgb, water_tint.a);
+	}
+
+	// If the value is below the gap threshhold make it transparent (a gap)
+	if (gap_mask.x < flow_gaps)
+	{
+		color.a = 0.0;
+	}
+
+
+	// Crate Edge Shape //
+
+	// Set the shape for the top and bottom edges. Use water_mask as shape but with other values to flatten it out horizontally.
+	vec2 water_edge = texture(water_mask, vec2(UV.x, UV.y + -TIME * 0.1) * scale * vec2(0.15, 0.6)).xy;
+	water_edge -= 0.5;
+
+	// Use the same mask as for the gaps for left and right edge.
+	vec2 vertical_edge_mask = gap_mask - 0.5;
+
+	// Apply the new masks to the edges. This will make the wobble effect.
+	color.a = mix(0.0, color.a, step(UV.x + vertical_edge_mask.x * 0.2, 0.92)); // Right edge
+	color.a = mix(color.a, 0.0, step(UV.x - vertical_edge_mask.x * 0.2, 0.08)); // Left edge
+
+	color.a = mix(0.0, color.a, step(UV.y + water_edge.y * 0.1, 0.95));  //Bottom edge
+	color.a = mix(color.a, 0.0, step(UV.y - water_edge.y * 0.05, 0.05)); //Top edge
+
+	COLOR = color;
+}"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_suqgc"]
 
@@ -20,9 +93,9 @@ noise = SubResource("FastNoiseLite_suqgc")
 noise = SubResource("FastNoiseLite_v8kov")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0sun"]
-shader = ExtResource("3_exhpt")
+shader = SubResource("Shader_tp7pu")
 shader_parameter/scale = Vector2(5, 5)
-shader_parameter/zoom = 0.420448
+shader_parameter/zoom = 0.561231
 shader_parameter/gap_stretch = Vector2(0.8, 0.05)
 shader_parameter/refraction_stretch = Vector2(2, 0.8)
 shader_parameter/refraction_strength = 0.008
@@ -39,16 +112,6 @@ shader = ExtResource("6_w3gqr")
 shader_parameter/x = 320
 shader_parameter/y = 180
 
-[sub_resource type="Gradient" id="Gradient_3l1mo"]
-colors = PackedColorArray(0.0122, 0.61, 0.560183, 1, 0, 0.246667, 0.37, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2fm4"]
-gradient = SubResource("Gradient_3l1mo")
-width = 1280
-height = 720
-fill_to = Vector2(0, 1)
-metadata/_snap_enabled = true
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7dbm0"]
 normal = Vector2(1, 0)
 distance = -480.0
@@ -56,9 +119,6 @@ distance = -480.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5m7jm"]
 normal = Vector2(-1, 0)
 distance = -480.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eobq2"]
-shader = ExtResource("5_ohq8a")
 
 [node name="Debug0" type="Node2D"]
 
@@ -92,11 +152,8 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="gradient" type="Sprite2D" parent="."]
-visible = false
-z_index = -5
-position = Vector2(640, 354)
-texture = SubResource("GradientTexture2D_y2fm4")
+[node name="WaterfallBackground" parent="." instance=ExtResource("4_vcpn8")]
+z_index = -2
 
 [node name="BottomKillzone" parent="." instance=ExtResource("4_ohvmd")]
 position = Vector2(0, 714)
@@ -111,13 +168,6 @@ shape = SubResource("WorldBoundaryShape2D_7dbm0")
 [node name="Right" type="CollisionShape2D" parent="Bounds"]
 position = Vector2(0, 648)
 shape = SubResource("WorldBoundaryShape2D_5m7jm")
-
-[node name="background" type="Sprite2D" parent="."]
-z_index = -1
-material = SubResource("ShaderMaterial_eobq2")
-position = Vector2(640, 320)
-scale = Vector2(10, 6)
-texture = ExtResource("6_kuhdx")
 
 [node name="rocks" type="Node2D" parent="."]
 
@@ -144,7 +194,6 @@ texture = ExtResource("7_58dig")
 [node name="Rock6" type="Sprite2D" parent="rocks"]
 position = Vector2(165.513, 409.315)
 rotation = -0.590831
-scale = Vector2(1, 1)
 texture = ExtResource("7_58dig")
 
 [node name="Rock4" type="Sprite2D" parent="rocks"]
@@ -177,7 +226,6 @@ texture = ExtResource("7_58dig")
 [node name="Rock18" type="Sprite2D" parent="rocks"]
 position = Vector2(-48.7593, 445.56)
 rotation = 0.0915458
-scale = Vector2(1, 1)
 texture = ExtResource("7_58dig")
 
 [node name="Rock19" type="Sprite2D" parent="rocks"]
@@ -215,7 +263,6 @@ texture = ExtResource("7_58dig")
 [node name="Rock11" type="Sprite2D" parent="rocks"]
 position = Vector2(1022.68, 335.086)
 rotation = -1.36794
-scale = Vector2(1, 1)
 texture = ExtResource("7_58dig")
 
 [node name="Rock12" type="Sprite2D" parent="rocks"]
@@ -253,7 +300,6 @@ texture = ExtResource("7_58dig")
 [node name="Rock25" type="Sprite2D" parent="rocks"]
 position = Vector2(1234.68, 361.086)
 rotation = -0.610247
-scale = Vector2(1, 1)
 texture = ExtResource("7_58dig")
 
 [node name="Rock26" type="Sprite2D" parent="rocks"]

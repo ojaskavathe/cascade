@@ -1,23 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfmeftaqkjqs"]
+[gd_scene load_steps=8 format=3 uid="uid://cfmeftaqkjqs"]
 
-[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="1_4bd5a"]
-[ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="2_tfngl"]
-[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="3_sqxws"]
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_4bd5a"]
+[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="3_sqxws"]
+[ext_resource type="Texture2D" uid="uid://bivgacfhmvefy" path="res://assets/spike.png" id="4_m63wx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o6b6x"]
 radius = 28.0179
 
+[sub_resource type="Curve" id="Curve_gq6w5"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0.0561798, -90.1099), 0.0, 0.0, 0, 0, Vector2(0.41573, -116.484), 0.0, 0.0, 0, 0, Vector2(0.696629, 15.3846), 0.0, 0.0, 0, 0, Vector2(0.983146, -125.275), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_eo84d"]
+min_value = 1.0
+max_value = 2.0
+_data = [Vector2(0.0561798, 1.31868), 0.0, 0.0, 0, 0, Vector2(0.376405, 1.73626), 0.0, 0.0, 0, 0, Vector2(0.662921, 1.49451), 0.0, 0.0, 0, 0, Vector2(0.870787, 1.41758), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_5b2ly"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.198, 0, 0.54, 1)
+
 [node name="Enemy" type="Node2D"]
-
-[node name="JumpPoint" parent="." instance=ExtResource("1_4bd5a")]
-
-[node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(7.62939e-06, -9.53674e-07)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_tfngl")
 
 [node name="KillZone" parent="." instance=ExtResource("3_sqxws")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("CircleShape2D_o6b6x")
+
+[node name="BaseJumpPoint" parent="." instance=ExtResource("1_4bd5a")]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 16
+lifetime = 2.0
+preprocess = 2.0
+randomness = 1.0
+texture = ExtResource("4_m63wx")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 4.0
+angular_velocity_min = 32.0
+angular_velocity_max = 64.0
+radial_accel_min = 6.0
+radial_accel_max = 6.0
+radial_accel_curve = SubResource("Curve_gq6w5")
+tangential_accel_max = 10.0
+damping_min = 5.0
+damping_max = 20.0
+angle_max = 360.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_eo84d")
+color_ramp = SubResource("Gradient_5b2ly")

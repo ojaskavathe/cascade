@@ -11,7 +11,7 @@ func _ready():
 	Signals.kill.connect(_on_kill)
 	Signals.new_checkpoint.connect(_new_checkpoint)
 	
-	checkpoint_loc = first_level.get_node("Spawn").position
+	checkpoint_loc = first_level.get_node("SpawnJumpPoint").position
 	
 	player.position = checkpoint_loc
 	player.jump_point_position = checkpoint_loc

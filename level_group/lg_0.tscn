@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://beenaw7n1s61s"]
+
+[ext_resource type="PackedScene" uid="uid://clyk282cyamie" path="res://level/debug_0.tscn" id="1_6niij"]
+[ext_resource type="PackedScene" uid="uid://b1c5iccen6h2c" path="res://level/debug_1.tscn" id="2_wvcjw"]
+[ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="3_j37r5"]
+[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_f443m"]
+[ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="5_egt5m"]
+[ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_0wh8e"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_7scns"]
+[ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_hhwa6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7draw"]
+shader = ExtResource("3_j37r5")
+shader_parameter/x = 320
+shader_parameter/y = 180
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lphgc"]
+normal = Vector2(1, 0)
+distance = -480.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y6q1a"]
+normal = Vector2(-1, 0)
+distance = -480.0
+
+[node name="LG_0" type="Node2D"]
+
+[node name="levels" type="Node2D" parent="."]
+
+[node name="Debug0" parent="levels" instance=ExtResource("1_6niij")]
+position = Vector2(-14, 11)
+
+[node name="Debug1" parent="levels" instance=ExtResource("2_wvcjw")]
+position = Vector2(-1, -1818)
+
+[node name="PixelPostProcess" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="PixelPostProcess"]
+material = SubResource("ShaderMaterial_7draw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="waterfall" parent="." instance=ExtResource("4_f443m")]
+z_index = 2
+position = Vector2(640, -400)
+scale = Vector2(8, 6)
+metadata/_edit_lock_ = true
+
+[node name="WaterfallBackground" parent="." instance=ExtResource("5_egt5m")]
+z_index = -2
+
+[node name="WaterfallBackground2" parent="." instance=ExtResource("5_egt5m")]
+z_index = -2
+position = Vector2(0, -720)
+
+[node name="WaterfallBackground3" parent="." instance=ExtResource("5_egt5m")]
+z_index = -2
+position = Vector2(0, -1440)
+
+[node name="Foam" parent="." instance=ExtResource("6_0wh8e")]
+
+[node name="KillZone" parent="." instance=ExtResource("7_7scns")]
+
+[node name="Left" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(640, 648)
+shape = SubResource("WorldBoundaryShape2D_lphgc")
+
+[node name="Right" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(640, 648)
+shape = SubResource("WorldBoundaryShape2D_y6q1a")
+
+[node name="Rocks" parent="." instance=ExtResource("8_hhwa6")]
+
+[node name="Rocks5" parent="." instance=ExtResource("8_hhwa6")]
+position = Vector2(25, -1479)
+
+[node name="Rocks6" parent="." instance=ExtResource("8_hhwa6")]
+position = Vector2(11, -752)
+
+[node name="Rocks2" parent="." instance=ExtResource("8_hhwa6")]
+position = Vector2(1236, 12)
+
+[node name="Rocks3" parent="." instance=ExtResource("8_hhwa6")]
+position = Vector2(1252, -1460)
+
+[node name="Rocks4" parent="." instance=ExtResource("8_hhwa6")]
+position = Vector2(1248, -764)

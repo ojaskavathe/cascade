@@ -16,7 +16,7 @@ uniform float speed = 0.5;
 uniform float flow_gaps : hint_range(0.0, 1.0) = 0.33;
 uniform float highlight_width : hint_range(0.0, 0.3) = 0.02;
 
-uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable;
 
 void fragment()
 {
@@ -28,7 +28,8 @@ void fragment()
 	refraction_offset -= 0.5;
 
 	// Get the screen texture and distort it
-	vec4 refraction = texture(SCREEN_TEXTURE, SCREEN_UV - refraction_offset * refraction_strength * zoom);
+	// when using screen_texture, use textureLod for web export
+	vec4 refraction = textureLod(SCREEN_TEXTURE, SCREEN_UV - refraction_offset * refraction_strength * zoom, 0);
 
 	// Create holes and apply colors and textures //
 	vec4 color = vec4(1.0);

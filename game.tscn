@@ -1,21 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bidshs2204euy"]
+[gd_scene load_steps=5 format=3 uid="uid://cmwpm7ap75scu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
-[ext_resource type="PackedScene" uid="uid://beenaw7n1s61s" path="res://level_group/lg_0.tscn" id="1_aopqo"]
-[ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_xm3l1"]
-[ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_gli7r"]
+[ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_oliij"]
+[ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_2ojf5"]
+[ext_resource type="PackedScene" uid="uid://beenaw7n1s61s" path="res://level_group/lg_0.tscn" id="3_spgvv"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_07ca5")
 
+[node name="Player" parent="." instance=ExtResource("1_oliij")]
+
+[node name="Camera" parent="." instance=ExtResource("2_2ojf5")]
+
 [node name="LevelGroups" type="Node2D" parent="."]
 
-[node name="LG_0" parent="LevelGroups" instance=ExtResource("1_aopqo")]
-
-[node name="Player" parent="." instance=ExtResource("1_xm3l1")]
-position = Vector2(640, 400)
-
-[node name="Camera" parent="." instance=ExtResource("2_gli7r")]
-position = Vector2(640, 400)
-randomStrength = 18.0
-targetOffset = Vector2(0, 150)
+[node name="LG_0" parent="LevelGroups" instance=ExtResource("3_spgvv")]

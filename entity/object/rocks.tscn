@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://468m7kol4t1"]
+
+[ext_resource type="Texture2D" uid="uid://c6mxwkdp6ri3e" path="res://assets/rock.png" id="1_wkciu"]
+
+[node name="Rocks" type="Node2D"]
+
+[node name="Rock10" type="Sprite2D" parent="."]
+position = Vector2(-24, 54)
+rotation = -0.58705
+texture = ExtResource("1_wkciu")
+
+[node name="Rock" type="Sprite2D" parent="."]
+position = Vector2(85.3944, 84.2917)
+rotation = 0.223386
+scale = Vector2(1, 1)
+texture = ExtResource("1_wkciu")
+
+[node name="Rock3" type="Sprite2D" parent="."]
+position = Vector2(-10.6056, 150.292)
+rotation = -0.164716
+texture = ExtResource("1_wkciu")
+
+[node name="Rock2" type="Sprite2D" parent="."]
+position = Vector2(105.394, 236.292)
+rotation = 0.498356
+texture = ExtResource("1_wkciu")
+
+[node name="Rock4" type="Sprite2D" parent="."]
+position = Vector2(-25, 249)
+rotation = -0.188821
+texture = ExtResource("1_wkciu")
+
+[node name="Rock6" type="Sprite2D" parent="."]
+position = Vector2(-59, 385)
+rotation = -0.676705
+texture = ExtResource("1_wkciu")
+
+[node name="Rock5" type="Sprite2D" parent="."]
+position = Vector2(96, 375)
+rotation = 0.555821
+scale = Vector2(1, 1)
+texture = ExtResource("1_wkciu")
+
+[node name="Rock7" type="Sprite2D" parent="."]
+position = Vector2(141, 499)
+rotation = 0.208753
+texture = ExtResource("1_wkciu")
+
+[node name="Rock8" type="Sprite2D" parent="."]
+position = Vector2(-8, 455)
+rotation = 0.00559744
+texture = ExtResource("1_wkciu")
+
+[node name="Rock11" type="Sprite2D" parent="."]
+position = Vector2(18, 525)
+rotation = -0.14556
+texture = ExtResource("1_wkciu")
+
+[node name="Rock9" type="Sprite2D" parent="."]
+position = Vector2(103, 646)
+rotation = 0.410074
+texture = ExtResource("1_wkciu")
+
+[node name="Rock13" type="Sprite2D" parent="."]
+position = Vector2(-59, 647)
+rotation = 0.161101
+texture = ExtResource("1_wkciu")
+
+[node name="Rock12" type="Sprite2D" parent="."]
+position = Vector2(117, 690)
+texture = ExtResource("1_wkciu")

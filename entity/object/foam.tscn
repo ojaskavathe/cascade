@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba2n4nf5j2cpv"]
+
+[sub_resource type="Gradient" id="Gradient_tow7n"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Foam" type="CPUParticles2D"]
+z_index = 10
+position = Vector2(640, 720)
+amount = 400
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+spread = 180.0
+gravity = Vector2(0, -160)
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+radial_accel_min = 20.0
+radial_accel_max = 40.0
+tangential_accel_min = 10.0
+tangential_accel_max = 20.0
+damping_min = 6.0
+damping_max = 20.0
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 10.0
+scale_amount_max = 100.0
+color_ramp = SubResource("Gradient_tow7n")

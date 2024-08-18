@@ -1,114 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctjtcrv6lr21"]
+[gd_scene load_steps=11 format=3 uid="uid://clyk282cyamie"]
 
-[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="4_acxa1"]
-[ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="4_ohvmd"]
-[ext_resource type="PackedScene" path="res://entity/waterfall/waterfall_background.tscn" id="4_vcpn8"]
-[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="5_fw8eb"]
-[ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_w3gqr"]
-[ext_resource type="Texture2D" uid="uid://c6mxwkdp6ri3e" path="res://assets/rock.png" id="7_58dig"]
-
-[sub_resource type="Shader" id="Shader_tp7pu"]
-code = "shader_type canvas_item;
-
-uniform vec2 scale;
-uniform float zoom; // Used for sprite script. Don't edit this value in the inspector.
-
-uniform sampler2D refraction_map: repeat_enable;
-uniform sampler2D water_mask: repeat_enable;
-
-uniform vec2 gap_stretch = vec2(0.8, 0.05);
-uniform vec2 refraction_stretch = vec2(2.0, 0.8);
-uniform float refraction_strength : hint_range(0.0, 0.5) = 0.2;
-
-uniform vec4 water_tint: source_color = vec4(0.2, 0.6, 1.0, 0.1);
-uniform vec4 water_highlight: source_color = vec4(1.0, 1.0, 1.0, 0.3);
-uniform float speed = 0.5;
-uniform float flow_gaps : hint_range(0.0, 1.0) = 0.33;
-uniform float highlight_width : hint_range(0.0, 0.3) = 0.02;
-
-uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
-
-void fragment()
-{
-	// Get the two noise textures and make them move on the y axis. The gaps move twice as fast as the refraction, but you can tweak this by changing (speed * 0.5)
-	vec2 refraction_offset = texture(refraction_map, vec2(UV.x, UV.y + -TIME * speed * 0.5) * scale * refraction_stretch).xy;
-	vec2 gap_mask = texture(water_mask, vec2(UV.x, UV.y + -TIME * speed) * scale * gap_stretch).xy;
-
-	// Set values between -0.5 and 0.5 (instead of 0 and 1). Otherwise the reflection will move whith increased refraction_strength
-	refraction_offset -= 0.5;
-
-	// Get the screen texture and distort it
-	vec4 refraction = texture(SCREEN_TEXTURE, SCREEN_UV - refraction_offset * refraction_strength * zoom);
-
-	// Create holes and apply colors and textures //
-	vec4 color = vec4(1.0);
-
-	// Define what values will be the water highlight color (the gap border)
-	float inner_edge = flow_gaps + highlight_width;
-
-	// See if the pixel is within the edges range and use the water colors alpha to blend between showing color or refraction texture.
-	if (gap_mask.x < inner_edge)
-	{
-		color.rgb = mix(refraction.rgb, water_highlight.rgb, water_highlight.a);
-	}
-	else
-	{
-		color.rgb = mix(refraction.rgb, water_tint.rgb, water_tint.a);
-	}
-
-	// If the value is below the gap threshhold make it transparent (a gap)
-	if (gap_mask.x < flow_gaps)
-	{
-		color.a = 0.0;
-	}
-
-
-	// Crate Edge Shape //
-
-	// Set the shape for the top and bottom edges. Use water_mask as shape but with other values to flatten it out horizontally.
-	vec2 water_edge = texture(water_mask, vec2(UV.x, UV.y + -TIME * 0.1) * scale * vec2(0.15, 0.6)).xy;
-	water_edge -= 0.5;
-
-	// Use the same mask as for the gaps for left and right edge.
-	vec2 vertical_edge_mask = gap_mask - 0.5;
-
-	// Apply the new masks to the edges. This will make the wobble effect.
-	color.a = mix(0.0, color.a, step(UV.x + vertical_edge_mask.x * 0.2, 0.92)); // Right edge
-	color.a = mix(color.a, 0.0, step(UV.x - vertical_edge_mask.x * 0.2, 0.08)); // Left edge
-
-	color.a = mix(0.0, color.a, step(UV.y + water_edge.y * 0.1, 0.95));  //Bottom edge
-	color.a = mix(color.a, 0.0, step(UV.y - water_edge.y * 0.05, 0.05)); //Top edge
-
-	COLOR = color;
-}"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_suqgc"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hqa1d"]
-noise = SubResource("FastNoiseLite_suqgc")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_v8kov"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_31dha"]
-noise = SubResource("FastNoiseLite_v8kov")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0sun"]
-shader = SubResource("Shader_tp7pu")
-shader_parameter/scale = Vector2(5, 5)
-shader_parameter/zoom = 0.235969
-shader_parameter/gap_stretch = Vector2(0.8, 0.05)
-shader_parameter/refraction_stretch = Vector2(2, 0.8)
-shader_parameter/refraction_strength = 0.008
-shader_parameter/water_tint = Color(0.2, 1, 0.973333, 0.0313726)
-shader_parameter/water_highlight = Color(1, 1, 1, 0.3)
-shader_parameter/speed = 1.1
-shader_parameter/flow_gaps = 0.22
-shader_parameter/highlight_width = 0.02
-shader_parameter/refraction_map = SubResource("NoiseTexture2D_hqa1d")
-shader_parameter/water_mask = SubResource("NoiseTexture2D_31dha")
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="1_menrk"]
+[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="2_xpit8"]
+[ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="3_fia7y"]
+[ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="4_15rjf"]
+[ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="5_r1cte"]
+[ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="6_ptu0k"]
+[ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="7_5scwj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0v5xe"]
-shader = ExtResource("6_w3gqr")
+shader = ExtResource("3_fia7y")
 shader_parameter/x = 320
 shader_parameter/y = 180
 
@@ -122,26 +23,26 @@ distance = -480.0
 
 [node name="Debug0" type="Node2D"]
 
-[node name="Spawn" parent="." groups=["spawn_point"] instance=ExtResource("4_acxa1")]
+[node name="Spawn" parent="." groups=["spawn_point"] instance=ExtResource("1_menrk")]
 position = Vector2(602, 620)
 
-[node name="JumpPoint2" parent="." instance=ExtResource("4_acxa1")]
+[node name="JumpPoint2" parent="." instance=ExtResource("1_menrk")]
 position = Vector2(479, 338)
 
-[node name="JumpPoint3" parent="." instance=ExtResource("4_acxa1")]
+[node name="JumpPoint3" parent="." instance=ExtResource("1_menrk")]
 position = Vector2(748, 159)
 
-[node name="JumpPoint4" parent="." instance=ExtResource("4_acxa1")]
+[node name="JumpPoint4" parent="." instance=ExtResource("1_menrk")]
 position = Vector2(401, -19)
 
-[node name="waterfall" parent="." instance=ExtResource("5_fw8eb")]
+[node name="waterfall" parent="." instance=ExtResource("2_xpit8")]
 z_index = 2
-material = SubResource("ShaderMaterial_b0sun")
-position = Vector2(612.11, 338.74)
-scale = Vector2(6.669, 7.523)
+position = Vector2(640, 360)
+scale = Vector2(8, 5.6)
 metadata/_edit_lock_ = true
 
 [node name="PixelPostProcess" type="CanvasLayer" parent="."]
+layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="PixelPostProcess"]
 material = SubResource("ShaderMaterial_0v5xe")
@@ -152,10 +53,12 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="WaterfallBackground" parent="." instance=ExtResource("4_vcpn8")]
+[node name="WaterfallBackground" parent="." instance=ExtResource("4_15rjf")]
 z_index = -2
 
-[node name="BottomKillzone" parent="." instance=ExtResource("4_ohvmd")]
+[node name="Foam" parent="." instance=ExtResource("5_r1cte")]
+
+[node name="BottomKillzone" parent="." instance=ExtResource("6_ptu0k")]
 position = Vector2(0, 714)
 
 [node name="Bounds" type="StaticBody2D" parent="."]
@@ -169,141 +72,7 @@ shape = SubResource("WorldBoundaryShape2D_7dbm0")
 position = Vector2(0, 648)
 shape = SubResource("WorldBoundaryShape2D_5m7jm")
 
-[node name="rocks" type="Node2D" parent="."]
+[node name="Rocks" parent="." instance=ExtResource("7_5scwj")]
 
-[node name="Rock" type="Sprite2D" parent="rocks"]
-position = Vector2(220, 42)
-texture = ExtResource("7_58dig")
-
-[node name="Rock2" type="Sprite2D" parent="rocks"]
-position = Vector2(258, 179)
-rotation = -0.358175
-texture = ExtResource("7_58dig")
-
-[node name="Rock3" type="Sprite2D" parent="rocks"]
-position = Vector2(264, 345)
-rotation = 0.503223
-scale = Vector2(1.25068, 0.960358)
-texture = ExtResource("7_58dig")
-
-[node name="Rock5" type="Sprite2D" parent="rocks"]
-position = Vector2(127.513, 272.315)
-rotation = -0.232656
-texture = ExtResource("7_58dig")
-
-[node name="Rock6" type="Sprite2D" parent="rocks"]
-position = Vector2(165.513, 409.315)
-rotation = -0.590831
-texture = ExtResource("7_58dig")
-
-[node name="Rock4" type="Sprite2D" parent="rocks"]
-position = Vector2(260, 540)
-rotation = -0.275386
-scale = Vector2(0.975559, 1.61553)
-texture = ExtResource("7_58dig")
-
-[node name="Rock14" type="Sprite2D" parent="rocks"]
-position = Vector2(5.72784, 78.2446)
-rotation = 0.682377
-texture = ExtResource("7_58dig")
-
-[node name="Rock15" type="Sprite2D" parent="rocks"]
-position = Vector2(43.7278, 215.245)
-rotation = 0.324202
-texture = ExtResource("7_58dig")
-
-[node name="Rock16" type="Sprite2D" parent="rocks"]
-position = Vector2(49.7279, 381.245)
-rotation = 1.1856
-scale = Vector2(1.25068, 0.960358)
-texture = ExtResource("7_58dig")
-
-[node name="Rock17" type="Sprite2D" parent="rocks"]
-position = Vector2(-86.7593, 308.56)
-rotation = 0.449721
-texture = ExtResource("7_58dig")
-
-[node name="Rock18" type="Sprite2D" parent="rocks"]
-position = Vector2(-48.7593, 445.56)
-rotation = 0.0915458
-texture = ExtResource("7_58dig")
-
-[node name="Rock19" type="Sprite2D" parent="rocks"]
-position = Vector2(45.7278, 576.245)
-rotation = 0.406991
-scale = Vector2(0.975559, 1.61553)
-texture = ExtResource("7_58dig")
-
-[node name="Rock7" type="Sprite2D" parent="rocks"]
-position = Vector2(1077.17, -32.2296)
-rotation = -0.777113
-texture = ExtResource("7_58dig")
-
-[node name="Rock8" type="Sprite2D" parent="rocks"]
-position = Vector2(1115.17, 104.77)
-rotation = -1.13529
-texture = ExtResource("7_58dig")
-
-[node name="Rock9" type="Sprite2D" parent="rocks"]
-position = Vector2(1121.17, 270.77)
-rotation = -0.27389
-scale = Vector2(1.25068, 0.960358)
-texture = ExtResource("7_58dig")
-
-[node name="Rock10" type="Sprite2D" parent="rocks"]
-position = Vector2(984.683, 198.086)
-rotation = -1.00977
-texture = ExtResource("7_58dig")
-
-[node name="Rock13" type="Sprite2D" parent="rocks"]
-position = Vector2(1077, 616)
-rotation = -0.952852
-texture = ExtResource("7_58dig")
-
-[node name="Rock11" type="Sprite2D" parent="rocks"]
-position = Vector2(1022.68, 335.086)
-rotation = -1.36794
-texture = ExtResource("7_58dig")
-
-[node name="Rock12" type="Sprite2D" parent="rocks"]
-position = Vector2(1117.17, 465.77)
-rotation = -1.0525
-scale = Vector2(0.975559, 1.61553)
-texture = ExtResource("7_58dig")
-
-[node name="Rock20" type="Sprite2D" parent="rocks"]
-position = Vector2(1289.17, -6.22958)
-rotation = -0.0194154
-texture = ExtResource("7_58dig")
-
-[node name="Rock21" type="Sprite2D" parent="rocks"]
-position = Vector2(1327.17, 130.77)
-rotation = -0.377591
-texture = ExtResource("7_58dig")
-
-[node name="Rock22" type="Sprite2D" parent="rocks"]
-position = Vector2(1333.17, 296.77)
-rotation = 0.483808
-scale = Vector2(1.25068, 0.960358)
-texture = ExtResource("7_58dig")
-
-[node name="Rock23" type="Sprite2D" parent="rocks"]
-position = Vector2(1196.68, 224.086)
-rotation = -0.252072
-texture = ExtResource("7_58dig")
-
-[node name="Rock24" type="Sprite2D" parent="rocks"]
-position = Vector2(1289, 642)
-rotation = -0.195154
-texture = ExtResource("7_58dig")
-
-[node name="Rock25" type="Sprite2D" parent="rocks"]
-position = Vector2(1234.68, 361.086)
-rotation = -0.610247
-texture = ExtResource("7_58dig")
-
-[node name="Rock26" type="Sprite2D" parent="rocks"]
-position = Vector2(1329.17, 491.77)
-rotation = -0.294802
-scale = Vector2(0.975559, 1.61553)
-texture = ExtResource("7_58dig")
+[node name="Rocks2" parent="." instance=ExtResource("7_5scwj")]
+position = Vector2(1236, 12)

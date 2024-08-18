@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://beenaw7n1s61s" path="res://level_group/lg_0.tscn" id="3_spgvv"]
 [ext_resource type="PackedScene" uid="uid://dcykdm8vsc242" path="res://level_group/lg_1.tscn" id="5_6myex"]
 [ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_nhf58"]
-[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_36upk"]
 shader = ExtResource("6_nhf58")
@@ -58,7 +58,6 @@ shape = SubResource("WorldBoundaryShape2D_0706v")
 shape = SubResource("WorldBoundaryShape2D_emdu7")
 
 [node name="NewLG" type="Timer" parent="."]
-wait_time = 1.5
 one_shot = true
 
 [node name="FixParticles" type="Timer" parent="."]

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -2000.0
-@export var END_VELOCITY = -5500.0
+@export var END_VELOCITY = -5800.0
 @export var GRAVITY = -1200.0
 @export var DAMPENING = 2.0
 
@@ -60,6 +60,7 @@ func _physics_process(delta):
 			if end_jump:
 				move_direction = Vector2.DOWN
 				controls_enabled = false
+				can_bash = false
 				Signals.player_exited_lg.emit()
 			else:
 				controls_enabled = true
@@ -109,6 +110,8 @@ func _on_jump_point_detect_area_entered(area):
 func _on_jump_point_detect_area_exited(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = false
+		if (area.is_in_group("spawn_point")):
+			can_bash = true
 	end_jump = false
 
 

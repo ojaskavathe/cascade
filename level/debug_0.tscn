@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="4_acxa1"]
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="4_ohvmd"]
-[ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="4_vcpn8"]
+[ext_resource type="PackedScene" path="res://entity/waterfall/waterfall_background.tscn" id="4_vcpn8"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="5_fw8eb"]
 [ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_w3gqr"]
 [ext_resource type="Texture2D" uid="uid://c6mxwkdp6ri3e" path="res://assets/rock.png" id="7_58dig"]
@@ -95,7 +95,7 @@ noise = SubResource("FastNoiseLite_v8kov")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0sun"]
 shader = SubResource("Shader_tp7pu")
 shader_parameter/scale = Vector2(5, 5)
-shader_parameter/zoom = 0.561231
+shader_parameter/zoom = 0.235969
 shader_parameter/gap_stretch = Vector2(0.8, 0.05)
 shader_parameter/refraction_stretch = Vector2(2, 0.8)
 shader_parameter/refraction_strength = 0.008
@@ -122,7 +122,7 @@ distance = -480.0
 
 [node name="Debug0" type="Node2D"]
 
-[node name="Spawn" parent="." instance=ExtResource("4_acxa1")]
+[node name="Spawn" parent="." groups=["spawn_point"] instance=ExtResource("4_acxa1")]
 position = Vector2(602, 620)
 
 [node name="JumpPoint2" parent="." instance=ExtResource("4_acxa1")]

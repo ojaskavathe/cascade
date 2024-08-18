@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -800.0
 @export var GRAVITY = -1000.0
@@ -43,7 +42,10 @@ func _physics_process(delta):
 	if bash_state:
 		var direction = jump_point_position - get_global_mouse_position()
 		var angle = direction.angle() - deg_to_rad(90)
+		
 		arrow.set_rotation(angle)
+		arrow.set_position(jump_point_position)
+		arrow.set_visible(true)
 		
 		if Input.is_action_just_released("jump"):
 			set_particle_behavior(ParticleBehavior.DASH)
@@ -69,8 +71,6 @@ func _physics_process(delta):
 		
 		if can_bash and in_jump_point and Input.is_action_pressed("jump"):
 			bash_state = true
-			arrow.set_position(jump_point_position)
-			arrow.set_visible(true)
 			set_particle_behavior(ParticleBehavior.SWIM)
 			$DashParticleTimer.stop()
 			Signals.player_entered_bash_state.emit()
@@ -84,6 +84,8 @@ func _on_jump_point_detect_area_entered(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = true
 		jump_point_position = area.get_global_position()
+		if (area.is_in_group("spawn_point")):
+			Signals.new_checkpoint.emit(jump_point_position, area.get_parent())
 
 
 func _on_jump_point_detect_area_exited(area):

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://beenaw7n1s61s"]
+[gd_scene load_steps=6 format=3 uid="uid://beenaw7n1s61s"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_xm3l1"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_gli7r"]
+[ext_resource type="PackedScene" uid="uid://b1c5iccen6h2c" path="res://level/debug_1.tscn" id="5_2mmsj"]
 [ext_resource type="PackedScene" uid="uid://ctjtcrv6lr21" path="res://level/debug_0.tscn" id="5_mw1jd"]
 
 [node name="Game" type="Node2D"]
@@ -13,5 +14,12 @@ position = Vector2(640, 400)
 
 [node name="Camera" parent="." instance=ExtResource("2_gli7r")]
 position = Vector2(640, 400)
+randomStrength = 18.0
+targetOffset = Vector2(0, 150)
 
-[node name="Debug0" parent="." instance=ExtResource("5_mw1jd")]
+[node name="levels" type="Node2D" parent="."]
+
+[node name="Debug0" parent="levels" instance=ExtResource("5_mw1jd")]
+
+[node name="Debug1" parent="levels" instance=ExtResource("5_2mmsj")]
+position = Vector2(-31, -961)

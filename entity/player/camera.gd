@@ -10,6 +10,9 @@ var y_min = -100000
 
 @export var randomStrength: float = 24.0
 @export var shakeFade: float = 20.0
+@export var dashSmoothingSpeed: float = 2.0
+@export var smoothingSpeed: float = 4.0
+@export var targetOffset: Vector2 = Vector2(0, 0)
 
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
@@ -34,7 +37,7 @@ func _process(delta):
 		shake_strength = lerpf(shake_strength, 0.0, shakeFade * delta)
 		offset = randomOffset()
 	
-	position_smoothing_speed = lerpf(position_smoothing_speed, 4.0, 0.5 * delta)
+	position_smoothing_speed = lerpf(position_smoothing_speed, smoothingSpeed, 0.5 * delta)
 
 func _on_player_moved(new_position):
 	tracking = new_position
@@ -56,13 +59,13 @@ func _on_player_exited_bash_state():
 	tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
 	camera_tween_end = tween
 	
-	position_smoothing_speed = 0
+	position_smoothing_speed = dashSmoothingSpeed
 	
 	apply_shake()
 
 func get_adjusted_tracking_pos():
-	var x_clamped = clamp(tracking.x, x_min, x_max)
-	var y_clamped = clamp(tracking.y, y_min, y_max)
+	var x_clamped = clamp(tracking.x - targetOffset.x, x_min, x_max)
+	var y_clamped = clamp(tracking.y - targetOffset.y, y_min, y_max)
 	var origin_clamped = Vector2(x_clamped, y_clamped)
 	return origin_clamped
 

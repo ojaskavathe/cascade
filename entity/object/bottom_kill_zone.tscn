@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnb5n82ek6hwi"]
 
-[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="1_e02oj"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="1_e02oj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxoi4"]
 size = Vector2(1280, 100)
@@ -8,6 +8,7 @@ size = Vector2(1280, 100)
 [node name="BottomKillzone" type="Node2D"]
 
 [node name="KillZone" parent="." instance=ExtResource("1_e02oj")]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(640, 50)

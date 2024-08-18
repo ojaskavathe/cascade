@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcykdm8vsc242"]
+[gd_scene load_steps=13 format=3 uid="uid://dcykdm8vsc242"]
 
 [ext_resource type="PackedScene" uid="uid://clyk282cyamie" path="res://level/debug_0.tscn" id="1_3gg2f"]
 [ext_resource type="PackedScene" uid="uid://b1c5iccen6h2c" path="res://level/debug_1.tscn" id="2_4byue"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_ua02a"]
 [ext_resource type="Shader" path="res://assets/shader/pan_hack.gdshader" id="7_w6ytt"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_f52tn"]
+[ext_resource type="Texture2D" uid="uid://c6eab1e5x7ksk" path="res://assets/tori_built.png" id="8_qys1e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_np3e4"]
 shader = ExtResource("7_w6ytt")
@@ -84,7 +85,17 @@ position = Vector2(1252, -1460)
 position = Vector2(1248, -764)
 
 [node name="waterPlane" type="Polygon2D" parent="."]
-modulate = Color(0.459196, 0.00190405, 0.706767, 1)
 material = SubResource("ShaderMaterial_np3e4")
 texture = SubResource("NoiseTexture2D_hbvog")
 polygon = PackedVector2Array(-450, 0, -720, 240, 720, 240, 450, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="waterPlane"]
+z_index = -1
+color = Color(0.6, 0.596078, 0.560784, 1)
+polygon = PackedVector2Array(-990, 40, -1080, 160, -1000, 240, 1000, 240, 1080, 160, 990, 60, 840, 0, -840, 0)
+
+[node name="ToriBuilt" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-4.23516e-22, 155.714)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_qys1e")

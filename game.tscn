@@ -22,4 +22,4 @@ targetOffset = Vector2(0, 150)
 [node name="Debug0" parent="levels" instance=ExtResource("5_mw1jd")]
 
 [node name="Debug1" parent="levels" instance=ExtResource("5_2mmsj")]
-position = Vector2(-31, -961)
+position = Vector2(-1, -1818)

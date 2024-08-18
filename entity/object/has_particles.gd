@@ -9,8 +9,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_fix_particles(flag):
 	if flag:
-		$CPUParticles2D.set_speed_scale(10)
-		print(Time. get_time_string_from_system())
+		$CPUParticles2D.set_speed_scale(1)
 	else:
 		$CPUParticles2D.set_speed_scale(1)
-		print(Time. get_time_string_from_system())

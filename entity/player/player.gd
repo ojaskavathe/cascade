@@ -91,12 +91,14 @@ func _on_jump_point_detect_area_entered(area):
 		if (area.is_in_group("spawn_point")):
 			Signals.new_checkpoint.emit(jump_point_position, area.get_parent())
 		if (area.is_in_group("end_point")):
-			end_jump = true;
+			end_jump = true
 
 
 func _on_jump_point_detect_area_exited(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = false
+		if (area.is_in_group("end_point")):
+			end_jump = false
 
 
 func _on_dash_particle_timer_timeout():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctjtcrv6lr21"]
+[gd_scene load_steps=10 format=3 uid="uid://ctjtcrv6lr21"]
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="4_acxa1"]
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="4_ohvmd"]
@@ -19,6 +19,14 @@ width = 1280
 height = 720
 fill_to = Vector2(0, 1)
 metadata/_snap_enabled = true
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7dbm0"]
+normal = Vector2(1, 0)
+distance = -480.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5m7jm"]
+normal = Vector2(-1, 0)
+distance = -480.0
 
 [node name="Debug0" type="Node2D"]
 
@@ -57,3 +65,14 @@ texture = SubResource("GradientTexture2D_y2fm4")
 
 [node name="BottomKillzone" parent="." instance=ExtResource("4_ohvmd")]
 position = Vector2(0, 714)
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+position = Vector2(640, 0)
+
+[node name="Left" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(0, 648)
+shape = SubResource("WorldBoundaryShape2D_7dbm0")
+
+[node name="Right" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(0, 648)
+shape = SubResource("WorldBoundaryShape2D_5m7jm")

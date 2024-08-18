@@ -1,23 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://beenaw7n1s61s"]
+[gd_scene load_steps=5 format=3 uid="uid://beenaw7n1s61s"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_xm3l1"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_gli7r"]
 [ext_resource type="PackedScene" uid="uid://ctjtcrv6lr21" path="res://level/debug_0.tscn" id="5_mw1jd"]
-[ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="5_pfusk"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oy5lq"]
-normal = Vector2(1, 0)
-distance = -480.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iw3p7"]
-normal = Vector2(-1, 0)
-distance = -480.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v5xe"]
-shader = ExtResource("5_pfusk")
-shader_parameter/x = 320
-shader_parameter/y = 180
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_07ca5")
@@ -27,27 +13,5 @@ position = Vector2(640, 400)
 
 [node name="Camera" parent="." instance=ExtResource("2_gli7r")]
 position = Vector2(640, 400)
-
-[node name="Bounds" type="StaticBody2D" parent="."]
-position = Vector2(640, 0)
-
-[node name="Left" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(0, 648)
-shape = SubResource("WorldBoundaryShape2D_oy5lq")
-
-[node name="Right" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(0, 648)
-shape = SubResource("WorldBoundaryShape2D_iw3p7")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_0v5xe")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Debug0" parent="." instance=ExtResource("5_mw1jd")]

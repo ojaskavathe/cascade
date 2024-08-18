@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_f443m"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="5_egt5m"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_0wh8e"]
-[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="7_7scns"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_7scns"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_hhwa6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lphgc"]
@@ -24,8 +24,8 @@ position = Vector2(-14, 11)
 
 [node name="waterfall" parent="." instance=ExtResource("4_f443m")]
 z_index = 2
-position = Vector2(640, 0)
-scale = Vector2(9, 16)
+position = Vector2(640, -320)
+scale = Vector2(9, 23)
 metadata/_edit_lock_ = true
 
 [node name="WaterfallBackground" parent="." instance=ExtResource("5_egt5m")]
@@ -39,6 +39,10 @@ position = Vector2(0, -347)
 [node name="WaterfallBackground3" parent="." instance=ExtResource("5_egt5m")]
 z_index = -2
 position = Vector2(0, -1067)
+
+[node name="WaterfallBackground4" parent="." instance=ExtResource("5_egt5m")]
+z_index = -2
+position = Vector2(-1, -1787)
 
 [node name="Foam" parent="." instance=ExtResource("6_0wh8e")]
 
@@ -63,6 +67,9 @@ position = Vector2(25, -1479)
 [node name="Rocks6" parent="LeftRocks" instance=ExtResource("8_hhwa6")]
 position = Vector2(11, -752)
 
+[node name="Rocks7" parent="LeftRocks" instance=ExtResource("8_hhwa6")]
+position = Vector2(11, -2131)
+
 [node name="RightRocks" type="Node2D" parent="."]
 position = Vector2(0, 385)
 
@@ -74,3 +81,6 @@ position = Vector2(1252, -1460)
 
 [node name="Rocks4" parent="RightRocks" instance=ExtResource("8_hhwa6")]
 position = Vector2(1248, -764)
+
+[node name="Rocks5" parent="RightRocks" instance=ExtResource("8_hhwa6")]
+position = Vector2(1248, -2175)

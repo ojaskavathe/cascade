@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://clyk282cyamie"]
 
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_rrcib"]
-[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="2_v24ii"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="2_v24ii"]
 [ext_resource type="PackedScene" uid="uid://cfmeftaqkjqs" path="res://entity/object/enemy.tscn" id="3_p756n"]
-[ext_resource type="PackedScene" uid="uid://hwtg6vij1omp" path="res://entity/object/spawn_jump_point.tscn" id="4_r14tu"]
+[ext_resource type="PackedScene" path="res://entity/object/spawn_jump_point.tscn" id="4_r14tu"]
 [ext_resource type="PackedScene" uid="uid://cevwhf6jv1r06" path="res://entity/object/jump_point.tscn" id="5_lugmn"]
-[ext_resource type="PackedScene" uid="uid://ek465fxqkhqe" path="res://entity/object/end_jump_point.tscn" id="6_2axsy"]
+[ext_resource type="PackedScene" path="res://entity/object/end_jump_point.tscn" id="6_2axsy"]
 
 [node name="Debug0" type="Node2D"]
 
@@ -34,10 +34,10 @@ metadata/_edit_lock_ = true
 position = Vector2(288, 346)
 
 [node name="SpawnJumpPoint" parent="." instance=ExtResource("4_r14tu")]
-position = Vector2(612, 536)
+position = Vector2(640, 536)
 
 [node name="JumpPoint" parent="." instance=ExtResource("5_lugmn")]
 position = Vector2(498, 96)
 
 [node name="EndJumpPoint" parent="." instance=ExtResource("6_2axsy")]
-position = Vector2(851, 134)
+position = Vector2(640, -100)

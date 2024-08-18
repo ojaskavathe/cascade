@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -2000.0
-@export var END_VELOCITY = -4500.0
+@export var END_VELOCITY = -5500.0
 @export var GRAVITY = -1200.0
 @export var DAMPENING = 2.0
 
@@ -45,16 +45,20 @@ func _physics_process(delta):
 		var direction = jump_point_position - get_global_mouse_position()
 		var angle = direction.angle() - deg_to_rad(90)
 		
-		arrow.set_rotation(angle)
+		arrow.set_rotation(0 if end_jump else angle)
 		arrow.set_position(jump_point_position)
 		arrow.set_visible(true)
-		
+	
 		if Input.is_action_just_released("jump"):
 			$CollisionShape2D.set_disabled(true) # Enables invincibility
 			set_particle_behavior(ParticleBehavior.DASH)
 			$DashParticleTimer.start()
 			position = jump_point_position
+				
 			move_direction = direction.normalized()
+			if end_jump:
+				move_direction = Vector2.DOWN
+			
 			velocity = move_direction * (END_VELOCITY if end_jump else JUMP_VELOCITY)
 			Signals.player_exited_bash_state.emit(end_jump)
 			

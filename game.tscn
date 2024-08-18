@@ -21,10 +21,10 @@ script = ExtResource("1_07ca5")
 
 [node name="LevelGroups" type="Node2D" parent="."]
 
-[node name="LG_0" parent="LevelGroups" instance=ExtResource("3_spgvv")]
-
 [node name="LG_1" parent="LevelGroups" instance=ExtResource("5_6myex")]
-position = Vector2(-146, -1768)
+position = Vector2(0, -2506)
+
+[node name="LG_0" parent="LevelGroups" instance=ExtResource("3_spgvv")]
 
 [node name="PixelPostProcess" type="CanvasLayer" parent="."]
 layer = 100

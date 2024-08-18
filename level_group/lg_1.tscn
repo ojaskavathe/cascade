@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_mr0ug"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="5_e8jay"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_ua02a"]
-[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="7_mekiy"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_mekiy"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_f52tn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lphgc"]
@@ -20,7 +20,7 @@ distance = -480.0
 
 [node name="levels" type="Node2D" parent="."]
 
-[node name="Debug1" parent="levels" instance=ExtResource("1_3gg2f")]
+[node name="Debug0" parent="levels" instance=ExtResource("1_3gg2f")]
 position = Vector2(-14, 11)
 
 [node name="Debug3" parent="levels" instance=ExtResource("2_4byue")]
@@ -28,8 +28,8 @@ position = Vector2(-1, -1818)
 
 [node name="waterfall" parent="." instance=ExtResource("4_mr0ug")]
 z_index = 2
-position = Vector2(640, -400)
-scale = Vector2(8, 6)
+position = Vector2(640, -300)
+scale = Vector2(8, 18)
 metadata/_edit_lock_ = true
 
 [node name="WaterfallBackground" parent="." instance=ExtResource("5_e8jay")]

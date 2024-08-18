@@ -1,13 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://ek465fxqkhqe"]
+[gd_scene load_steps=7 format=3 uid="uid://ek465fxqkhqe"]
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_mnwan"]
-[ext_resource type="Texture2D" uid="uid://835sbaf5l0di" path="res://assets/coin_base.png" id="2_ewk4s"]
+[ext_resource type="Texture2D" uid="uid://c7aq3h0u8p0s8" path="res://assets/cloud.png" id="2_moc6s"]
+
+[sub_resource type="Curve" id="Curve_ar8fk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.417582), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4417d"]
+offsets = PackedFloat32Array(0, 0.746667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_olpdt"]
+offsets = PackedFloat32Array(0, 0.162338, 0.636364, 0.954545)
+colors = PackedColorArray(1, 1, 1, 1, 0.894118, 0.894118, 0.894118, 1, 0.27, 0.27, 0.27, 0.105882, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hda8g"]
+gradient = SubResource("Gradient_olpdt")
+width = 160
+height = 160
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="EndJumpPoint" type="Node2D"]
 
 [node name="BaseJumpPoint" parent="." groups=["end_point"] instance=ExtResource("1_mnwan")]
 
-[node name="CoinBase" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 0, 1)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_ewk4s")
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 32
+lifetime = 4.0
+preprocess = 4.0
+texture = ExtResource("2_moc6s")
+emission_shape = 2
+emission_sphere_radius = 20.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.2
+orbit_velocity_max = 0.5
+angle_max = 360.0
+scale_amount_curve = SubResource("Curve_ar8fk")
+color = Color(1, 0.498039, 1, 1)
+color_ramp = SubResource("Gradient_4417d")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.75, 0.75)
+color = Color(1, 0.498039, 1, 1)
+energy = 0.8
+texture = SubResource("GradientTexture2D_hda8g")

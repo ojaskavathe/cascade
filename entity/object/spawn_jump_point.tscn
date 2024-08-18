@@ -1,12 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://hwtg6vij1omp"]
+[gd_scene load_steps=7 format=3 uid="uid://hwtg6vij1omp"]
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_x173m"]
-[ext_resource type="Texture2D" uid="uid://835sbaf5l0di" path="res://assets/coin_base.png" id="2_eyyfn"]
+[ext_resource type="Texture2D" uid="uid://c7aq3h0u8p0s8" path="res://assets/cloud.png" id="2_ycq5k"]
+
+[sub_resource type="Curve" id="Curve_dx60p"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.417582), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ypy4e"]
+offsets = PackedFloat32Array(0, 0.746667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_8y312"]
+offsets = PackedFloat32Array(0, 0.162338, 0.636364, 0.954545)
+colors = PackedColorArray(1, 1, 1, 1, 0.894118, 0.894118, 0.894118, 1, 0.27, 0.27, 0.27, 0.105882, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tri4d"]
+gradient = SubResource("Gradient_8y312")
+width = 160
+height = 160
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="SpawnJumpPoint" type="Node2D"]
 
 [node name="BaseJumpPoint" parent="." groups=["spawn_point"] instance=ExtResource("1_x173m")]
 
-[node name="CoinBase" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_eyyfn")
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 32
+lifetime = 4.0
+preprocess = 4.0
+texture = ExtResource("2_ycq5k")
+emission_shape = 2
+emission_sphere_radius = 20.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.2
+orbit_velocity_max = 0.5
+angle_max = 360.0
+scale_amount_curve = SubResource("Curve_dx60p")
+color = Color(0, 0.498039, 0, 1)
+color_ramp = SubResource("Gradient_ypy4e")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.75, 0.75)
+color = Color(0, 0.498039, 0, 1)
+energy = 0.8
+texture = SubResource("GradientTexture2D_tri4d")

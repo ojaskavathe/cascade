@@ -1,13 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://cevwhf6jv1r06"]
+[gd_scene load_steps=7 format=3 uid="uid://cevwhf6jv1r06"]
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_7a3kh"]
-[ext_resource type="Texture2D" uid="uid://835sbaf5l0di" path="res://assets/coin_base.png" id="2_u308s"]
+[ext_resource type="Texture2D" uid="uid://c7aq3h0u8p0s8" path="res://assets/cloud.png" id="2_vybkc"]
+
+[sub_resource type="Curve" id="Curve_d0thu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.417582), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_twv5t"]
+offsets = PackedFloat32Array(0, 0.746667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_0wddm"]
+offsets = PackedFloat32Array(0, 0.162338, 0.636364, 0.954545)
+colors = PackedColorArray(1, 1, 1, 1, 0.894118, 0.894118, 0.894118, 1, 0.27, 0.27, 0.27, 0.105882, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1786h"]
+gradient = SubResource("Gradient_0wddm")
+width = 160
+height = 160
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="JumpPoint" type="Node2D"]
 
 [node name="BaseJumpPoint" parent="." instance=ExtResource("1_7a3kh")]
 
-[node name="CoinBase" type="Sprite2D" parent="."]
-modulate = Color(0.79, 0.53799, 0.2686, 1)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_u308s")
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 32
+lifetime = 4.0
+preprocess = 4.0
+texture = ExtResource("2_vybkc")
+emission_shape = 2
+emission_sphere_radius = 20.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.2
+orbit_velocity_max = 0.5
+angle_max = 360.0
+scale_amount_curve = SubResource("Curve_d0thu")
+color = Color(1, 0.498039, 0, 1)
+color_ramp = SubResource("Gradient_twv5t")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.75, 0.75)
+color = Color(1, 0.498039, 0, 1)
+energy = 0.8
+texture = SubResource("GradientTexture2D_1786h")

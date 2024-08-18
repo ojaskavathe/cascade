@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1c5iccen6h2c"]
+[gd_scene load_steps=3 format=3 uid="uid://b1c5iccen6h2c"]
 
 [ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="1_ff1n1"]
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="2_0qeom"]
-[ext_resource type="PackedScene" uid="uid://dyqs8fgql55f" path="res://entity/object/spawn_jump_point.tscn" id="3_t8lbo"]
-[ext_resource type="PackedScene" uid="uid://bgreeqw7eggg2" path="res://entity/object/end_jump_point.tscn" id="4_debh2"]
 
 [node name="Debug1" type="Node2D"]
 
@@ -11,8 +9,8 @@
 position = Vector2(330, 320)
 texture = ExtResource("1_ff1n1")
 
-[node name="SpawnJumpPoint" parent="." instance=ExtResource("3_t8lbo")]
-position = Vector2(605, 646)
+[node name="JumpPoint" parent="." instance=ExtResource("2_0qeom")]
+position = Vector2(617, 643)
 
 [node name="JumpPoint2" parent="." instance=ExtResource("2_0qeom")]
 position = Vector2(458, 620)
@@ -27,7 +25,4 @@ position = Vector2(225, 493)
 position = Vector2(957, 474)
 
 [node name="JumpPoint6" parent="." instance=ExtResource("2_0qeom")]
-position = Vector2(605, 349)
-
-[node name="EndJumpPoint" parent="." instance=ExtResource("4_debh2")]
-position = Vector2(603, 83)
+position = Vector2(603, 432)

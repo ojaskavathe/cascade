@@ -5,11 +5,9 @@ extends CharacterBody2D
 @export var JUMP_VELOCITY = -800.0
 @export var GRAVITY = -1000.0
 @export var DAMPENING = 2.0
-@export var BOOST_BONUS = 2.0
 
 var bash_state = false
 var in_jump_point = false
-var first_jump_in_level = true
 var jump_point_position = Vector2.ZERO
 
 var move_direction = Vector2.UP
@@ -24,7 +22,6 @@ var arrow_preload: PackedScene = preload("res://entity/player/arrow.tscn")
 var arrow
 
 var can_bash = true
-var has_boost = false
 
 enum ParticleBehavior {SWIM = 0, DASH = 1}
 
@@ -36,15 +33,6 @@ func _ready():
 	set_particle_behavior(ParticleBehavior.SWIM)
 	Signals.player_moved.emit(position)
 
-
-func set_first_jump_in_level():
-	first_jump_in_level = true
-	arrow.set_visible(true)
-	jump_point_position = position
-	jump_point_position.y -= 32.0
-	arrow.set_position(jump_point_position)
-
-
 func _physics_process(delta):
 	if velocity.is_zero_approx():
 		$PlayerModel.set_rotation(model_rotation)
@@ -52,24 +40,17 @@ func _physics_process(delta):
 		model_rotation = velocity.angle() + deg_to_rad(90)
 		$PlayerModel.set_rotation(model_rotation)
 	
-	if bash_state or first_jump_in_level:
+	if bash_state:
 		var direction = jump_point_position - get_global_mouse_position()
 		var angle = direction.angle() - deg_to_rad(90)
 		arrow.set_rotation(angle)
 		
 		if Input.is_action_just_released("jump"):
-			first_jump_in_level = false
 			set_particle_behavior(ParticleBehavior.DASH)
 			$DashParticleTimer.start()
 			position = jump_point_position
 			move_direction = direction.normalized()
 			velocity = move_direction * JUMP_VELOCITY
-			
-			if has_boost:
-				has_boost = false
-				velocity *= BOOST_BONUS
-				Signals.can_unlock_next.emit()
-			
 			bash_state = false
 			arrow.set_visible(false)
 			Signals.player_exited_bash_state.emit()
@@ -103,17 +84,11 @@ func _on_jump_point_detect_area_entered(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = true
 		jump_point_position = area.get_global_position()
-		
-		if (area.is_in_group("boost")):
-			has_boost = true
 
 
 func _on_jump_point_detect_area_exited(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = false
-		
-		if (area.is_in_group("boost")):
-			has_boost = false
 
 
 func _on_dash_particle_timer_timeout():

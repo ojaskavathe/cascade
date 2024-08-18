@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cevwhf6jv1r06"]
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_7a3kh"]
-[ext_resource type="Texture2D" uid="uid://c7aq3h0u8p0s8" path="res://assets/cloud.png" id="2_vybkc"]
+[ext_resource type="Texture2D" uid="uid://c7aq3h0u8p0s8" path="res://assets/leaf.png" id="2_vybkc"]
 
 [sub_resource type="Curve" id="Curve_d0thu"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.417582), 0.0, 0.0, 0, 0]

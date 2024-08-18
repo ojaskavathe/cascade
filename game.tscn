@@ -1,32 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://beenaw7n1s61s"]
+[gd_scene load_steps=5 format=3 uid="uid://bidshs2204euy"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
+[ext_resource type="PackedScene" uid="uid://beenaw7n1s61s" path="res://level_group/lg_0.tscn" id="1_aopqo"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_xm3l1"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_gli7r"]
-[ext_resource type="PackedScene" uid="uid://b1c5iccen6h2c" path="res://level/debug_1.tscn" id="5_2mmsj"]
-[ext_resource type="PackedScene" uid="uid://clyk282cyamie" path="res://level/debug_0.tscn" id="5_mw1jd"]
-[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="6_qtv2l"]
-[ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="7_vs8da"]
-[ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="8_l48kb"]
-[ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="9_5r0mc"]
-[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="10_fwrll"]
-[ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="11_oey3j"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7draw"]
-shader = ExtResource("7_vs8da")
-shader_parameter/x = 320
-shader_parameter/y = 180
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lphgc"]
-normal = Vector2(1, 0)
-distance = -480.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y6q1a"]
-normal = Vector2(-1, 0)
-distance = -480.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_07ca5")
+
+[node name="LevelGroups" type="Node2D" parent="."]
+
+[node name="LG_0" parent="LevelGroups" instance=ExtResource("1_aopqo")]
 
 [node name="Player" parent="." instance=ExtResource("1_xm3l1")]
 position = Vector2(640, 400)
@@ -35,74 +19,3 @@ position = Vector2(640, 400)
 position = Vector2(640, 400)
 randomStrength = 18.0
 targetOffset = Vector2(0, 150)
-
-[node name="levels" type="Node2D" parent="."]
-
-[node name="Debug0" parent="levels" instance=ExtResource("5_mw1jd")]
-
-[node name="Debug1" parent="levels" instance=ExtResource("5_2mmsj")]
-position = Vector2(-1, -1818)
-
-[node name="PixelPostProcess" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="ColorRect" type="ColorRect" parent="PixelPostProcess"]
-material = SubResource("ShaderMaterial_7draw")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="waterfall" parent="." instance=ExtResource("6_qtv2l")]
-z_index = 2
-position = Vector2(640, -400)
-scale = Vector2(8, 6)
-metadata/_edit_lock_ = true
-
-[node name="waterfall2" parent="." instance=ExtResource("6_qtv2l")]
-z_index = 2
-position = Vector2(640, 370.85)
-scale = Vector2(8, 6)
-metadata/_edit_lock_ = true
-
-[node name="WaterfallBackground" parent="." instance=ExtResource("8_l48kb")]
-z_index = -2
-
-[node name="WaterfallBackground2" parent="." instance=ExtResource("8_l48kb")]
-z_index = -2
-position = Vector2(0, -720)
-
-[node name="WaterfallBackground3" parent="." instance=ExtResource("8_l48kb")]
-z_index = -2
-position = Vector2(0, -1440)
-
-[node name="Foam" parent="." instance=ExtResource("9_5r0mc")]
-
-[node name="KillZone" parent="." instance=ExtResource("10_fwrll")]
-
-[node name="Left" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(640, 648)
-shape = SubResource("WorldBoundaryShape2D_lphgc")
-
-[node name="Right" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(640, 648)
-shape = SubResource("WorldBoundaryShape2D_y6q1a")
-
-[node name="Rocks" parent="." instance=ExtResource("11_oey3j")]
-
-[node name="Rocks5" parent="." instance=ExtResource("11_oey3j")]
-position = Vector2(25, -1479)
-
-[node name="Rocks6" parent="." instance=ExtResource("11_oey3j")]
-position = Vector2(11, -752)
-
-[node name="Rocks2" parent="." instance=ExtResource("11_oey3j")]
-position = Vector2(1236, 12)
-
-[node name="Rocks3" parent="." instance=ExtResource("11_oey3j")]
-position = Vector2(1252, -1460)
-
-[node name="Rocks4" parent="." instance=ExtResource("11_oey3j")]
-position = Vector2(1248, -764)

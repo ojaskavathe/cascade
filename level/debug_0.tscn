@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://clyk282cyamie"]
+[gd_scene load_steps=13 format=3 uid="uid://clyk282cyamie"]
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="1_menrk"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="2_xpit8"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="5_r1cte"]
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="6_ptu0k"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="7_5scwj"]
+[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="8_oqoni"]
+[ext_resource type="PackedScene" uid="uid://b0dmhdbroeyr5" path="res://entity/object/enemy.tscn" id="9_pws10"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0v5xe"]
 shader = ExtResource("3_fia7y")
@@ -26,14 +28,8 @@ distance = -480.0
 [node name="Spawn" parent="." groups=["spawn_point"] instance=ExtResource("1_menrk")]
 position = Vector2(602, 620)
 
-[node name="JumpPoint2" parent="." instance=ExtResource("1_menrk")]
-position = Vector2(479, 338)
-
 [node name="JumpPoint3" parent="." instance=ExtResource("1_menrk")]
 position = Vector2(748, 159)
-
-[node name="JumpPoint4" parent="." instance=ExtResource("1_menrk")]
-position = Vector2(401, -19)
 
 [node name="waterfall" parent="." instance=ExtResource("2_xpit8")]
 z_index = 2
@@ -61,18 +57,36 @@ z_index = -2
 [node name="BottomKillzone" parent="." instance=ExtResource("6_ptu0k")]
 position = Vector2(0, 714)
 
-[node name="Bounds" type="StaticBody2D" parent="."]
-position = Vector2(640, 0)
+[node name="KillZone" parent="." instance=ExtResource("8_oqoni")]
 
-[node name="Left" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(0, 648)
+[node name="Left" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(640, 648)
 shape = SubResource("WorldBoundaryShape2D_7dbm0")
 
-[node name="Right" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(0, 648)
+[node name="Right" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(640, 648)
 shape = SubResource("WorldBoundaryShape2D_5m7jm")
 
 [node name="Rocks" parent="." instance=ExtResource("7_5scwj")]
 
 [node name="Rocks2" parent="." instance=ExtResource("7_5scwj")]
 position = Vector2(1236, 12)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(100, -11)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(556, 192, 488, 211, 431, 264, 591, 281, 661, 333, 804.933, 304.438, 770, 265, 668, 259)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
+scale = Vector2(0.999724, 1.01353)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(558.154, 213.116, 501.138, 221.009, 467.129, 249.622, 592.164, 265.409, 662.183, 309.808, 773.214, 293.035, 753.208, 275.275, 644.178, 268.369)
+
+[node name="KillZone" parent="Polygon2D" instance=ExtResource("8_oqoni")]
+position = Vector2(571, 236)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/KillZone"]
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Enemy" parent="." instance=ExtResource("9_pws10")]
+position = Vector2(369, 352)

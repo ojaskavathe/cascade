@@ -48,6 +48,7 @@ func _physics_process(delta):
 		arrow.set_visible(true)
 		
 		if Input.is_action_just_released("jump"):
+			$CollisionShape2D.set_disabled(true) # Enables invincibility
 			set_particle_behavior(ParticleBehavior.DASH)
 			$DashParticleTimer.start()
 			position = jump_point_position
@@ -104,3 +105,4 @@ func set_particle_behavior(particle_behavior: ParticleBehavior):
 
 func _on_bash_cooldown_timer_timeout():
 	can_bash = true
+	$CollisionShape2D.set_disabled(false) # Disables invincibility

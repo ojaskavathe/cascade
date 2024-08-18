@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0dmhdbroeyr5"]
+
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/jump_point.tscn" id="1_4bd5a"]
+[ext_resource type="Texture2D" uid="uid://7iiqobfrmtqd" path="res://icon.svg" id="2_tfngl"]
+[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="3_sqxws"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6b6x"]
+radius = 28.0179
+
+[node name="Enemy" type="Node2D"]
+
+[node name="JumpPoint" parent="." instance=ExtResource("1_4bd5a")]
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(7.62939e-06, -9.53674e-07)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_tfngl")
+
+[node name="KillZone" parent="." instance=ExtResource("3_sqxws")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("CircleShape2D_o6b6x")

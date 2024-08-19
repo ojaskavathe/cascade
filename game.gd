@@ -6,6 +6,8 @@ var confetti_preload = preload("res://entity/object/confetti_emitter.tscn")
 @onready var player: CharacterBody2D = $Player
 @onready var camera: Camera2D = $Camera
 
+@export var start_scene: int = 0
+
 @onready var checkpoint_loc: Vector2
 @onready var currentScene: Node2D
 
@@ -14,12 +16,16 @@ func _ready():
 	Signals.new_checkpoint.connect(_new_checkpoint)
 	Signals.player_exited_lg.connect(_new_lg)
 	
+	first_level = self.get_node("LevelGroups").get_node("LG_" + str(start_scene)).get_node("levels").get_node("lvl_" + str(start_scene) + "_0")
+	
 	checkpoint_loc = first_level.get_node("SpawnJumpPoint").global_position
 	currentScene = first_level
 	
 	camera.zoom = 0.5 * Vector2.ONE
 	
-	#_on_new_lg_timeout()
+	if start_scene > 0:
+		_on_new_lg_timeout()
+	
 	first_level.get_node("BottomKillzone").get_node("KillZone").monitoring = true
 	
 	player.position = checkpoint_loc

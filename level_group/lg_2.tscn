@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://coibvjhqgl4un"]
 
-[ext_resource type="PackedScene" uid="uid://beeo6ve207yny" path="res://level/lvl_1_0.tscn" id="1_esvfl"]
+[ext_resource type="PackedScene" uid="uid://phcmfm278ncg" path="res://level/lvl_2_0.tscn" id="1_k7mjb"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="3_4exid"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_jvft5"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="5_f0utj"]
@@ -26,13 +26,13 @@ cellular_return_type = 0
 color_ramp = SubResource("Gradient_n0qii")
 noise = SubResource("FastNoiseLite_3ym72")
 
-[node name="LG_1" type="Node2D"]
+[node name="LG_2" type="Node2D"]
 scale = Vector2(0.7, 0.7)
 
 [node name="levels" type="Node2D" parent="."]
 position = Vector2(0, -763)
 
-[node name="lvl_1_0" parent="levels" instance=ExtResource("1_esvfl")]
+[node name="lvl_2_0" parent="levels" instance=ExtResource("1_k7mjb")]
 position = Vector2(0, 855.857)
 
 [node name="WaterfallBackground" type="Node2D" parent="."]

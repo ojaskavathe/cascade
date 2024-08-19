@@ -131,7 +131,8 @@ position = Vector2(-641, -1483)
 
 [node name="WaterfallBackground5" parent="WaterfallBackground" instance=ExtResource("5_e8jay")]
 z_index = -2
-position = Vector2(-640, 220)
+position = Vector2(-765.79, 220)
+scale = Vector2(1.2, 1.2)
 
 [node name="WaterfallBackground3" parent="WaterfallBackground" instance=ExtResource("5_e8jay")]
 z_index = -2

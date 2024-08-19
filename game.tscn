@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmwpm7ap75scu"]
+[gd_scene load_steps=13 format=3 uid="uid://cmwpm7ap75scu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_oliij"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://coibvjhqgl4un" path="res://level_group/lg_2.tscn" id="6_eqymc"]
 [ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_nhf58"]
 [ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
+[ext_resource type="PackedScene" uid="uid://brg1oyl532r7q" path="res://level_group/lg_3.tscn" id="7_b8fmd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_36upk"]
 shader = ExtResource("6_nhf58")
@@ -24,6 +25,7 @@ distance = -480.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_07ca5")
+start_scene = 1
 
 [node name="Player" parent="." instance=ExtResource("1_oliij")]
 position = Vector2(0, 1366)
@@ -39,15 +41,18 @@ targetOffset = Vector2(0, 200)
 
 [node name="LevelGroups" type="Node2D" parent="."]
 
-[node name="LG_0" parent="LevelGroups" instance=ExtResource("5_6myex")]
-position = Vector2(0, 927)
-scale = Vector2(1, 0.933)
+[node name="LG_3" parent="LevelGroups" instance=ExtResource("7_b8fmd")]
+position = Vector2(0, -13806)
+
+[node name="LG_2" parent="LevelGroups" instance=ExtResource("6_eqymc")]
+position = Vector2(0, -7879)
 
 [node name="LG_1" parent="LevelGroups" instance=ExtResource("5_rcqat")]
 position = Vector2(0, -1952)
 
-[node name="LG_2" parent="LevelGroups" instance=ExtResource("6_eqymc")]
-position = Vector2(0, -7879)
+[node name="LG_0" parent="LevelGroups" instance=ExtResource("5_6myex")]
+position = Vector2(0, 927)
+scale = Vector2(1, 0.933)
 
 [node name="PixelPostProcess" type="CanvasLayer" parent="."]
 layer = 100

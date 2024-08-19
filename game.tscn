@@ -5,15 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_2ojf5"]
 [ext_resource type="PackedScene" uid="uid://dcykdm8vsc242" path="res://level_group/lg_0.tscn" id="5_6myex"]
 [ext_resource type="PackedScene" uid="uid://cdg3qiavdxcxn" path="res://level_group/lg_1.tscn" id="5_rcqat"]
-[ext_resource type="PackedScene" uid="uid://cy1i2ei2ktfxg" path="res://level_group/lg_2.tscn" id="6_58d71"]
+[ext_resource type="PackedScene" path="res://level_group/lg_2.tscn" id="6_58d71"]
 [ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_nhf58"]
-[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
-[ext_resource type="PackedScene" uid="uid://8wun6dxm80tb" path="res://level_group/lg_3.tscn" id="7_jgwip"]
-[ext_resource type="PackedScene" uid="uid://botrkilfvsfeg" path="res://level_group/lg_4.tscn" id="8_ensx7"]
-[ext_resource type="PackedScene" uid="uid://bc384lfk7uuan" path="res://level_group/lg_5.tscn" id="11_qg6wg"]
-[ext_resource type="PackedScene" uid="uid://d03iffjqwsqey" path="res://level_group/lg_6.tscn" id="12_kd2kx"]
-[ext_resource type="PackedScene" uid="uid://dps3ssmsysrob" path="res://level_group/lg_7.tscn" id="13_2qmrg"]
-[ext_resource type="PackedScene" uid="uid://cfehv33flacci" path="res://level_group/lg_8.tscn" id="14_moimo"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
+[ext_resource type="PackedScene" path="res://level_group/lg_3.tscn" id="7_jgwip"]
+[ext_resource type="PackedScene" path="res://level_group/lg_4.tscn" id="8_ensx7"]
+[ext_resource type="PackedScene" path="res://level_group/lg_5.tscn" id="11_qg6wg"]
+[ext_resource type="PackedScene" path="res://level_group/lg_6.tscn" id="12_kd2kx"]
+[ext_resource type="PackedScene" path="res://level_group/lg_7.tscn" id="13_2qmrg"]
+[ext_resource type="PackedScene" path="res://level_group/lg_8.tscn" id="14_moimo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_36upk"]
 shader = ExtResource("6_nhf58")
@@ -37,6 +37,8 @@ position = Vector2(620, 1366)
 [node name="Camera" parent="." instance=ExtResource("2_2ojf5")]
 position = Vector2(620, 1366)
 limit_bottom = 1500
+endDashSmoothingSpeed = 32.0
+smoothingSpeed = 16.0
 targetOffset = Vector2(0, 200)
 
 [node name="LevelGroups" type="Node2D" parent="."]
@@ -61,19 +63,19 @@ position = Vector2(629, -19865)
 
 [node name="LG_5" parent="LevelGroups" instance=ExtResource("11_qg6wg")]
 z_index = -2
-position = Vector2(629, -25908)
+position = Vector2(629, -25836)
 
 [node name="LG_6" parent="LevelGroups" instance=ExtResource("12_kd2kx")]
 z_index = -3
-position = Vector2(629, -31951)
+position = Vector2(629, -31807)
 
 [node name="LG_7" parent="LevelGroups" instance=ExtResource("13_2qmrg")]
 z_index = -4
-position = Vector2(629, -37993)
+position = Vector2(629, -37784)
 
 [node name="LG_8" parent="LevelGroups" instance=ExtResource("14_moimo")]
 z_index = -5
-position = Vector2(629, -44035)
+position = Vector2(629, -43749)
 
 [node name="PixelPostProcess" type="CanvasLayer" parent="."]
 layer = 100

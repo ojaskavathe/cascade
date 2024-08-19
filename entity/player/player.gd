@@ -107,7 +107,7 @@ func _physics_process(delta):
 			if Input.is_action_pressed("right"):
 				velocity += Vector2.RIGHT * SPEED
 		
-		if can_bash and in_jump_point and Input.is_action_pressed("jump"):
+		if can_bash and in_jump_point and Input.is_action_just_pressed("jump"):
 			bash_state = true
 			set_particle_behavior(ParticleBehavior.SWIM)
 			$DashParticleTimer.stop()

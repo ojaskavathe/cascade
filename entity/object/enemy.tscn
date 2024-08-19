@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cfmeftaqkjqs"]
 
 [ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_4bd5a"]
-[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="3_sqxws"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="3_sqxws"]
 [ext_resource type="Texture2D" uid="uid://bivgacfhmvefy" path="res://assets/spike.png" id="4_m63wx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o6b6x"]

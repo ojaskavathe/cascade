@@ -18,6 +18,8 @@ func _ready():
 	currentScene = first_level
 	
 	camera.zoom = 0.5 * Vector2.ONE
+	
+	#_on_new_lg_timeout()
 	first_level.get_node("BottomKillzone").get_node("KillZone").monitoring = true
 	
 	player.position = checkpoint_loc

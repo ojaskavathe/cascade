@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://hwtg6vij1omp"]
 
 [ext_resource type="Script" path="res://entity/object/has_particles.gd" id="1_lirci"]
-[ext_resource type="PackedScene" path="res://entity/object/base_jump_point.tscn" id="1_x173m"]
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="1_x173m"]
 [ext_resource type="Texture2D" uid="uid://c7aq3h0u8p0s8" path="res://assets/leaf.png" id="2_ycq5k"]
 
 [sub_resource type="Curve" id="Curve_dx60p"]

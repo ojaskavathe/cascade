@@ -10,3 +10,5 @@ signal player_exited_lg()
 signal new_checkpoint(loc, scene)
 
 signal fix_particles(flag)
+
+signal fade_logo()

@@ -54,6 +54,7 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 	
 		if Input.is_action_just_released("jump"):
+			Signals.fade_logo.emit()
 			$CollisionShape2D.set_disabled(true) # Enables invincibility
 			set_particle_behavior(ParticleBehavior.DASH)
 			$DashParticleTimer.start()

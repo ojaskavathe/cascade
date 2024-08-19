@@ -25,10 +25,11 @@ distance = -480.0
 script = ExtResource("1_07ca5")
 
 [node name="Player" parent="." instance=ExtResource("1_oliij")]
-position = Vector2(620, 590)
+position = Vector2(620, 1366)
 
 [node name="Camera" parent="." instance=ExtResource("2_2ojf5")]
-position = Vector2(620, 590)
+position = Vector2(620, 1366)
+limit_bottom = 1500
 targetOffset = Vector2(0, 200)
 
 [node name="LevelGroups" type="Node2D" parent="."]

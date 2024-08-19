@@ -2,8 +2,9 @@ extends Node2D
 
 var confetti_preload = preload("res://entity/object/confetti_emitter.tscn")
 
-@onready var first_level: Node2D = $LevelGroups/LG_0/levels/Debug0
+@onready var first_level: Node2D = $LevelGroups/LG_0/levels/lvl_0_0
 @onready var player: CharacterBody2D = $Player
+@onready var camera: Camera2D = $Camera
 
 @onready var checkpoint_loc: Vector2
 @onready var currentScene: Node2D
@@ -15,6 +16,9 @@ func _ready():
 	
 	checkpoint_loc = first_level.get_node("SpawnJumpPoint").global_position
 	currentScene = first_level
+	
+	camera.zoom = 0.5 * Vector2.ONE
+	first_level.get_node("BottomKillzone").get_node("KillZone").monitoring = true
 	
 	player.position = checkpoint_loc
 	player.jump_point_position = checkpoint_loc

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c420ddb34xb4s"]
+
+[ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_x3psn"]
+[ext_resource type="PackedScene" uid="uid://hwtg6vij1omp" path="res://entity/object/spawn_jump_point.tscn" id="2_wkjkh"]
+[ext_resource type="PackedScene" uid="uid://cfmeftaqkjqs" path="res://entity/object/enemy.tscn" id="3_x7vyq"]
+[ext_resource type="PackedScene" uid="uid://ek465fxqkhqe" path="res://entity/object/end_jump_point.tscn" id="5_2ngmn"]
+
+[node name="lvl_1_1" type="Node2D"]
+
+[node name="BottomKillzone" parent="." instance=ExtResource("1_x3psn")]
+position = Vector2(0, 714)
+
+[node name="SpawnJumpPoint" parent="." groups=["spawn_point"] instance=ExtResource("2_wkjkh")]
+position = Vector2(638, 486)
+
+[node name="Enemy" parent="." instance=ExtResource("3_x7vyq")]
+position = Vector2(640, 85)
+
+[node name="EndJumpPoint" parent="." instance=ExtResource("5_2ngmn")]
+position = Vector2(637, -380)

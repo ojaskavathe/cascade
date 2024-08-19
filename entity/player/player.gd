@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -2000.0
-@export var END_VELOCITY = -6200.0
+@export var END_VELOCITY = -9200.0
+@export var MEGA_VELOCITY = -16000.0
 @export var GRAVITY = -1200.0
 @export var DAMPENING = 2.0
 @export var SLOWMO_SCALE = 0.1
@@ -25,6 +26,8 @@ var arrow
 
 var controls_enabled = true
 var can_bash = true
+
+var mega = false
 
 enum ParticleBehavior {SWIM = 0, DASH = 1}
 
@@ -69,7 +72,13 @@ func _physics_process(delta):
 			else:
 				controls_enabled = true
 			
-			velocity = move_direction * (END_VELOCITY if end_jump else JUMP_VELOCITY)
+			if mega:
+				velocity = move_direction * MEGA_VELOCITY
+				var tween = get_tree().create_tween()
+				tween.tween_property(self, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_SINE)
+				tween.tween_property(self, "scale", 8 * Vector2.ONE, 2).set_trans(Tween.TRANS_SINE)
+			else:
+				velocity = move_direction * (END_VELOCITY if end_jump else JUMP_VELOCITY)
 			Signals.player_exited_bash_state.emit(end_jump)
 			
 			end_jump = false
@@ -123,12 +132,15 @@ func _on_jump_point_detect_area_entered(area):
 			Signals.new_checkpoint.emit(jump_point_position, area.get_parent().get_parent())
 		if (area.is_in_group("end_point")):
 			end_jump = true
+		if (area.is_in_group("mega")):
+			mega = true
 
 
 func _on_jump_point_detect_area_exited(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = false
 		end_jump = false
+		mega = false
 		if (area.is_in_group("spawn_point")):
 			can_bash = true
 

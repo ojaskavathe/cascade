@@ -92,7 +92,6 @@ stream = ExtResource("4_5kerk")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_nfefp")
-autoplay = true
 
 [connection signal="area_entered" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_entered"]
 [connection signal="area_exited" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_exited"]

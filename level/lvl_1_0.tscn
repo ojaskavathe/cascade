@@ -1,43 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bih3k7j8u8sie"]
+[gd_scene load_steps=4 format=3 uid="uid://beeo6ve207yny"]
 
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_e7jf6"]
-[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="2_aq1uj"]
-[ext_resource type="PackedScene" uid="uid://cfmeftaqkjqs" path="res://entity/object/enemy.tscn" id="3_lq3wu"]
 [ext_resource type="PackedScene" uid="uid://hwtg6vij1omp" path="res://entity/object/spawn_jump_point.tscn" id="4_d87fq"]
 [ext_resource type="PackedScene" uid="uid://cevwhf6jv1r06" path="res://entity/object/jump_point.tscn" id="5_ew4ne"]
-[ext_resource type="PackedScene" uid="uid://ek465fxqkhqe" path="res://entity/object/end_jump_point.tscn" id="6_15cvh"]
 
-[node name="Debug0" type="Node2D"]
+[node name="lvl_1_0" type="Node2D"]
 
 [node name="BottomKillzone" parent="." instance=ExtResource("1_e7jf6")]
 position = Vector2(0, 714)
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(135, 32)
-color = Color(0.72, 0.67716, 0.5688, 1)
-polygon = PackedVector2Array(556, 192, 488, 211, 431, 264, 591, 281, 661, 333, 804.933, 304.438, 770, 265, 668, 259)
-metadata/_edit_group_ = true
-
-[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
-scale = Vector2(0.999724, 1.01353)
-color = Color(1, 0.9405, 0.79, 1)
-polygon = PackedVector2Array(558.154, 213.116, 501.138, 221.009, 467.129, 249.622, 592.164, 265.409, 662.183, 309.808, 773.214, 293.035, 753.208, 275.275, 644.178, 268.369)
-
-[node name="KillZone" parent="Polygon2D" instance=ExtResource("2_aq1uj")]
-position = Vector2(571, 236)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/KillZone"]
-polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
-metadata/_edit_lock_ = true
-
-[node name="Enemy" parent="." instance=ExtResource("3_lq3wu")]
-position = Vector2(306, 280)
-
 [node name="SpawnJumpPoint" parent="." groups=["spawn_point"] instance=ExtResource("4_d87fq")]
-position = Vector2(640, 536)
+position = Vector2(638, 486)
 
 [node name="JumpPoint" parent="." instance=ExtResource("5_ew4ne")]
-position = Vector2(498, 96)
+position = Vector2(628, -46)
 
-[node name="EndJumpPoint" parent="." groups=["end_point"] instance=ExtResource("6_15cvh")]
-position = Vector2(640, -100)
+[node name="JumpPoint2" parent="." instance=ExtResource("5_ew4ne")]
+position = Vector2(424, -390)
+
+[node name="JumpPoint3" parent="." instance=ExtResource("5_ew4ne")]
+position = Vector2(750, -738)

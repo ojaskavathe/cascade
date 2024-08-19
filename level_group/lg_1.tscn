@@ -1,5 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdg3qiavdxcxn"]
+[gd_scene load_steps=13 format=3 uid="uid://cdg3qiavdxcxn"]
 
+[ext_resource type="PackedScene" uid="uid://beeo6ve207yny" path="res://level/lvl_1_0.tscn" id="1_535nw"]
+[ext_resource type="PackedScene" uid="uid://c420ddb34xb4s" path="res://level/lvl_1_1.tscn" id="2_rtek6"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="2_w586q"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="3_iqesl"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="4_lkqqk"]
@@ -30,6 +32,11 @@ scale = Vector2(0.7, 0.7)
 
 [node name="levels" type="Node2D" parent="."]
 position = Vector2(-641, -763)
+
+[node name="lvl_1_0" parent="levels" instance=ExtResource("1_535nw")]
+
+[node name="lvl_1_1" parent="levels" instance=ExtResource("2_rtek6")]
+position = Vector2(0, -1600)
 
 [node name="WaterfallBackground" type="Node2D" parent="."]
 
@@ -67,8 +74,8 @@ position = Vector2(-638.571, -2922.86)
 
 [node name="waterfall" parent="." instance=ExtResource("3_iqesl")]
 z_index = 2
-position = Vector2(0, -1500)
-scale = Vector2(8, 22)
+position = Vector2(0, -2900)
+scale = Vector2(7, 45.4)
 metadata/_edit_lock_ = true
 
 [node name="Foam" parent="." instance=ExtResource("4_lkqqk")]

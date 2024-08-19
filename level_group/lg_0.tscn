@@ -40,10 +40,9 @@ position = Vector2(-641, -763)
 position = Vector2(0, 877.286)
 
 [node name="waterfall" parent="." instance=ExtResource("4_mr0ug")]
-visible = false
 z_index = 2
 position = Vector2(0, -1500)
-scale = Vector2(8, 22)
+scale = Vector2(7, 20.23)
 metadata/_edit_lock_ = true
 
 [node name="WaterfallBackground" parent="." instance=ExtResource("5_e8jay")]
@@ -133,7 +132,7 @@ position = Vector2(25, -1479)
 position = Vector2(11, -752)
 
 [node name="Rocks7" parent="LeftRocks2" instance=ExtResource("8_f52tn")]
-position = Vector2(11, -2159.14)
+position = Vector2(-0.714302, -2204.86)
 
 [node name="RightRocks2" type="Node2D" parent="."]
 position = Vector2(-615, -678)

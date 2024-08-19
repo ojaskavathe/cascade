@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_rrcib"]
 [ext_resource type="PackedScene" uid="uid://ek465fxqkhqe" path="res://entity/object/end_jump_point.tscn" id="6_2axsy"]
 
-[node name="Debug0" type="Node2D"]
+[node name="lvl_0_0" type="Node2D"]
 
 [node name="BottomKillzone" parent="." instance=ExtResource("1_rrcib")]
 position = Vector2(0, 714)

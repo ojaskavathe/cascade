@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -2000.0
-@export var END_VELOCITY = -6000.0
+@export var END_VELOCITY = -6200.0
 @export var GRAVITY = -1200.0
 @export var DAMPENING = 2.0
 @export var SLOWMO_SCALE = 0.1
@@ -50,6 +50,8 @@ func _physics_process(delta):
 		arrow.set_rotation(0.0 if end_jump else angle)
 		arrow.set_position(jump_point_position)
 		arrow.set_visible(true)
+		
+		velocity = Vector2.ZERO
 	
 		if Input.is_action_just_released("jump"):
 			$CollisionShape2D.set_disabled(true) # Enables invincibility
@@ -93,12 +95,13 @@ func _physics_process(delta):
 			set_particle_behavior(ParticleBehavior.SWIM)
 			$DashParticleTimer.stop()
 			Signals.player_entered_bash_state.emit()
-			velocity = Vector2.ZERO
+			# this goes here instead of in bash state check cuz 
+			# i don't want it to trigger on respawn
 			Engine.time_scale = SLOWMO_SCALE
 			
+		
 		move_and_slide()
 		Signals.player_moved.emit(position)
-
 
 func _on_jump_point_detect_area_entered(area):
 	if (area.is_in_group("jump_point")):
@@ -113,9 +116,9 @@ func _on_jump_point_detect_area_entered(area):
 func _on_jump_point_detect_area_exited(area):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = false
+		end_jump = false
 		if (area.is_in_group("spawn_point")):
 			can_bash = true
-	end_jump = false
 
 
 func _on_dash_particle_timer_timeout():

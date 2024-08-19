@@ -21,9 +21,7 @@ func _ready():
 	player.bash_state = true
 
 func _on_kill():
-	# get_tree().call_deferred("reload_current_scene")
 	spawn_confetti(player.position)
-	# print("respawn: ", checkpoint_loc)
 	player.position = checkpoint_loc
 	player.jump_point_position = checkpoint_loc
 	player.bash_state = true
@@ -46,16 +44,12 @@ func _new_lg():
 
 
 func _on_new_lg_timeout() -> void:
-	print("hehe")
 	var lg_ref: Node2D = currentScene.get_parent().get_parent()
 	# var next_lg_idx: int = lg_ref.name.substr(3).to_int() + 1
 	# var next_lg: Node2D = lg_ref.get_parent().get_node("LG_" + str(next_lg_idx));
-	var next_lg: Node2D = lg_ref;
 	
-	if next_lg:
-		var left_rocks: Node2D = next_lg.get_node("LeftRocks")
-		var right_rocks: Node2D = next_lg.get_node("RightRocks")
-		var water_plane: Node2D = next_lg.get_node("waterPlane")
+	if lg_ref:
+		var water_plane: Node2D = lg_ref.get_node("waterPlane")
 		
 		Signals.fix_particles.emit(true)
 		$FixParticles.start()
@@ -63,12 +57,8 @@ func _on_new_lg_timeout() -> void:
 		var tween = get_tree().create_tween()
 		tween.set_parallel();
 	
-		tween.tween_property(next_lg, "scale", Vector2.ONE * 1, 1.3).set_trans(Tween.TRANS_CUBIC)
-		# tween.tween_property(next_lg, "position", Vector2(next_lg.position.x, next_lg.position.y+240), 1.3).set_trans(Tween.TRANS_SPRING)
+		tween.tween_property(lg_ref, "scale", Vector2.ONE * 1, 1.3).set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(water_plane, "scale", Vector2(1, 0.1), 1.3).set_trans(Tween.TRANS_CUBIC)
-		# tween.tween_property(left_rocks, "position", Vector2(0, left_rocks.position.y), 2).set_trans(Tween.TRANS_CUBIC)
-		# tween.tween_property(right_rocks, "position", Vector2(0, right_rocks.position.y), 2).set_trans(Tween.TRANS_CUBIC)
-		
 
 
 func _on_fix_particles_timeout():

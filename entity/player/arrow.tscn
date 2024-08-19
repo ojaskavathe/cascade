@@ -1,6 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3afre7mvkufd"]
-
-[ext_resource type="Script" path="res://entity/player/arrow.gd" id="1_5iysc"]
+[gd_scene load_steps=3 format=3 uid="uid://lati3f5x63h4"]
 
 [sub_resource type="Gradient" id="Gradient_nv0fp"]
 offsets = PackedFloat32Array(0, 0.162338, 0.564935, 0.675325)
@@ -15,7 +13,6 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Arrow" type="Node2D"]
 z_index = 100
-script = ExtResource("1_5iysc")
 
 [node name="Arrow" type="Polygon2D" parent="."]
 z_index = 100

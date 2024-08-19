@@ -63,6 +63,7 @@ func _physics_process(delta):
 			jump_point_position = jump_point_ref.global_position
 			self.position = jump_point_position + jump_point_offset
 			Signals.player_moved.emit(self.position)
+			Engine.time_scale = 1
 	
 		if Input.is_action_just_released("jump"):
 			Signals.fade_logo.emit()
@@ -126,7 +127,7 @@ func _physics_process(delta):
 			
 			# this goes here instead of in bash state check cuz 
 			# i don't want it to trigger on respawn\
-			# Engine.time_scale = SLOWMO_SCALE
+			Engine.time_scale = SLOWMO_SCALE
 			$MusicPlayer.set_pitch_scale(0.75)
 		
 			#var tween = get_tree().create_tween()
@@ -156,6 +157,9 @@ func _on_jump_point_detect_area_exited(area):
 		in_jump_point = false
 		end_jump = false
 		mega = false
+		moving_jump = false
+		jump_point_ref = null
+		jump_point_offset = Vector2.ZERO
 		
 		if (area.is_in_group("spawn_point")):
 			can_bash = true

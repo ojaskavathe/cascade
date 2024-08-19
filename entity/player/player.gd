@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -2000.0
-@export var END_VELOCITY = -5800.0
+@export var END_VELOCITY = -6000.0
 @export var GRAVITY = -1200.0
 @export var DAMPENING = 2.0
+@export var SLOWMO_SCALE = 0.1
 
 var bash_state = false
 var in_jump_point = false
@@ -43,10 +44,10 @@ func _physics_process(delta):
 		$PlayerModel.set_rotation(model_rotation)
 	
 	if bash_state:
-		var direction = jump_point_position - get_global_mouse_position()
-		var angle = direction.angle() - deg_to_rad(90)
+		var direction: Vector2 = jump_point_position - get_global_mouse_position()
+		var angle: float = direction.angle() - deg_to_rad(90)
 		
-		arrow.set_rotation(0 if end_jump else angle)
+		arrow.set_rotation(0.0 if end_jump else angle)
 		arrow.set_position(jump_point_position)
 		arrow.set_visible(true)
 	
@@ -72,6 +73,7 @@ func _physics_process(delta):
 			bash_state = false
 			arrow.set_visible(false)
 			can_bash = false
+			Engine.time_scale = 1
 			
 			$BashCooldownTimer.start()
 	else:
@@ -92,6 +94,7 @@ func _physics_process(delta):
 			$DashParticleTimer.stop()
 			Signals.player_entered_bash_state.emit()
 			velocity = Vector2.ZERO
+			Engine.time_scale = SLOWMO_SCALE
 			
 		move_and_slide()
 		Signals.player_moved.emit(position)

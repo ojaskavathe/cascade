@@ -5,15 +5,16 @@ var confetti_preload = preload("res://entity/object/confetti_emitter.tscn")
 @onready var first_level: Node2D = $LevelGroups/LG_0/levels/Debug0
 @onready var player: CharacterBody2D = $Player
 
-var checkpoint_loc: Vector2
-var currentScene: Node2D
+@onready var checkpoint_loc: Vector2
+@onready var currentScene: Node2D
 
 func _ready():
 	Signals.kill.connect(_on_kill)
 	Signals.new_checkpoint.connect(_new_checkpoint)
 	Signals.player_exited_lg.connect(_new_lg)
 	
-	checkpoint_loc = first_level.get_node("SpawnJumpPoint").position
+	checkpoint_loc = first_level.get_node("SpawnJumpPoint").global_position
+	currentScene = first_level
 	
 	player.position = checkpoint_loc
 	player.jump_point_position = checkpoint_loc

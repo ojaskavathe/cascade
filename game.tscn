@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmwpm7ap75scu"]
+[gd_scene load_steps=11 format=3 uid="uid://cmwpm7ap75scu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_oliij"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_2ojf5"]
-[ext_resource type="PackedScene" uid="uid://dcykdm8vsc242" path="res://level_group/lg_1.tscn" id="5_6myex"]
+[ext_resource type="PackedScene" uid="uid://dcykdm8vsc242" path="res://level_group/lg_0.tscn" id="5_6myex"]
+[ext_resource type="PackedScene" uid="uid://cdg3qiavdxcxn" path="res://level_group/lg_1.tscn" id="5_rcqat"]
 [ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_nhf58"]
 [ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
 
@@ -24,8 +25,10 @@ distance = -480.0
 script = ExtResource("1_07ca5")
 
 [node name="Player" parent="." instance=ExtResource("1_oliij")]
+position = Vector2(620, 590)
 
 [node name="Camera" parent="." instance=ExtResource("2_2ojf5")]
+position = Vector2(620, 590)
 targetOffset = Vector2(0, 200)
 
 [node name="LevelGroups" type="Node2D" parent="."]
@@ -34,7 +37,7 @@ targetOffset = Vector2(0, 200)
 position = Vector2(629, 927)
 scale = Vector2(1, 0.933)
 
-[node name="LG_1" parent="LevelGroups" instance=ExtResource("5_6myex")]
+[node name="LG_1" parent="LevelGroups" instance=ExtResource("5_rcqat")]
 position = Vector2(629, -1952)
 
 [node name="PixelPostProcess" type="CanvasLayer" parent="."]

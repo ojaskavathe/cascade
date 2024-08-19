@@ -1,15 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcykdm8vsc242"]
+[gd_scene load_steps=11 format=3 uid="uid://cdg3qiavdxcxn"]
 
-[ext_resource type="PackedScene" uid="uid://clyk282cyamie" path="res://level/debug_0.tscn" id="1_3gg2f"]
-[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_mr0ug"]
-[ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="5_e8jay"]
-[ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="6_ua02a"]
-[ext_resource type="Shader" path="res://assets/shader/pan_hack.gdshader" id="7_w6ytt"]
-[ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="8_f52tn"]
-[ext_resource type="Texture2D" uid="uid://c6eab1e5x7ksk" path="res://assets/tori_built.png" id="8_qys1e"]
+[ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="2_w586q"]
+[ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="3_iqesl"]
+[ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="4_lkqqk"]
+[ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="5_wvghs"]
+[ext_resource type="Shader" path="res://assets/shader/pan_hack.gdshader" id="6_2ifys"]
+[ext_resource type="Texture2D" uid="uid://c6eab1e5x7ksk" path="res://assets/tori_built.png" id="7_q7ui7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_np3e4"]
-shader = ExtResource("7_w6ytt")
+shader = ExtResource("6_2ifys")
 shader_parameter/speed = Vector2(0, -1)
 shader_parameter/anchor = -0.5
 shader_parameter/fov = 1.0
@@ -32,63 +31,102 @@ scale = Vector2(0.7, 0.7)
 [node name="levels" type="Node2D" parent="."]
 position = Vector2(-641, -763)
 
-[node name="Debug0" parent="levels" instance=ExtResource("1_3gg2f")]
-position = Vector2(0, -100)
+[node name="WaterfallBackground" type="Node2D" parent="."]
 
-[node name="waterfall" parent="." instance=ExtResource("4_mr0ug")]
+[node name="WaterfallBackground" parent="WaterfallBackground" instance=ExtResource("2_w586q")]
+z_index = -2
+position = Vector2(-641, -763)
+
+[node name="WaterfallBackground2" parent="WaterfallBackground" instance=ExtResource("2_w586q")]
+z_index = -2
+position = Vector2(-641, -1483)
+
+[node name="WaterfallBackground3" parent="WaterfallBackground" instance=ExtResource("2_w586q")]
+z_index = -2
+position = Vector2(-641, -2203)
+
+[node name="WaterfallBackground5" parent="WaterfallBackground" instance=ExtResource("2_w586q")]
+z_index = -2
+position = Vector2(-638.571, -3642.86)
+
+[node name="WaterfallBackground6" parent="WaterfallBackground" instance=ExtResource("2_w586q")]
+z_index = -2
+position = Vector2(-638.571, -4362.86)
+
+[node name="WaterfallBackground7" parent="WaterfallBackground" instance=ExtResource("2_w586q")]
+z_index = -2
+position = Vector2(-638.571, -5082.86)
+
+[node name="WaterfallBackground8" parent="WaterfallBackground" instance=ExtResource("2_w586q")]
+z_index = -2
+position = Vector2(-638.571, -5802.86)
+
+[node name="WaterfallBackground4" parent="WaterfallBackground" instance=ExtResource("2_w586q")]
+z_index = -2
+position = Vector2(-638.571, -2922.86)
+
+[node name="waterfall" parent="." instance=ExtResource("3_iqesl")]
 z_index = 2
 position = Vector2(0, -1500)
 scale = Vector2(8, 22)
 metadata/_edit_lock_ = true
 
-[node name="WaterfallBackground" parent="." instance=ExtResource("5_e8jay")]
-z_index = -2
-position = Vector2(-641, -763)
-
-[node name="WaterfallBackground2" parent="." instance=ExtResource("5_e8jay")]
-z_index = -2
-position = Vector2(-641, -1483)
-
-[node name="WaterfallBackground3" parent="." instance=ExtResource("5_e8jay")]
-z_index = -2
-position = Vector2(-641, -2203)
-
-[node name="WaterfallBackground4" parent="." instance=ExtResource("5_e8jay")]
-z_index = -2
-position = Vector2(-638.571, -2922.86)
-
-[node name="Foam" parent="." instance=ExtResource("6_ua02a")]
+[node name="Foam" parent="." instance=ExtResource("4_lkqqk")]
 z_index = 2
 position = Vector2(-1, -43)
 
 [node name="LeftRocks" type="Node2D" parent="."]
 position = Vector2(-615, -698)
 
-[node name="Rocks" parent="LeftRocks" instance=ExtResource("8_f52tn")]
+[node name="Rocks" parent="LeftRocks" instance=ExtResource("5_wvghs")]
 
-[node name="Rocks5" parent="LeftRocks" instance=ExtResource("8_f52tn")]
+[node name="Rocks5" parent="LeftRocks" instance=ExtResource("5_wvghs")]
 position = Vector2(25, -1479)
 
-[node name="Rocks6" parent="LeftRocks" instance=ExtResource("8_f52tn")]
+[node name="Rocks6" parent="LeftRocks" instance=ExtResource("5_wvghs")]
 position = Vector2(11, -752)
 
-[node name="Rocks7" parent="LeftRocks" instance=ExtResource("8_f52tn")]
+[node name="Rocks7" parent="LeftRocks" instance=ExtResource("5_wvghs")]
 position = Vector2(11, -2159.14)
+
+[node name="Rocks2" parent="LeftRocks" instance=ExtResource("5_wvghs")]
+position = Vector2(0, -2948.57)
+
+[node name="Rocks8" parent="LeftRocks" instance=ExtResource("5_wvghs")]
+position = Vector2(25, -4427.57)
+
+[node name="Rocks9" parent="LeftRocks" instance=ExtResource("5_wvghs")]
+position = Vector2(11, -3700.57)
+
+[node name="Rocks10" parent="LeftRocks" instance=ExtResource("5_wvghs")]
+position = Vector2(11, -5107.71)
 
 [node name="RightRocks" type="Node2D" parent="."]
 position = Vector2(-615, -678)
 
-[node name="Rocks2" parent="RightRocks" instance=ExtResource("8_f52tn")]
+[node name="Rocks2" parent="RightRocks" instance=ExtResource("5_wvghs")]
 position = Vector2(1236, 12)
 
-[node name="Rocks3" parent="RightRocks" instance=ExtResource("8_f52tn")]
+[node name="Rocks3" parent="RightRocks" instance=ExtResource("5_wvghs")]
 position = Vector2(1252, -1460)
 
-[node name="Rocks4" parent="RightRocks" instance=ExtResource("8_f52tn")]
+[node name="Rocks4" parent="RightRocks" instance=ExtResource("5_wvghs")]
 position = Vector2(1248, -764)
 
-[node name="Rocks5" parent="RightRocks" instance=ExtResource("8_f52tn")]
+[node name="Rocks5" parent="RightRocks" instance=ExtResource("5_wvghs")]
 position = Vector2(1248, -2203.43)
+
+[node name="Rocks6" parent="RightRocks" instance=ExtResource("5_wvghs")]
+position = Vector2(1236, -2900.86)
+
+[node name="Rocks7" parent="RightRocks" instance=ExtResource("5_wvghs")]
+position = Vector2(1252, -4372.86)
+
+[node name="Rocks8" parent="RightRocks" instance=ExtResource("5_wvghs")]
+position = Vector2(1248, -3676.86)
+
+[node name="Rocks9" parent="RightRocks" instance=ExtResource("5_wvghs")]
+position = Vector2(1248, -5116.29)
 
 [node name="waterPlane" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_np3e4")
@@ -104,4 +142,4 @@ polygon = PackedVector2Array(-990, 40, -1080, 160, -1000, 240, 1000, 240, 1080, 
 z_index = 2
 position = Vector2(-4.23516e-22, 155.714)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("8_qys1e")
+texture = ExtResource("7_q7ui7")

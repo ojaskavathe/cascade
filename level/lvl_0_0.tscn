@@ -9,4 +9,4 @@
 position = Vector2(0, 714)
 
 [node name="SpawnJumpPoint" parent="." groups=["end_point", "spawn_point"] instance=ExtResource("6_2axsy")]
-position = Vector2(640, 300)
+position = Vector2(0, 300)

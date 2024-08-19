@@ -1,20 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://c420ddb34xb4s"]
+[gd_scene load_steps=5 format=3 uid="uid://ydvx6ky5fpy8"]
 
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="1_fvc21"]
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_x3psn"]
 [ext_resource type="PackedScene" uid="uid://hwtg6vij1omp" path="res://entity/object/spawn_jump_point.tscn" id="2_wkjkh"]
-[ext_resource type="PackedScene" uid="uid://cfmeftaqkjqs" path="res://entity/object/enemy.tscn" id="3_x7vyq"]
 [ext_resource type="PackedScene" uid="uid://ek465fxqkhqe" path="res://entity/object/end_jump_point.tscn" id="5_2ngmn"]
 
 [node name="lvl_1_1" type="Node2D"]
 
+[node name="Wall" type="Polygon2D" parent="."]
+position = Vector2(0, -710)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall" instance=ExtResource("1_fvc21")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
 [node name="BottomKillzone" parent="." instance=ExtResource("1_x3psn")]
-position = Vector2(0, 714)
 
 [node name="SpawnJumpPoint" parent="." groups=["spawn_point"] instance=ExtResource("2_wkjkh")]
-position = Vector2(638, 486)
-
-[node name="Enemy" parent="." instance=ExtResource("3_x7vyq")]
-position = Vector2(640, 85)
+position = Vector2(0, -368)
 
 [node name="EndJumpPoint" parent="." instance=ExtResource("5_2ngmn")]
-position = Vector2(637, -380)
+position = Vector2(0, -1031)

@@ -16,7 +16,8 @@ func _ready():
 	Signals.new_checkpoint.connect(_new_checkpoint)
 	Signals.player_exited_lg.connect(_new_lg)
 	
-	first_level = self.get_node("LevelGroups").get_node("LG_" + str(start_scene)).get_node("levels").get_node("lvl_" + str(start_scene) + "_0")
+	var first_lg = self.get_node("LevelGroups").get_node("LG_" + str(start_scene))
+	first_level = first_lg.get_node("levels").get_node("lvl_" + str(start_scene) + "_0")
 	
 	checkpoint_loc = first_level.get_node("SpawnJumpPoint").global_position
 	currentScene = first_level
@@ -46,7 +47,7 @@ func spawn_confetti(pos):
 	add_child.call_deferred(confetti)
 
 func _new_checkpoint(loc, scene):
-	# print("new checkpoint: ", loc)
+	#print("new checkpoint: ", loc)
 	checkpoint_loc = loc
 	
 	currentScene = scene
@@ -62,17 +63,11 @@ func _on_new_lg_timeout() -> void:
 	# var next_lg: Node2D = lg_ref.get_parent().get_node("LG_" + str(next_lg_idx));
 	
 	if lg_ref:
-		var water_plane: Node2D = lg_ref.get_node("waterPlane")
-		
 		Signals.fix_particles.emit(true)
 		$FixParticles.start()
 		
 		var tween = get_tree().create_tween()
-		tween.set_parallel();
-	
 		tween.tween_property(lg_ref, "scale", Vector2.ONE * 1, 1.3).set_trans(Tween.TRANS_CUBIC)
-		tween.tween_property(water_plane, "scale", Vector2(1, 0.1), 1.3).set_trans(Tween.TRANS_CUBIC)
-
-
+	
 func _on_fix_particles_timeout():
 	Signals.fix_particles.emit(false)

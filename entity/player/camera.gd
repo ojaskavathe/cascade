@@ -3,7 +3,7 @@ extends Camera2D
 var camera_tween_start
 var camera_tween_end
 
-var x_min = 640
+var x_min = -640
 var x_max = 640
 var y_max = 100000
 var y_min = -100000
@@ -48,6 +48,7 @@ func _on_player_entered_bash_state():
 	if is_instance_valid(camera_tween_end):
 		camera_tween_end.kill()
 	
+	#self.smoothingSpeed = 320.0
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "zoom", Vector2(1.25, 1.25), 0.2).set_trans(Tween.TRANS_SINE)
 	camera_tween_start = tween
@@ -56,7 +57,7 @@ func _on_player_exited_bash_state(end):
 	if is_instance_valid(camera_tween_start):
 		camera_tween_start.kill()
 	
-	
+	#self.smoothingSpeed = 16.0
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "zoom", Vector2(0.5, 0.5) if end else Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
 	

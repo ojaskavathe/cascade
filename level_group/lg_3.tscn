@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://brg1oyl532r7q"]
 
-[ext_resource type="PackedScene" uid="uid://beeo6ve207yny" path="res://level/lvl_1_0.tscn" id="1_x3hnd"]
+[ext_resource type="PackedScene" uid="uid://bmupasbdryr7y" path="res://level/lvl_3_0.tscn" id="1_g731q"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="2_o6mrp"]
 [ext_resource type="Shader" path="res://assets/shader/pan_hack.gdshader" id="3_46at7"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_wlieg"]
@@ -32,7 +32,7 @@ scale = Vector2(0.7, 0.7)
 [node name="levels" type="Node2D" parent="."]
 position = Vector2(0, -763)
 
-[node name="lvl_1_0" parent="levels" instance=ExtResource("1_x3hnd")]
+[node name="lvl_3_0" parent="levels" instance=ExtResource("1_g731q")]
 position = Vector2(0, 855.857)
 
 [node name="WaterfallBackground" type="Node2D" parent="."]

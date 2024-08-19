@@ -12,6 +12,10 @@ var bash_state = false
 var in_jump_point = false
 var jump_point_position = Vector2.ZERO
 var end_jump: bool = false
+var moving_jump: bool = false
+
+var jump_point_ref: Node2D 
+var jump_point_offset: Vector2 
 
 var move_direction = Vector2.UP
 var model_rotation = 0.0
@@ -54,14 +58,18 @@ func _physics_process(delta):
 		arrow.set_position(jump_point_position)
 		arrow.set_visible(true)
 		
-		velocity = Vector2.ZERO
+		self.velocity = Vector2.ZERO
+		if moving_jump:
+			jump_point_position = jump_point_ref.global_position
+			self.position = jump_point_position + jump_point_offset
+			Signals.player_moved.emit(self.position)
 	
 		if Input.is_action_just_released("jump"):
 			Signals.fade_logo.emit()
 			$CollisionShape2D.set_disabled(true) # Enables invincibility
 			set_particle_behavior(ParticleBehavior.DASH)
 			$DashParticleTimer.start()
-			position = jump_point_position
+			self.position = jump_point_position
 				
 			move_direction = direction.normalized()
 			if end_jump:
@@ -86,6 +94,9 @@ func _physics_process(delta):
 			arrow.set_visible(false)
 			can_bash = false
 			Engine.time_scale = 1
+			moving_jump = false
+			jump_point_ref = null
+			jump_point_offset = Vector2.ZERO
 			
 			$MusicPlayer.set_pitch_scale(1)
 			
@@ -112,19 +123,19 @@ func _physics_process(delta):
 			set_particle_behavior(ParticleBehavior.SWIM)
 			$DashParticleTimer.stop()
 			Signals.player_entered_bash_state.emit()
+			
 			# this goes here instead of in bash state check cuz 
-			# i don't want it to trigger on respawn
-			Engine.time_scale = SLOWMO_SCALE
+			# i don't want it to trigger on respawn\
+			# Engine.time_scale = SLOWMO_SCALE
 			$MusicPlayer.set_pitch_scale(0.75)
 		
 			#var tween = get_tree().create_tween()
 			#tween.tween_property($MusicPlayer, "pitch_scale", 0.75, 0.01).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
 			
-		
 		move_and_slide()
-		Signals.player_moved.emit(position)
+		Signals.player_moved.emit(self.position)
 
-func _on_jump_point_detect_area_entered(area):
+func _on_jump_point_detect_area_entered(area: Area2D):
 	if (area.is_in_group("jump_point")):
 		in_jump_point = true
 		jump_point_position = area.get_global_position()
@@ -132,6 +143,10 @@ func _on_jump_point_detect_area_entered(area):
 			Signals.new_checkpoint.emit(jump_point_position, area.get_parent().get_parent())
 		if (area.is_in_group("end_point")):
 			end_jump = true
+		if (area.is_in_group("moving_point")):
+			moving_jump = true
+			jump_point_ref = area
+			jump_point_offset = self.position - area.global_position
 		if (area.is_in_group("mega")):
 			mega = true
 
@@ -141,6 +156,7 @@ func _on_jump_point_detect_area_exited(area):
 		in_jump_point = false
 		end_jump = false
 		mega = false
+		
 		if (area.is_in_group("spawn_point")):
 			can_bash = true
 

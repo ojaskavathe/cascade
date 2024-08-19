@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmupasbdryr7y"]
+
+[ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_8ykwg"]
+[ext_resource type="PackedScene" uid="uid://hwtg6vij1omp" path="res://entity/object/spawn_jump_point.tscn" id="2_w6h7x"]
+[ext_resource type="PackedScene" uid="uid://cevwhf6jv1r06" path="res://entity/object/jump_point.tscn" id="3_0m6rn"]
+[ext_resource type="PackedScene" uid="uid://c3rws50yh4s14" path="res://entity/object/moving_jump_point.tscn" id="3_et83a"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="4_flxcy"]
+[ext_resource type="PackedScene" uid="uid://ek465fxqkhqe" path="res://entity/object/end_jump_point.tscn" id="5_ldo2c"]
+
+[sub_resource type="Curve2D" id="Curve2D_haoj6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -321, -694, 0, 0, 0, 0, -317, -1179)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_i8yiu"]
+resource_name = "move_jump_point"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_i2bbm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uc27j"]
+_data = {
+"RESET": SubResource("Animation_i2bbm"),
+"move_jump_point": SubResource("Animation_i8yiu")
+}
+
+[node name="lvl_3_0" type="Node2D"]
+
+[node name="BottomKillzone" parent="." instance=ExtResource("1_8ykwg")]
+
+[node name="SpawnJumpPoint" parent="." groups=["spawn_point"] instance=ExtResource("2_w6h7x")]
+position = Vector2(0, -450)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_haoj6")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-321, -694)
+rotation = -1.56255
+
+[node name="MovingJumpPoint" parent="Path2D/PathFollow2D" instance=ExtResource("3_et83a")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D"]
+libraries = {
+"": SubResource("AnimationLibrary_uc27j")
+}
+autoplay = "move_jump_point"
+
+[node name="JumpPoint4" parent="." instance=ExtResource("3_0m6rn")]
+position = Vector2(264, -1450)
+
+[node name="JumpPoint6" parent="." instance=ExtResource("3_0m6rn")]
+position = Vector2(-197, -1839)
+
+[node name="Wall1" type="Polygon2D" parent="."]
+position = Vector2(204, -1167)
+scale = Vector2(1.74564, 1.4359)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall1"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall1" instance=ExtResource("4_flxcy")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall1/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Wall2" type="Polygon2D" parent="."]
+position = Vector2(-376.83, -1552)
+scale = Vector2(1.74564, 1.4359)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall2"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall2" instance=ExtResource("4_flxcy")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall2/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="EndJumpPoint" parent="." instance=ExtResource("5_ldo2c")]
+position = Vector2(0, -2941)

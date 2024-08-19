@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmwpm7ap75scu"]
+[gd_scene load_steps=14 format=3 uid="uid://cmwpm7ap75scu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_oliij"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_2ojf5"]
+[ext_resource type="PackedScene" uid="uid://dqrknsqbk8038" path="res://level_group/lg_4.tscn" id="4_knrop"]
 [ext_resource type="PackedScene" uid="uid://dcykdm8vsc242" path="res://level_group/lg_0.tscn" id="5_6myex"]
 [ext_resource type="PackedScene" uid="uid://cdg3qiavdxcxn" path="res://level_group/lg_1.tscn" id="5_rcqat"]
 [ext_resource type="PackedScene" uid="uid://coibvjhqgl4un" path="res://level_group/lg_2.tscn" id="6_eqymc"]
@@ -25,7 +26,7 @@ distance = -480.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_07ca5")
-start_scene = 3
+start_scene = 4
 
 [node name="Player" parent="." instance=ExtResource("1_oliij")]
 position = Vector2(0, 1366)
@@ -34,12 +35,16 @@ position = Vector2(0, 1366)
 position = Vector2(0, 1366)
 zoom = Vector2(0.1, 0.1)
 limit_bottom = 1500
+dashZoom = 1.125
 dashSmoothingSpeed = 12.0
 endDashSmoothingSpeed = 32.0
 smoothingSpeed = 16.0
 targetOffset = Vector2(0, 200)
 
 [node name="LevelGroups" type="Node2D" parent="."]
+
+[node name="LG_4" parent="LevelGroups" instance=ExtResource("4_knrop")]
+position = Vector2(0, -19733)
 
 [node name="LG_3" parent="LevelGroups" instance=ExtResource("7_b8fmd")]
 position = Vector2(0, -13806)

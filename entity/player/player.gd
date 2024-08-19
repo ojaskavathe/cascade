@@ -90,16 +90,7 @@ func _physics_process(delta):
 				velocity = move_direction * (END_VELOCITY if end_jump else JUMP_VELOCITY)
 			Signals.player_exited_bash_state.emit(end_jump)
 			
-			end_jump = false
-			bash_state = false
-			arrow.set_visible(false)
-			can_bash = false
-			Engine.time_scale = 1
-			moving_jump = false
-			jump_point_ref = null
-			jump_point_offset = Vector2.ZERO
-			
-			$MusicPlayer.set_pitch_scale(1)
+			self.reset()
 			
 			#var tween = get_tree().create_tween()
 			#tween.tween_property($MusicPlayer, "pitch_scale", 1.0, 0.01).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
@@ -135,6 +126,18 @@ func _physics_process(delta):
 			
 		move_and_slide()
 		Signals.player_moved.emit(self.position)
+
+func reset():
+	end_jump = false
+	bash_state = false
+	arrow.set_visible(false)
+	can_bash = false
+	Engine.time_scale = 1
+	moving_jump = false
+	jump_point_ref = null
+	jump_point_offset = Vector2.ZERO
+	
+	$MusicPlayer.set_pitch_scale(1)
 
 func _on_jump_point_detect_area_entered(area: Area2D):
 	if (area.is_in_group("jump_point")):

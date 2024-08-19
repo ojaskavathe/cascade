@@ -21,6 +21,7 @@ func _ready():
 	player.bash_state = true
 
 func _on_kill():
+	player.play_death_sound()
 	spawn_confetti(player.position)
 	player.position = checkpoint_loc
 	player.jump_point_position = checkpoint_loc

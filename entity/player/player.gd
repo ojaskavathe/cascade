@@ -77,6 +77,13 @@ func _physics_process(delta):
 			can_bash = false
 			Engine.time_scale = 1
 			
+			$MusicPlayer.set_pitch_scale(1)
+			
+			#var tween = get_tree().create_tween()
+			#tween.tween_property($MusicPlayer, "pitch_scale", 1.0, 0.01).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
+			
+			play_shoot_sound()
+			
 			$BashCooldownTimer.start()
 	else:
 		if not is_on_floor():
@@ -98,6 +105,10 @@ func _physics_process(delta):
 			# this goes here instead of in bash state check cuz 
 			# i don't want it to trigger on respawn
 			Engine.time_scale = SLOWMO_SCALE
+			$MusicPlayer.set_pitch_scale(0.75)
+		
+			#var tween = get_tree().create_tween()
+			#tween.tween_property($MusicPlayer, "pitch_scale", 0.75, 0.01).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
 			
 		
 		move_and_slide()
@@ -133,3 +144,13 @@ func set_particle_behavior(particle_behavior: ParticleBehavior):
 func _on_bash_cooldown_timer_timeout():
 	can_bash = true
 	$CollisionShape2D.set_disabled(false) # Disables invincibility
+
+func play_death_sound():
+	var f = randf_range(0.92, 1.08)
+	$DeathSoundPlayer.set_pitch_scale(f)
+	$DeathSoundPlayer.play()
+
+func play_shoot_sound():
+	var f = randf_range(0.92, 1.08)
+	$ShootSoundPlayer.set_pitch_scale(f)
+	$ShootSoundPlayer.play()

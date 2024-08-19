@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0vrcis6rns5i"]
+[gd_scene load_steps=11 format=3 uid="uid://d0vrcis6rns5i"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_dtk45"]
 [ext_resource type="PackedScene" uid="uid://dqe3i08elxdql" path="res://entity/player/player_model.tscn" id="2_qx60d"]
+[ext_resource type="AudioStream" uid="uid://cu5mugis7a5kt" path="res://assets/sound/death.mp3" id="3_if5v3"]
+[ext_resource type="AudioStream" uid="uid://df8uqj62qv67y" path="res://assets/sound/jump_release.mp3" id="4_5kerk"]
+[ext_resource type="AudioStream" uid="uid://d30wuujfj2m70" path="res://assets/sound/music.mp3" id="5_nfefp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5r44n"]
 radius = 8.0
@@ -80,6 +83,16 @@ one_shot = true
 [node name="BashCooldownTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_if5v3")
+
+[node name="ShootSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5kerk")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nfefp")
+autoplay = true
 
 [connection signal="area_entered" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_entered"]
 [connection signal="area_exited" from="JumpPointDetect" to="." method="_on_jump_point_detect_area_exited"]

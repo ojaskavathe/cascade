@@ -13,6 +13,8 @@ config_version=5
 config/name="Scale"
 run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0.321569, 0.45098, 0.278431, 1)
+boot_splash/image="res://logo.png"
 config/icon="res://icon.svg"
 
 [autoload]

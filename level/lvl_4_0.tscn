@@ -1,15 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dd02vnqnj3o1s"]
+[gd_scene load_steps=12 format=3 uid="uid://dd02vnqnj3o1s"]
 
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_qisct"]
 [ext_resource type="PackedScene" uid="uid://hwtg6vij1omp" path="res://entity/object/spawn_jump_point.tscn" id="2_q36vr"]
 [ext_resource type="PackedScene" uid="uid://c3rws50yh4s14" path="res://entity/object/moving_jump_point.tscn" id="3_ffrlx"]
-[ext_resource type="PackedScene" uid="uid://cevwhf6jv1r06" path="res://entity/object/jump_point.tscn" id="4_xbrqr"]
 [ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="5_h3o82"]
 [ext_resource type="PackedScene" uid="uid://ek465fxqkhqe" path="res://entity/object/end_jump_point.tscn" id="6_xm7j8"]
 
 [sub_resource type="Curve2D" id="Curve2D_haoj6"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 262, -1997, 0, 0, 0, 0, -367, -1648)
+"points": PackedVector2Array(0, 0, 0, 0, 28, -2029, 0, 0, 0, 0, -248, -1301)
 }
 point_count = 2
 
@@ -53,13 +52,13 @@ _data = {
 
 [sub_resource type="Curve2D" id="Curve2D_lfakd"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 293.328, -189.611, 0, 0, 0, 0, 955.361, -639.506)
+"points": PackedVector2Array(0, 0, 0, 0, 215.6, -383.929, 0, 0, 0, 0, 955.361, -639.506)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_p6xoc"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -174, -644, 0, 0, 0, 0, -174, -1301)
+"points": PackedVector2Array(0, 0, 0, 0, -176, -679, 0, 0, 0, 0, -369, -1494)
 }
 point_count = 2
 
@@ -75,8 +74,8 @@ position = Vector2(-71, 122)
 curve = SubResource("Curve2D_haoj6")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(262, -1997)
-rotation = 2.63503
+position = Vector2(28, -2029)
+rotation = 1.93317
 
 [node name="MovingJumpPoint" parent="Path2D/PathFollow2D" instance=ExtResource("3_ffrlx")]
 
@@ -92,8 +91,8 @@ rotation = -1.56192
 curve = SubResource("Curve2D_lfakd")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
-position = Vector2(293.328, -189.611)
-rotation = -0.59688
+position = Vector2(215.6, -383.929)
+rotation = -0.332648
 
 [node name="MovingJumpPoint" parent="Path2D3/PathFollow2D" instance=ExtResource("3_ffrlx")]
 
@@ -108,8 +107,8 @@ position = Vector2(561, 199)
 curve = SubResource("Curve2D_p6xoc")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
-position = Vector2(-174, -644)
-rotation = -1.5708
+position = Vector2(-176, -679)
+rotation = -1.80332
 
 [node name="MovingJumpPoint" parent="Path2D2/PathFollow2D" instance=ExtResource("3_ffrlx")]
 
@@ -118,9 +117,6 @@ libraries = {
 "": SubResource("AnimationLibrary_uc27j")
 }
 autoplay = "move_jump_point"
-
-[node name="JumpPoint6" parent="." instance=ExtResource("4_xbrqr")]
-position = Vector2(-8, -1275)
 
 [node name="Wall1" type="Polygon2D" parent="."]
 position = Vector2(676, -1375)

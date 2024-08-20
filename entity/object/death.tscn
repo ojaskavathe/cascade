@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddf1rvbkwlxxp"]
+
+[sub_resource type="Gradient" id="Gradient_tow7n"]
+offsets = PackedFloat32Array(0, 0.613333, 0.98)
+colors = PackedColorArray(0.25, 0.0125, 0.206458, 1, 0.966667, 0, 1, 1, 0.966667, 0, 1, 0.270588)
+
+[node name="Death" type="CPUParticles2D"]
+position = Vector2(640, 720)
+amount = 400
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+spread = 180.0
+gravity = Vector2(0, -160)
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+radial_accel_min = 20.0
+radial_accel_max = 40.0
+tangential_accel_min = 10.0
+tangential_accel_max = 20.0
+damping_min = 6.0
+damping_max = 20.0
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 10.0
+scale_amount_max = 100.0
+color = Color(0.820167, 0.17, 1, 1)
+color_ramp = SubResource("Gradient_tow7n")

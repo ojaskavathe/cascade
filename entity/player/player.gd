@@ -31,6 +31,7 @@ var arrow
 var controls_enabled = true
 var can_bash = true
 
+var final = false
 var mega = false
 
 enum ParticleBehavior {SWIM = 0, DASH = 1}
@@ -75,6 +76,11 @@ func _physics_process(delta):
 			self.position = jump_point_position
 				
 			move_direction = direction.normalized()
+			
+			if final:
+				Signals.entered_final.emit()
+				final = false
+			
 			if end_jump:
 				move_direction = Vector2.DOWN
 				controls_enabled = false
@@ -160,7 +166,10 @@ func _on_jump_point_detect_area_entered(area: Area2D):
 		in_jump_point = true
 		jump_point_position = area.get_global_position()
 		if (area.is_in_group("spawn_point")):
+			if (area.get_parent().is_in_group("final_spawn")):
+				final = true
 			Signals.new_checkpoint.emit(jump_point_position, area.get_parent().get_parent())
+			
 		if (area.is_in_group("end_point")):
 			end_jump = true
 		if (area.is_in_group("moving_point")):

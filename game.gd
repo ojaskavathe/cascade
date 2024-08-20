@@ -65,12 +65,14 @@ func _on_new_lg_timeout() -> void:
 	# var next_lg_idx: int = lg_ref.name.substr(3).to_int() + 1
 	# var next_lg: Node2D = lg_ref.get_parent().get_node("LG_" + str(next_lg_idx));
 	
+	
 	if lg_ref:
-		Signals.fix_particles.emit(true)
-		$FixParticles.start()
-		
-		var tween = get_tree().create_tween()
-		tween.tween_property(lg_ref, "scale", Vector2.ONE * 1, 1.3).set_trans(Tween.TRANS_CUBIC)
+		if lg_ref.name != "LG_8":
+			Signals.fix_particles.emit(true)
+			$FixParticles.start()
+			
+			var tween = get_tree().create_tween()
+			tween.tween_property(lg_ref, "scale", Vector2.ONE * 1, 1.3).set_trans(Tween.TRANS_CUBIC)
 	
 func _on_fix_particles_timeout():
 	Signals.fix_particles.emit(false)

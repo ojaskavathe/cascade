@@ -62,7 +62,7 @@ func _physics_process(delta):
 		self.velocity = Vector2.ZERO
 		if moving_jump:
 			jump_point_position = jump_point_ref.global_position
-			self.position = jump_point_position + jump_point_offset
+			self.position = jump_point_position# + jump_point_offset
 			Signals.player_moved.emit(self.position)
 			Engine.time_scale = 1
 			if (jump_point_ref.is_in_group("carriage_point")):
@@ -79,6 +79,7 @@ func _physics_process(delta):
 			
 			if final:
 				Signals.entered_final.emit()
+				SLOWMO_SCALE = 1
 				final = false
 			
 			if end_jump:

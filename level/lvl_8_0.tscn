@@ -1,14 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://okdtn1gtl1nb"]
+[gd_scene load_steps=19 format=3 uid="uid://okdtn1gtl1nb"]
 
 [ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_sg1ar"]
 [ext_resource type="PackedScene" uid="uid://hwtg6vij1omp" path="res://entity/object/spawn_jump_point.tscn" id="2_qlje4"]
 [ext_resource type="PackedScene" uid="uid://cdws5thkiebxw" path="res://entity/object/mega_end_jump_point.tscn" id="2_s7ygh"]
 [ext_resource type="PackedScene" uid="uid://x42kpldcqswv" path="res://entity/object/mega_moving_jump_point.tscn" id="4_fati8"]
 [ext_resource type="Script" path="res://entity/object/final_path.gd" id="4_o0kis"]
+[ext_resource type="PackedScene" uid="uid://cevwhf6jv1r06" path="res://entity/object/jump_point.tscn" id="6_wvuaf"]
+[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_qsqs2"]
+[ext_resource type="PackedScene" uid="uid://cfmeftaqkjqs" path="res://entity/object/enemy.tscn" id="8_88g3k"]
+[ext_resource type="Script" path="res://entity/object/carriage.gd" id="9_a0eyy"]
+[ext_resource type="PackedScene" uid="uid://c3rws50yh4s14" path="res://entity/object/moving_jump_point.tscn" id="10_1cswj"]
 
 [sub_resource type="Curve2D" id="Curve2D_eje28"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -9, 5260, 0, 0, 0, 0, 0, 304.22)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 5260, 0, 0, 0, 0, 0, -100)
 }
 point_count = 2
 
@@ -29,7 +34,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_i7gs3"]
 resource_name = "move_jump_point"
-length = 20.0
+length = 15.0
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -38,7 +43,7 @@ tracks/0/path = NodePath("PathFollow2D:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 20),
+"times": PackedFloat32Array(0, 15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -50,12 +55,56 @@ _data = {
 "move_jump_point": SubResource("Animation_i7gs3")
 }
 
+[sub_resource type="Curve2D" id="Curve2D_j8c1x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -230.376, -1074, 0, 0, 0, 0, -286.369, -1615.86)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_i2bbm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i8yiu"]
+resource_name = "move_jump_point"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uc27j"]
+_data = {
+"RESET": SubResource("Animation_i2bbm"),
+"move_jump_point": SubResource("Animation_i8yiu")
+}
+
 [node name="lvl_8_0" type="Node2D"]
 
 [node name="BottomKillzone" parent="." instance=ExtResource("1_sg1ar")]
 
 [node name="MegaEndJumpPoint" parent="." instance=ExtResource("2_s7ygh")]
-position = Vector2(0, -6809)
+position = Vector2(-20, -6809)
 
 [node name="SpawnJumpPoint" parent="." groups=["final_spawn", "spawn_point"] instance=ExtResource("2_qlje4")]
 position = Vector2(0, -899)
@@ -66,8 +115,8 @@ curve = SubResource("Curve2D_eje28")
 script = ExtResource("4_o0kis")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Final_Path"]
-position = Vector2(-9, 5260)
-rotation = -1.56898
+position = Vector2(0, 5260)
+rotation = -1.5708
 
 [node name="MegaMovingJumpPoint" parent="Final_Path/PathFollow2D" instance=ExtResource("4_fati8")]
 position = Vector2(0, 1.511)
@@ -76,5 +125,215 @@ rotation = -0.397017
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Final_Path"]
 libraries = {
 "": SubResource("AnimationLibrary_hl2f7")
+}
+autoplay = "move_jump_point"
+
+[node name="JumpPoint" parent="." instance=ExtResource("6_wvuaf")]
+position = Vector2(389, -2233)
+
+[node name="JumpPoint2" parent="." instance=ExtResource("6_wvuaf")]
+position = Vector2(-435, -5186)
+
+[node name="Wall7" type="Polygon2D" parent="."]
+position = Vector2(-169, -2253)
+rotation = 6.18113
+scale = Vector2(1.74564, 1.4359)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall7"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall7" instance=ExtResource("7_qsqs2")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall7/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Wall8" type="Polygon2D" parent="."]
+position = Vector2(27, -3091)
+rotation = 7.69843
+scale = Vector2(1.74564, 1.4359)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall8"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall8" instance=ExtResource("7_qsqs2")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall8/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Wall9" type="Polygon2D" parent="."]
+position = Vector2(73, -5228)
+rotation = 6.25216
+scale = Vector2(1.74564, 1.4359)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall9"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall9" instance=ExtResource("7_qsqs2")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall9/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="JumpPoint3" parent="." instance=ExtResource("6_wvuaf")]
+position = Vector2(-442, -5677.53)
+
+[node name="Wall10" type="Polygon2D" parent="."]
+position = Vector2(66, -5719.53)
+rotation = 6.25216
+scale = Vector2(1.74564, 1.4359)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall10"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall10" instance=ExtResource("7_qsqs2")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall10/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="JumpPoint4" parent="." instance=ExtResource("6_wvuaf")]
+position = Vector2(-428, -6205.53)
+
+[node name="Wall11" type="Polygon2D" parent="."]
+position = Vector2(80, -6247.53)
+rotation = 6.25216
+scale = Vector2(1.74564, 1.4359)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall11"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall11" instance=ExtResource("7_qsqs2")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall11/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, 25, 44, 88, 93, 230, 66, 198, 25, 95, 18)
+
+[node name="Wall12" type="Polygon2D" parent="."]
+position = Vector2(-297, -4538)
+rotation = 6.25216
+scale = Vector2(1.74564, 1.4359)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -141.137, 522.125, 204.731, 399.305, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall12"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -90.6968, 1006.16, 248.758, 724.551, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall12" instance=ExtResource("7_qsqs2")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall12/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -141.137, 522.125, 204.731, 399.305, 230, 66, 198, 25, 95, 18)
+
+[node name="Wall13" type="Polygon2D" parent="."]
+position = Vector2(355, -6530)
+rotation = 6.25216
+scale = Vector2(1.86149, 3.57683)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -141.137, 522.125, 204.731, 399.305, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall13"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -126.81, 169.431, -161.025, 164.982, -161.088, 193.629, -129.001, 193.983, -115.293, 477.355, -148.033, 477.09, -147.491, 503.318, -119.842, 510.698, -110.059, 762.454, -134.941, 762.299, -133.686, 791.353, -115.95, 794.224, -90.6968, 1006.16, 248.758, 724.551, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall13" instance=ExtResource("7_qsqs2")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall13/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -141.137, 522.125, 204.731, 399.305, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D2" type="CollisionPolygon2D" parent="Wall13/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -141.137, 522.125, 204.731, 399.305, 230, 66, 198, 25, 95, 18)
+
+[node name="Wall14" type="Polygon2D" parent="."]
+position = Vector2(-457, -1693)
+rotation = 9.39386
+scale = Vector2(1.86149, 3.57683)
+color = Color(0.72, 0.67716, 0.5688, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -141.137, 522.125, 204.731, 399.305, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall14"]
+position = Vector2(6, 9)
+rotation = 0.0948301
+scale = Vector2(0.82, 0.48)
+color = Color(1, 0.9405, 0.79, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -121.502, 301.695, -154.75, 308.515, -152.851, 336.897, -122.202, 331.013, -90.6968, 1006.16, 248.758, 724.551, 230, 66, 198, 25, 95, 18)
+
+[node name="KillZone" parent="Wall14" instance=ExtResource("7_qsqs2")]
+position = Vector2(44, -1)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall14/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -141.137, 522.125, 204.731, 399.305, 230, 66, 198, 25, 95, 18)
+
+[node name="Polygon2D_KillZone#CollisionPolygon2D2" type="CollisionPolygon2D" parent="Wall14/KillZone"]
+position = Vector2(-44, 1)
+polygon = PackedVector2Array(-17, -46, -91, -24, -133, 26, -141.137, 522.125, 204.731, 399.305, 230, 66, 198, 25, 95, 18)
+
+[node name="Enemy" parent="." instance=ExtResource("8_88g3k")]
+position = Vector2(363, -2980)
+
+[node name="Carriage2" type="Path2D" parent="."]
+position = Vector2(483, -2741)
+rotation = 0.0593625
+curve = SubResource("Curve2D_j8c1x")
+script = ExtResource("9_a0eyy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Carriage2"]
+position = Vector2(-230.376, -1074)
+rotation = -1.67377
+
+[node name="MovingJumpPoint" parent="Carriage2/PathFollow2D" groups=["carriage_point"] instance=ExtResource("10_1cswj")]
+script = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Carriage2"]
+libraries = {
+"": SubResource("AnimationLibrary_uc27j")
 }
 autoplay = "move_jump_point"

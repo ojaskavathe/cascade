@@ -68,7 +68,7 @@ script = ExtResource("3_j41hc")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Carriage"]
 position = Vector2(-230.376, -1074)
-rotation = -2.29212
+rotation = -2.29213
 
 [node name="MovingJumpPoint" parent="Carriage/PathFollow2D" groups=["carriage_point"] instance=ExtResource("4_qdk6p")]
 script = null
@@ -87,7 +87,7 @@ script = ExtResource("3_j41hc")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Carriage2"]
 position = Vector2(-230.376, -1074)
-rotation = -2.29212
+rotation = -2.29213
 
 [node name="MovingJumpPoint" parent="Carriage2/PathFollow2D" groups=["carriage_point"] instance=ExtResource("4_qdk6p")]
 script = null

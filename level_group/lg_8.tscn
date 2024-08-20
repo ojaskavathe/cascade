@@ -112,7 +112,7 @@ noise = SubResource("FastNoiseLite_cbo0g")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b3uti"]
 shader = SubResource("Shader_ktehq")
 shader_parameter/scale = Vector2(5, 45)
-shader_parameter/zoom = 1.05946
+shader_parameter/zoom = 0.235969
 shader_parameter/gap_stretch = Vector2(0.8, 0.05)
 shader_parameter/refraction_stretch = Vector2(2, 0.8)
 shader_parameter/refraction_strength = 0.008
@@ -229,7 +229,8 @@ position = Vector2(-179, -5835.71)
 position = Vector2(-190, -6589.44)
 
 [node name="Rocks12" parent="LeftRocks" instance=ExtResource("6_omj0r")]
-position = Vector2(-179, -7341.43)
+z_index = 2
+position = Vector2(-178.571, -7341.43)
 
 [node name="RightRocks" type="Node2D" parent="."]
 position = Vector2(535.714, 9)
@@ -262,6 +263,7 @@ position = Vector2(170, -5822.86)
 position = Vector2(170, -6543.56)
 
 [node name="Rocks12" parent="RightRocks" instance=ExtResource("6_omj0r")]
+z_index = 2
 position = Vector2(170, -7319.57)
 
 [node name="ToriBuilt" type="Sprite2D" parent="."]

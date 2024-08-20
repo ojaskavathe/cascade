@@ -131,11 +131,11 @@ func _physics_process(delta):
 					var carriage = jump_point_ref.get_parent().get_parent().get_parent()
 					carriage.get_node("AnimationPlayer").play()
 					Signals.player_entered_carriage.emit()
-			
-			# this goes here instead of in bash state check cuz 
-			# i don't want it to trigger on respawn\
-			Engine.time_scale = SLOWMO_SCALE
-			$MusicPlayer.set_pitch_scale(0.75)
+			else:
+				# this goes here instead of in bash state check cuz 
+				# i don't want it to trigger on respawn\
+				Engine.time_scale = SLOWMO_SCALE
+				$MusicPlayer.set_pitch_scale(0.75)
 		
 			#var tween = get_tree().create_tween()
 			#tween.tween_property($MusicPlayer, "pitch_scale", 0.75, 0.01).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)

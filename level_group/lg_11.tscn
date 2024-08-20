@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_b4x3b"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="5_at33i"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="6_5srxn"]
-[ext_resource type="PackedScene" path="res://entity/object/clouds.tscn" id="7_2214h"]
+[ext_resource type="PackedScene" uid="uid://c8heuwmiaetwn" path="res://entity/object/clouds.tscn" id="7_2214h"]
 [ext_resource type="Shader" path="res://assets/shader/pan_hack.gdshader" id="7_nond5"]
 [ext_resource type="Texture2D" uid="uid://c6eab1e5x7ksk" path="res://assets/tori_built.png" id="8_wktat"]
 [ext_resource type="Texture2D" uid="uid://ca42vvx6c4w61" path="res://assets/thank.png" id="11_wbnif"]

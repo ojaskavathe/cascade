@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_oliij"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_2ojf5"]
-[ext_resource type="PackedScene" uid="uid://b007jykpwgr6a" path="res://level_group/lg_8.tscn" id="4_e6pl3"]
+[ext_resource type="PackedScene" path="res://level_group/lg_8.tscn" id="4_e6pl3"]
 [ext_resource type="PackedScene" uid="uid://chf6laan7d0lt" path="res://level_group/lg_5.tscn" id="4_hr3ht"]
 [ext_resource type="PackedScene" uid="uid://cfehv33flacci" path="res://level_group/lg_11.tscn" id="4_i6i0r"]
 [ext_resource type="PackedScene" uid="uid://dqrknsqbk8038" path="res://level_group/lg_4.tscn" id="4_knrop"]
@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://cdg3qiavdxcxn" path="res://level_group/lg_1.tscn" id="5_rcqat"]
 [ext_resource type="PackedScene" uid="uid://coibvjhqgl4un" path="res://level_group/lg_2.tscn" id="6_eqymc"]
 [ext_resource type="Shader" path="res://assets/shader/pixelate.gdshader" id="6_nhf58"]
-[ext_resource type="PackedScene" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
+[ext_resource type="PackedScene" uid="uid://b5vpdkkyoghac" path="res://entity/object/kill_zone.tscn" id="7_51qdx"]
 [ext_resource type="PackedScene" uid="uid://brg1oyl532r7q" path="res://level_group/lg_3.tscn" id="7_b8fmd"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_36upk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_07bi7"]
 shader = ExtResource("6_nhf58")
 shader_parameter/x = 320
 shader_parameter/y = 180
@@ -34,7 +34,6 @@ script = ExtResource("1_07ca5")
 
 [node name="Player" parent="." instance=ExtResource("1_oliij")]
 position = Vector2(0, 1366)
-SLOWMO_SCALE = 0.05
 
 [node name="Camera" parent="." instance=ExtResource("2_2ojf5")]
 position = Vector2(0, 1366)
@@ -80,20 +79,15 @@ position = Vector2(0, 927)
 scale = Vector2(1, 0.933)
 
 [node name="PixelPostProcess" type="CanvasLayer" parent="."]
-layer = 100
+layer = 2
 
 [node name="ColorRect" type="ColorRect" parent="PixelPostProcess"]
-material = SubResource("ShaderMaterial_36upk")
+material = SubResource("ShaderMaterial_07bi7")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -645.0
-offset_top = 920.0
-offset_right = -645.0
-offset_bottom = 920.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="KillZone" parent="." instance=ExtResource("7_51qdx")]
 

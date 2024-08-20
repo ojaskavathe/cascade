@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var MEGA_VELOCITY = -18000.0
 @export var GRAVITY = -1200.0
 @export var DAMPENING = 2.0
-@export var SLOWMO_SCALE = 0.1
+@export var SLOWMO_SCALE = 1
 
 var bash_state = false
 var in_jump_point = false
@@ -139,7 +139,6 @@ func _physics_process(delta):
 				# this goes here instead of in bash state check cuz 
 				# i don't want it to trigger on respawn\
 				Engine.time_scale = SLOWMO_SCALE
-				$MusicPlayer.set_pitch_scale(0.75)
 		
 			#var tween = get_tree().create_tween()
 			#tween.tween_property($MusicPlayer, "pitch_scale", 0.75, 0.01).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
@@ -156,8 +155,6 @@ func reset():
 	moving_jump = false
 	jump_point_ref = null
 	jump_point_offset = Vector2.ZERO
-	
-	$MusicPlayer.set_pitch_scale(1)
 
 func _on_jump_point_detect_area_entered(area: Area2D):
 	if (area.is_in_group("jump_point")):

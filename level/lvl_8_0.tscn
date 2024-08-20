@@ -8,7 +8,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_eje28"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 5645, 0, 0, 0, 0, 0, 313)
+"points": PackedVector2Array(0, 0, 0, 0, -9, 5260, 0, 0, 0, 0, 0, 304.22)
 }
 point_count = 2
 
@@ -58,7 +58,7 @@ _data = {
 position = Vector2(0, -6809)
 
 [node name="SpawnJumpPoint" parent="." groups=["final_spawn", "spawn_point"] instance=ExtResource("2_qlje4")]
-position = Vector2(0, -651)
+position = Vector2(0, -899)
 
 [node name="Final_Path" type="Path2D" parent="."]
 position = Vector2(0, -6500)
@@ -66,8 +66,8 @@ curve = SubResource("Curve2D_eje28")
 script = ExtResource("4_o0kis")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Final_Path"]
-position = Vector2(0, 5645)
-rotation = -1.5708
+position = Vector2(-9, 5260)
+rotation = -1.56898
 
 [node name="MegaMovingJumpPoint" parent="Final_Path/PathFollow2D" instance=ExtResource("4_fati8")]
 position = Vector2(0, 1.511)

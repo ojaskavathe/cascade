@@ -1,0 +1,424 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8omq6boj5sn"]
+
+[sub_resource type="Animation" id="Animation_x1bbw"]
+resource_name = "bob"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.86, 0.86), Vector2(1.14, 1.14), Vector2(0.86, 0.86), Vector2(1.14, 1.14)]
+}
+
+[sub_resource type="Animation" id="Animation_a475f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5tlnm"]
+_data = {
+"RESET": SubResource("Animation_a475f"),
+"bob": SubResource("Animation_x1bbw")
+}
+
+[sub_resource type="Gradient" id="Gradient_tow7n"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DragonModel" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(-24, -4, -8, -36, -12, -54, -8, -60, 8, -60, 12, -54, 8, -36, 24, -4, 20, 16, 30, 30, 24, 36, 12, 24, 24, 60, 0, 92, -24, 60, -12, 24, -24, 36, -30, 30, -23.617, 21.0637, -20, 16)
+
+[node name="Polygon2D" type="Node2D" parent="Polygon2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D/Polygon2D"]
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(-9, -57, -22, -63, -38, -56, -34, -45, -49, -35, -43, -22, -55, -10, -46, 17, -53, -9, -41, -21, -47, -34, -32, -44, -36, -55, -22, -61, -10, -56)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D/Polygon2D"]
+scale = Vector2(-1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(-9, -57, -22, -63, -38, -56, -34, -45, -49, -35, -43, -22, -55, -10, -46, 17, -53, -9, -41, -21, -47, -34, -32, -44, -36, -55, -22, -61, -10, -56)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
+z_index = -1
+position = Vector2(0, 20)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1, 1)
+color = Color(1, 0.2, 0, 1)
+polygon = PackedVector2Array(0, 0, 20, 40, 0, 60, -20, 40)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5tlnm")
+}
+speed_scale = 0.2
+
+[node name="Foam" type="CPUParticles2D" parent="."]
+position = Vector2(5, 113)
+amount = 800
+lifetime = 4.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, -1)
+spread = 4.0
+gravity = Vector2(0, -160)
+initial_velocity_min = 80.0
+initial_velocity_max = 160.0
+radial_accel_min = 20.0
+radial_accel_max = 40.0
+tangential_accel_min = 10.0
+tangential_accel_max = 20.0
+damping_min = 6.0
+damping_max = 20.0
+angle_min = 45.0
+angle_max = 45.0
+scale_amount_min = 16.0
+scale_amount_max = 32.0
+color = Color(1, 0, 0, 1)
+color_ramp = SubResource("Gradient_tow7n")

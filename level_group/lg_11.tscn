@@ -1,14 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfehv33flacci"]
+[gd_scene load_steps=21 format=3 uid="uid://cfehv33flacci"]
 
-[ext_resource type="PackedScene" uid="uid://ogaayhwpknfn" path="res://level/lvl_8_0.tscn" id="1_5quuc"]
-[ext_resource type="Texture2D" uid="uid://y4bryn4ri0a2" path="res://assets/fog.png" id="1_e0nud"]
-[ext_resource type="PackedScene" uid="uid://by12uhvyc47a1" path="res://level/lvl_8_1.tscn" id="2_b88lx"]
+[ext_resource type="Script" path="res://level_group/lg_11.gd" id="1_ps57y"]
 [ext_resource type="PackedScene" uid="uid://bohi4cl1p4ipa" path="res://entity/waterfall/waterfall_background.tscn" id="3_o2j8a"]
 [ext_resource type="PackedScene" uid="uid://db6esycu3r0ut" path="res://entity/waterfall/waterfall.tscn" id="4_b4x3b"]
+[ext_resource type="PackedScene" uid="uid://cdws5thkiebxw" path="res://entity/object/mega_end_jump_point.tscn" id="5_a8g0j"]
 [ext_resource type="PackedScene" uid="uid://ba2n4nf5j2cpv" path="res://entity/object/foam.tscn" id="5_at33i"]
 [ext_resource type="PackedScene" uid="uid://468m7kol4t1" path="res://entity/object/rocks.tscn" id="6_5srxn"]
+[ext_resource type="PackedScene" uid="uid://c8heuwmiaetwn" path="res://entity/object/clouds.tscn" id="7_2214h"]
 [ext_resource type="Shader" path="res://assets/shader/pan_hack.gdshader" id="7_nond5"]
 [ext_resource type="Texture2D" uid="uid://c6eab1e5x7ksk" path="res://assets/tori_built.png" id="8_wktat"]
+[ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="9_xwk3a"]
+[ext_resource type="Texture2D" uid="uid://ca42vvx6c4w61" path="res://assets/thank.png" id="11_wbnif"]
+[ext_resource type="Texture2D" uid="uid://cojo28jkidv36" path="res://assets/you.png" id="12_21puo"]
+[ext_resource type="Texture2D" uid="uid://qs3t00v2xyrq" path="res://assets/for.png" id="13_54br6"]
+[ext_resource type="Texture2D" uid="uid://bj8hi1amqkfpf" path="res://assets/playing.png" id="14_frdhy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_np3e4"]
 shader = ExtResource("7_nond5")
@@ -41,39 +46,10 @@ fill_to = Vector2(0, 0)
 
 [node name="LG_8" type="Node2D"]
 scale = Vector2(0.7, 0.7)
-
-[node name="Fog" type="Sprite2D" parent="."]
-z_index = 20
-position = Vector2(0, -3400)
-texture = ExtResource("1_e0nud")
-
-[node name="Fog2" type="Sprite2D" parent="."]
-z_index = 20
-position = Vector2(0, -4200)
-texture = ExtResource("1_e0nud")
-
-[node name="Fog3" type="Sprite2D" parent="."]
-z_index = 20
-position = Vector2(0, -5000)
-texture = ExtResource("1_e0nud")
-
-[node name="Fog4" type="Sprite2D" parent="."]
-z_index = 20
-position = Vector2(0, -5800)
-texture = ExtResource("1_e0nud")
-
-[node name="Fog5" type="Sprite2D" parent="."]
-z_index = 20
-position = Vector2(0, -6600)
-texture = ExtResource("1_e0nud")
+script = ExtResource("1_ps57y")
 
 [node name="levels" type="Node2D" parent="."]
 position = Vector2(-641, -763)
-
-[node name="lvl_8_0" parent="levels" instance=ExtResource("1_5quuc")]
-
-[node name="lvl_8_1" parent="levels" instance=ExtResource("2_b88lx")]
-position = Vector2(0, -1600)
 
 [node name="WaterfallBackground" type="Node2D" parent="."]
 
@@ -172,6 +148,9 @@ position = Vector2(1248, -3676.86)
 [node name="Rocks9" parent="RightRocks" instance=ExtResource("6_5srxn")]
 position = Vector2(1248, -5116.29)
 
+[node name="MegaEndJumpPoint" parent="RightRocks" instance=ExtResource("5_a8g0j")]
+position = Vector2(613.524, 1188.19)
+
 [node name="waterPlane" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_np3e4")
 texture = SubResource("NoiseTexture2D_hbvog")
@@ -189,7 +168,62 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("8_wktat")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -5
+z_index = -200
 position = Vector2(34.286, -7871.43)
 scale = Vector2(40, 102.571)
 texture = SubResource("GradientTexture2D_45741")
+
+[node name="Cloud" parent="." instance=ExtResource("7_2214h")]
+z_index = 16
+position = Vector2(0, -5000)
+emission_rect_extents = Vector2(1600, 3000)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(4.28571, 617.143)
+scale = Vector2(1, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-71.4286, -74.2857, -10, -40, 100, -87.1428, 81.4286, 25.7143, -81.4286, 35.7143, -91.4286, -78.5714)
+
+[node name="Player" parent="." instance=ExtResource("9_xwk3a")]
+position = Vector2(16.3424, 311.65)
+scale = Vector2(1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-2345.71, -6702.86, 2335.71, -6487.14, 2367.14, -3747.14, -2518.57, -3521.43)
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
+polygon = PackedVector2Array(-2270, -10931.4, -2251.43, -10630, 2508.57, -10622.9, 2540, -10950)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Thank" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(279, 262)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("11_wbnif")
+
+[node name="You" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(379, 378)
+scale = Vector2(0.692519, 0.710185)
+texture = ExtResource("12_21puo")
+
+[node name="For" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(844, 231)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("13_54br6")
+
+[node name="Playing" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(980, 376)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("14_frdhy")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

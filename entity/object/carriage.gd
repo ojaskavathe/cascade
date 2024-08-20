@@ -5,15 +5,7 @@ extends Path2D
 
 func _ready() -> void:
 	animation_player.stop()
-	Signals.player_entered_carriage.connect(_start_move)
-	Signals.player_exited_carriage.connect(_stop_move)
 	Signals.kill.connect(_reset)
-
-func _start_move():
-	animation_player.play()
-
-func _stop_move():
-	animation_player.pause()
 
 func _reset():
 	animation_player.stop()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmwpm7ap75scu"]
+[gd_scene load_steps=16 format=3 uid="uid://cmwpm7ap75scu"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_07ca5"]
 [ext_resource type="PackedScene" uid="uid://d0vrcis6rns5i" path="res://entity/player/player.tscn" id="1_oliij"]
 [ext_resource type="PackedScene" uid="uid://dqa5gpiw17hjv" path="res://entity/player/camera.tscn" id="2_2ojf5"]
 [ext_resource type="PackedScene" uid="uid://chf6laan7d0lt" path="res://level_group/lg_5.tscn" id="4_hr3ht"]
 [ext_resource type="PackedScene" uid="uid://dqrknsqbk8038" path="res://level_group/lg_4.tscn" id="4_knrop"]
+[ext_resource type="PackedScene" uid="uid://cag1vg333agah" path="res://level_group/lg_6.tscn" id="4_mwijq"]
 [ext_resource type="PackedScene" uid="uid://dcykdm8vsc242" path="res://level_group/lg_0.tscn" id="5_6myex"]
 [ext_resource type="PackedScene" uid="uid://cdg3qiavdxcxn" path="res://level_group/lg_1.tscn" id="5_rcqat"]
 [ext_resource type="PackedScene" uid="uid://coibvjhqgl4un" path="res://level_group/lg_2.tscn" id="6_eqymc"]
@@ -27,7 +28,7 @@ distance = -480.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_07ca5")
-start_scene = 5
+start_scene = 6
 
 [node name="Player" parent="." instance=ExtResource("1_oliij")]
 position = Vector2(0, 1366)
@@ -43,6 +44,9 @@ smoothingSpeed = 16.0
 targetOffset = Vector2(0, 200)
 
 [node name="LevelGroups" type="Node2D" parent="."]
+
+[node name="LG_6" parent="LevelGroups" instance=ExtResource("4_mwijq")]
+position = Vector2(0, -31587)
 
 [node name="LG_5" parent="LevelGroups" instance=ExtResource("4_hr3ht")]
 position = Vector2(0, -25660)

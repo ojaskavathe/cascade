@@ -9,7 +9,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_p6xoc"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -328.376, -671, 0, 0, 0, 0, -430.376, -1770)
+"points": PackedVector2Array(0, 0, 0, 0, -440.376, -748, 0, 0, 0, 0, -430.376, -1770)
 }
 point_count = 2
 
@@ -64,8 +64,8 @@ curve = SubResource("Curve2D_p6xoc")
 script = ExtResource("3_x8exb")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Carriage"]
-position = Vector2(-328.376, -671)
-rotation = -1.66334
+position = Vector2(-440.376, -748)
+rotation = -1.56101
 
 [node name="MovingJumpPoint" parent="Carriage/PathFollow2D" groups=["carriage_point"] instance=ExtResource("3_52wl1")]
 script = null
@@ -80,4 +80,4 @@ autoplay = "move_jump_point"
 position = Vector2(0, -2941)
 
 [node name="Enemy2" parent="." instance=ExtResource("6_oo4sj")]
-position = Vector2(-115, -2368)
+position = Vector2(0, -2495)

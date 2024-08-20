@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var SPEED = 10.0
 @export var JUMP_VELOCITY = -2000.0
 @export var END_VELOCITY = -9200.0
-@export var MEGA_VELOCITY = -16000.0
+@export var MEGA_VELOCITY = -18000.0
 @export var GRAVITY = -1200.0
 @export var DAMPENING = 2.0
 @export var SLOWMO_SCALE = 0.1
@@ -98,9 +98,6 @@ func _physics_process(delta):
 			
 			if mega:
 				velocity = move_direction * MEGA_VELOCITY
-				var tween = get_tree().create_tween()
-				tween.tween_property(self, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_SINE)
-				tween.tween_property(self, "scale", 8 * Vector2.ONE, 2).set_trans(Tween.TRANS_SINE)
 			else:
 				velocity = move_direction * (END_VELOCITY if end_jump else JUMP_VELOCITY)
 			Signals.player_exited_bash_state.emit(end_jump)

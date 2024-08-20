@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://x42kpldcqswv"]
+
+[ext_resource type="Script" path="res://entity/object/has_particles.gd" id="1_3rc7r"]
+[ext_resource type="PackedScene" uid="uid://v743cd1td7ir" path="res://entity/object/base_jump_point.tscn" id="2_umrlj"]
+[ext_resource type="Texture2D" uid="uid://c7aq3h0u8p0s8" path="res://assets/leaf.png" id="3_5h7gc"]
+
+[sub_resource type="Curve" id="Curve_d0thu"]
+_data = [Vector2(0, 0.2), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_twv5t"]
+offsets = PackedFloat32Array(0, 0.746667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_0wddm"]
+offsets = PackedFloat32Array(0, 0.162338, 0.636364, 0.954545)
+colors = PackedColorArray(1, 1, 1, 1, 0.894118, 0.894118, 0.894118, 1, 0.27, 0.27, 0.27, 0.105882, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1786h"]
+gradient = SubResource("Gradient_0wddm")
+width = 160
+height = 160
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="MegaMovingJumpPoint" type="Node2D" groups=["moving_point"]]
+position = Vector2(-0.958679, 5.00809)
+rotation = 1.56255
+script = ExtResource("1_3rc7r")
+
+[node name="BaseJumpPoint" parent="." groups=["moving_point"] instance=ExtResource("2_umrlj")]
+scale = Vector2(2, 2)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 64
+lifetime = 4.0
+preprocess = 4.0
+speed_scale = 0.5
+texture = ExtResource("3_5h7gc")
+emission_shape = 2
+emission_sphere_radius = 40.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 1.0
+orbit_velocity_max = 10.0
+angle_max = 360.0
+scale_amount_curve = SubResource("Curve_d0thu")
+color = Color(1, 0.498039, 0, 1)
+color_ramp = SubResource("Gradient_twv5t")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.75, 0.75)
+color = Color(1, 0.498039, 0, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_1786h")

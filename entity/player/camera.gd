@@ -9,6 +9,9 @@ var y_max = 100000
 var y_min = -100000
 
 @export var dashZoom: float = 1.25
+@export var endZoom: float = 0.5
+@export var carriageZoom: float = 0.7
+
 @export var randomStrength: float = 24.0
 @export var shakeFade: float = 20.0
 @export var dashSmoothingSpeed: float = 2.0
@@ -27,6 +30,8 @@ func _ready():
 	Signals.player_moved.connect(_on_player_moved)
 	Signals.player_entered_bash_state.connect(_on_player_entered_bash_state)
 	Signals.player_exited_bash_state.connect(_on_player_exited_bash_state)
+	Signals.player_entered_carriage.connect(_entered_carriage)
+	Signals.player_exited_carriage.connect(_exited_carriage)
 
 func _process(delta):
 	if tracking_flag:
@@ -45,6 +50,21 @@ func _on_player_moved(new_position):
 	tracking = new_position
 	tracking_flag = true
 
+func _entered_carriage():
+	if is_instance_valid(camera_tween_end):
+		camera_tween_end.kill()
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "zoom", Vector2.ONE * 0.7, 0.2).set_trans(Tween.TRANS_SINE)
+	camera_tween_start = tween
+	
+func _exited_carriage():
+	if is_instance_valid(camera_tween_start):
+		camera_tween_start.kill()
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "zoom", Vector2.ONE, 0.2).set_trans(Tween.TRANS_SINE)
+
 func _on_player_entered_bash_state():
 	if is_instance_valid(camera_tween_end):
 		camera_tween_end.kill()
@@ -60,10 +80,10 @@ func _on_player_exited_bash_state(end):
 	
 	#self.smoothingSpeed = 16.0
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "zoom", Vector2(0.5, 0.5) if end else Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "zoom", Vector2.ONE * endZoom if end else Vector2.ONE, 0.2).set_trans(Tween.TRANS_SINE)
 	
 	if end:
-		tween.tween_property(self, "zoom", Vector2(1.0, 1.0), 2).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(self, "zoom", Vector2.ONE, 2).set_trans(Tween.TRANS_SINE)
 
 	camera_tween_end = tween
 	

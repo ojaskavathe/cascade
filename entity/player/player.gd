@@ -64,6 +64,8 @@ func _physics_process(delta):
 			self.position = jump_point_position + jump_point_offset
 			Signals.player_moved.emit(self.position)
 			Engine.time_scale = 1
+			if (jump_point_ref.is_in_group("carriage_point")):
+				Signals.player_entered_carriage.emit()
 	
 		if Input.is_action_just_released("jump"):
 			Signals.fade_logo.emit()
@@ -80,6 +82,10 @@ func _physics_process(delta):
 				Signals.player_exited_lg.emit()
 			else:
 				controls_enabled = true
+			
+			if moving_jump:
+				if (jump_point_ref.get_parent().is_in_group("carriage_point")):
+					Signals.player_exited_carriage.emit()
 			
 			if mega:
 				velocity = move_direction * MEGA_VELOCITY
@@ -115,6 +121,10 @@ func _physics_process(delta):
 			set_particle_behavior(ParticleBehavior.SWIM)
 			$DashParticleTimer.stop()
 			Signals.player_entered_bash_state.emit()
+			
+			if moving_jump:
+				if (jump_point_ref.get_parent().is_in_group("carriage_point")):
+					Signals.player_entered_carriage.emit()
 			
 			# this goes here instead of in bash state check cuz 
 			# i don't want it to trigger on respawn\

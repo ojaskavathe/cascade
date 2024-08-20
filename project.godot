@@ -33,7 +33,7 @@ window/stretch/aspect="keep_width"
 spawn_point=""
 end_point=""
 mega=""
-moving_point=""
+carriage_point=""
 
 [input]
 

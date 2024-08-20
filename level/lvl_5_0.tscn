@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://r36seia75hfi"]
+
+[ext_resource type="PackedScene" uid="uid://cnb5n82ek6hwi" path="res://entity/object/bottom_kill_zone.tscn" id="1_xuoq0"]
+[ext_resource type="PackedScene" uid="uid://hwtg6vij1omp" path="res://entity/object/spawn_jump_point.tscn" id="2_op667"]
+[ext_resource type="PackedScene" uid="uid://c3rws50yh4s14" path="res://entity/object/moving_jump_point.tscn" id="3_52wl1"]
+[ext_resource type="Script" path="res://entity/object/carriage.gd" id="3_x8exb"]
+[ext_resource type="PackedScene" uid="uid://ek465fxqkhqe" path="res://entity/object/end_jump_point.tscn" id="5_ygw6a"]
+[ext_resource type="PackedScene" uid="uid://cfmeftaqkjqs" path="res://entity/object/enemy.tscn" id="6_oo4sj"]
+
+[sub_resource type="Curve2D" id="Curve2D_p6xoc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -328.376, -671, 0, 0, 0, 0, -430.376, -1770)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_i2bbm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i8yiu"]
+resource_name = "move_jump_point"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uc27j"]
+_data = {
+"RESET": SubResource("Animation_i2bbm"),
+"move_jump_point": SubResource("Animation_i8yiu")
+}
+
+[node name="lvl_5_0" type="Node2D"]
+
+[node name="BottomKillzone" parent="." instance=ExtResource("1_xuoq0")]
+
+[node name="SpawnJumpPoint" parent="." groups=["spawn_point"] instance=ExtResource("2_op667")]
+position = Vector2(0, -628)
+
+[node name="Carriage" type="Path2D" parent="."]
+position = Vector2(427.376, -255)
+curve = SubResource("Curve2D_p6xoc")
+script = ExtResource("3_x8exb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Carriage"]
+position = Vector2(-328.376, -671)
+rotation = -1.66334
+
+[node name="MovingJumpPoint" parent="Carriage/PathFollow2D" groups=["carriage_point"] instance=ExtResource("3_52wl1")]
+script = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Carriage"]
+libraries = {
+"": SubResource("AnimationLibrary_uc27j")
+}
+autoplay = "move_jump_point"
+
+[node name="EndJumpPoint" parent="." instance=ExtResource("5_ygw6a")]
+position = Vector2(0, -2941)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_oo4sj")]
+position = Vector2(-115, -2368)

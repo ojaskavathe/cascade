@@ -90,11 +90,11 @@ func _physics_process(delta):
 				controls_enabled = true
 			
 			if moving_jump:
+				Signals.player_exited_carriage.emit()
 				if (jump_point_ref.get_parent().is_in_group("carriage_point")):
 					# super hacky pls forgive
 					var carriage = jump_point_ref.get_parent().get_parent().get_parent()
 					carriage.get_node("AnimationPlayer").pause()
-					Signals.player_exited_carriage.emit()
 			
 			if mega:
 				velocity = move_direction * MEGA_VELOCITY
@@ -132,11 +132,11 @@ func _physics_process(delta):
 			Signals.player_entered_bash_state.emit()
 			
 			if moving_jump:
+				Signals.player_entered_carriage.emit()
 				if (jump_point_ref.get_parent().is_in_group("carriage_point")):
 					# super hacky pls forgive
 					var carriage = jump_point_ref.get_parent().get_parent().get_parent()
 					carriage.get_node("AnimationPlayer").play()
-					Signals.player_entered_carriage.emit()
 			else:
 				# this goes here instead of in bash state check cuz 
 				# i don't want it to trigger on respawn\

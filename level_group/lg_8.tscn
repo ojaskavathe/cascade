@@ -112,7 +112,7 @@ noise = SubResource("FastNoiseLite_cbo0g")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b3uti"]
 shader = SubResource("Shader_ktehq")
 shader_parameter/scale = Vector2(5, 45)
-shader_parameter/zoom = 0.31498
+shader_parameter/zoom = 0.125
 shader_parameter/gap_stretch = Vector2(0.8, 0.05)
 shader_parameter/refraction_stretch = Vector2(2, 0.8)
 shader_parameter/refraction_strength = 0.008
@@ -150,7 +150,6 @@ position = Vector2(-641, -2160.14)
 [node name="WaterfallBackground4" parent="WaterfallBackground" instance=ExtResource("2_s5k5y")]
 z_index = -2
 position = Vector2(-638.571, -2880)
-scale = Vector2(1, 1)
 
 [node name="WaterfallBackground5" parent="WaterfallBackground" instance=ExtResource("2_s5k5y")]
 z_index = -2
